@@ -1,0 +1,404 @@
+desc: (none)
+cmd: ./testrangeproofs
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=224062
+mem_heap_B=16
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=229017
+mem_heap_B=488
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=232261
+mem_heap_B=608
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=232434
+mem_heap_B=1632
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=233616
+mem_heap_B=1752
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=361294
+mem_heap_B=1752
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=peak
+n4: 1752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1024 0x4923D03: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 1024 0x4933ECF: _IO_doallocbuf (genops.c:347)
+   n1: 1024 0x4932CA3: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+    n1: 1024 0x4925717: getdelim (iogetdelim.c:73)
+     n1: 1024 0x48895A3: pthread_getattr_np (pthread_getattr_np.c:118)
+      n0: 1024 0x401779: runtime/cgo(.text) (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+ n1: 472 0x492492D: __fopen_internal (iofopen.c:65)
+  n1: 472 0x492492D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+   n1: 472 0x48894AA: pthread_getattr_np (pthread_getattr_np.c:81)
+    n0: 472 0x401779: runtime/cgo(.text) (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+ n1: 240 0x492559D: getdelim (iogetdelim.c:102)
+  n1: 240 0x48895A3: pthread_getattr_np (pthread_getattr_np.c:118)
+   n0: 240 0x401779: runtime/cgo(.text) (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+ n0: 16 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=361294
+mem_heap_B=1512
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=362640
+mem_heap_B=488
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=362767
+mem_heap_B=16
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=363804
+mem_heap_B=48
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=368316
+mem_heap_B=16
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=369364
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=1024708
+mem_heap_B=24
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=1035217
+mem_heap_B=312
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=1049117
+mem_heap_B=336
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=1049498
+mem_heap_B=624
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=detailed
+n3: 624 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 576 0x40149DA: allocate_dtv (dl-tls.c:286)
+  n1: 576 0x40149DA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 576 0x4888322: allocate_stack (allocatestack.c:622)
+    n1: 576 0x4888322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 576 0x4012F0: _cgo_try_pthread_create (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+      n1: 576 0x7FFFFF: UnknownInlinedFun (commitment.go:30)
+       n2: 576 0x7FFFFF: github.com/consensys/gnark/backend/groth16/bw6-633.Setup (setup.go:100)
+        n1: 288 0x36333B30303D6360: ???
+         n1: 288 0x303D61346D2E2A39: ???
+          n1: 288 0x6D2E2A3A36333B2F: ???
+           n1: 288 0x36333B30303D6468: ???
+            n1: 288 0x3D6964696D2E2A39: ???
+             n1: 288 0x2E2A3A36333B302F: ???
+              n1: 288 0x333B30303D616B6C: ???
+               n1: 288 0x3D33706D2E2A3A35: ???
+                n1: 288 0x2E2A3A36333B302F: ???
+                 n1: 288 0x333B30303D63706C: ???
+                  n1: 288 0x3D67676F2E2A3A35: ???
+                   n1: 288 0x2E2A3A36333B302F: ???
+                    n1: 288 0x36333B30303D6171: ???
+                     n1: 288 0x303D7661772E2A39: ???
+                      n1: 288 0x6F2E2A3A36333B2F: ???
+                       n1: 288 0x36333B30303D6166: ???
+                        n1: 288 0x3D7375706F2E2A39: ???
+                         n1: 288 0x2E2A3A36333B302F: ???
+                          n1: 288 0x333B30303D787072: ???
+                           n1: 288 0x667073782E2A3A35: ???
+                            n1: 288 0x3A36333B30303C: ???
+                             n1: 288 0x475F45444F435355: ???
+                              n1: 288 0x485F4350495F5448: ???
+                               n1: 288 0x722F3D454C444E40: ???
+                                n1: 288 0x2F726573752F6E74: ???
+                                 n0: 288 0x6373762F39303030: ???
+        n1: 288 0x3D7375706F2E2A39: ???
+         n1: 288 0x2E2A3A36333B302F: ???
+          n1: 288 0x333B30303D787072: ???
+           n1: 288 0x667073782E2A3A35: ???
+            n1: 288 0x3A36333B30303C: ???
+             n1: 288 0x475F45444F435355: ???
+              n1: 288 0x485F4350495F5448: ???
+               n1: 288 0x722F3D454C444E40: ???
+                n1: 288 0x2F726573752F6E74: ???
+                 n1: 288 0x6373762F39303030: ???
+                  n1: 288 0x2D7469672D65646E: ???
+                   n1: 288 0x3832613530323830: ???
+                    n1: 288 0x6B636F732E6337: ???
+                     n1: 288 0x4F52505F4D524553: ???
+                      n1: 288 0x6373763D4D415246: ???
+                       n1: 288 0x4C4548530065646E: ???
+                        n1: 288 0x622F6E69622F3D4B: ???
+                         n1: 288 0x5353454C00687360: ???
+                          n1: 288 0x752F3D45534F4C42: ???
+                           n1: 288 0x6C2F6E69622F7272: ???
+                            n1: 288 0x2065706970737364: ???
+                             n1: 288 0x5750007325207324: ???
+                              n1: 288 0x2F656D6F682F3D43: ???
+                               n1: 288 0x616E672F69716163: ???
+                                n1: 288 0x65742F62616C6B71: ???
+                                 n0: 288 0x7065676E61727472: ???
+ n1: 48 0x401811: runtime/cgo(.text) (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+  n1: 48 0x43F184: runtime.newm1 (proc.go:2696)
+   n2: 48 0x43F084: runtime.newm (proc.go:2676)
+    n1: 24 0x43F677: runtime.startm (proc.go:2870)
+     n1: 24 0x43FC4B: runtime.wakep (proc.go:3006)
+      n1: 24 0x444507: runtime.newproc.func1 (proc.go:4884)
+       n1: 24 0x4699C9: runtime.systemstack.abi0 (asm_amd64.s:509)
+        n0: 24 0x1FFF000097: ???
+    n1: 24 0x464A84: runtime.main.func1 (proc.go:172)
+     n1: 24 0x4699C9: runtime.systemstack.abi0 (asm_amd64.s:509)
+      n0: 24 0x1FFF000097: ???
+ n0: 0 in 6 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=17
+#-----------
+time=1063060
+mem_heap_B=648
+mem_heap_extra_B=64
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=1063441
+mem_heap_B=936
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=1066702
+mem_heap_B=912
+mem_heap_extra_B=56
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=1085270
+mem_heap_B=936
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=1085651
+mem_heap_B=1224
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=1088722
+mem_heap_B=1200
+mem_heap_extra_B=64
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=1090584
+mem_heap_B=1176
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=1101800
+mem_heap_B=1152
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=1145735
+mem_heap_B=1176
+mem_heap_extra_B=48
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=1146116
+mem_heap_B=1464
+mem_heap_extra_B=56
+mem_stacks_B=0
+heap_tree=detailed
+n3: 1464 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1440 0x40149DA: allocate_dtv (dl-tls.c:286)
+  n1: 1440 0x40149DA: _dl_allocate_tls (dl-tls.c:532)
+   n1: 1440 0x4888322: allocate_stack (allocatestack.c:622)
+    n1: 1440 0x4888322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+     n1: 1440 0x4012F0: _cgo_try_pthread_create (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+      n1: 1440 0x7FFFFF: UnknownInlinedFun (commitment.go:30)
+       n4: 1440 0x7FFFFF: github.com/consensys/gnark/backend/groth16/bw6-633.Setup (setup.go:100)
+        n0: 288 0x2065706970737364: ???
+        n1: 288 0x36333B30303D6360: ???
+         n1: 288 0x303D61346D2E2A39: ???
+          n1: 288 0x6D2E2A3A36333B2F: ???
+           n1: 288 0x36333B30303D6468: ???
+            n1: 288 0x3D6964696D2E2A39: ???
+             n1: 288 0x2E2A3A36333B302F: ???
+              n1: 288 0x333B30303D616B6C: ???
+               n1: 288 0x3D33706D2E2A3A35: ???
+                n1: 288 0x2E2A3A36333B302F: ???
+                 n1: 288 0x333B30303D63706C: ???
+                  n1: 288 0x3D67676F2E2A3A35: ???
+                   n1: 288 0x2E2A3A36333B302F: ???
+                    n1: 288 0x36333B30303D6171: ???
+                     n1: 288 0x303D7661772E2A39: ???
+                      n1: 288 0x6F2E2A3A36333B2F: ???
+                       n1: 288 0x36333B30303D6166: ???
+                        n1: 288 0x3D7375706F2E2A39: ???
+                         n1: 288 0x2E2A3A36333B302F: ???
+                          n1: 288 0x333B30303D787072: ???
+                           n1: 288 0x667073782E2A3A35: ???
+                            n1: 288 0x3A36333B30303C: ???
+                             n1: 288 0x475F45444F435355: ???
+                              n1: 288 0x485F4350495F5448: ???
+                               n1: 288 0x722F3D454C444E40: ???
+                                n1: 288 0x2F726573752F6E74: ???
+                                 n0: 288 0x6373762F39303030: ???
+        n1: 288 0x3B31303D62766D71: ???
+         n1: 288 0x636C662E2A3A3532: ???
+          n1: 288 0x2A3A35333B31303C: ???
+           n1: 288 0x3B31303D6976612D: ???
+            n1: 288 0x696C662E2A3A3532: ???
+             n1: 288 0x2A3A35333B31303C: ???
+              n1: 288 0x3B31303D766C662D: ???
+               n1: 288 0x3D6C672E2A3A3532: ???
+                n1: 288 0x2E2A3A35333B312F: ???
+                 n1: 288 0x35333B31303D6C63: ???
+                  n1: 288 0x303D6663782E2A39: ???
+                   n1: 288 0x782E2A3A35333B30: ???
+                    n1: 288 0x35333B31303D6476: ???
+                     n1: 288 0x303D7675792E2A39: ???
+                      n1: 288 0x632E2A3A35333B30: ???
+                       n1: 288 0x35333B31303D6D66: ???
+                        n1: 288 0x303D666D652E2A39: ???
+                         n1: 288 0x6F2E2A3A35333B30: ???
+                          n1: 288 0x35333B31303D7666: ???
+                           n1: 288 0x303D78676F2E2A39: ???
+                            n1: 288 0x612E2A3A35333B30: ???
+                             n1: 288 0x36333B30303D6360: ???
+                              n1: 288 0x30303D75612E2A39: ???
+                               n1: 288 0x6C662E2A3A36333A: ???
+                                n1: 288 0x36333B30303D6360: ???
+                                 n0: 288 0x303D61346D2E2A39: ???
+        n1: 288 0x3D7375706F2E2A39: ???
+         n1: 288 0x2E2A3A36333B302F: ???
+          n1: 288 0x333B30303D787072: ???
+           n1: 288 0x667073782E2A3A35: ???
+            n1: 288 0x3A36333B30303C: ???
+             n1: 288 0x475F45444F435355: ???
+              n1: 288 0x485F4350495F5448: ???
+               n1: 288 0x722F3D454C444E40: ???
+                n1: 288 0x2F726573752F6E74: ???
+                 n1: 288 0x6373762F39303030: ???
+                  n1: 288 0x2D7469672D65646E: ???
+                   n1: 288 0x3832613530323830: ???
+                    n1: 288 0x6B636F732E6337: ???
+                     n1: 288 0x4F52505F4D524553: ???
+                      n1: 288 0x6373763D4D415246: ???
+                       n1: 288 0x4C4548530065646E: ???
+                        n1: 288 0x622F6E69622F3D4B: ???
+                         n1: 288 0x5353454C00687360: ???
+                          n1: 288 0x752F3D45534F4C42: ???
+                           n1: 288 0x6C2F6E69622F7272: ???
+                            n1: 288 0x2065706970737364: ???
+                             n1: 288 0x5750007325207324: ???
+                              n1: 288 0x2F656D6F682F3D43: ???
+                               n1: 288 0x616E672F69716163: ???
+                                n1: 288 0x65742F62616C6B71: ???
+                                 n0: 288 0x7065676E61727472: ???
+ n2: 24 0x401811: runtime/cgo(.text) (in /home/daqi/gnarklab/testrangeproofs/testrangeproofs)
+  n1: 24 0xC00008E6C7: ???
+   n1: 24 0x46B603: runtime.asmcgocall.abi0 (asm_amd64.s:918)
+    n1: 24 0xC0000061BF: ???
+     n1: 24 0x4699C9: runtime.systemstack.abi0 (asm_amd64.s:509)
+      n1: 24 0x1FFF000097: ???
+       n1: 24 0x46E03E: runtime.newproc.abi0 (<autogenerated>:1)
+        n1: 24 0x4698C4: runtime.mstart.abi0 (asm_amd64.s:394)
+         n0: 24 0x46984E: runtime.rt0_go.abi0 (asm_amd64.s:358)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n0: 0 in 6 places, all below massif's threshold (1.00%)

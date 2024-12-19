@@ -1,0 +1,137 @@
+--------------------------------------------------------------------------------
+Command:            ./test
+Massif arguments:   (none)
+ms_print arguments: massif.out.2539326
+--------------------------------------------------------------------------------
+
+
+    KB
+1.750^#                                                                       
+     |#                                                                       
+     |#                                                                       
+     |#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: 
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+     |#                                                                      @
+   0 +----------------------------------------------------------------------->Mi
+     0                                                                   638.4
+
+Number of snapshots: 27
+ Detailed snapshots: [6 (peak), 16, 26]
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  0              0                0                0             0            0
+  1        223,413               24               16             8            0
+  2        228,409              512              488            24            0
+  3        231,673              648              608            40            0
+  4        231,846            1,680            1,632            48            0
+  5        256,877            1,792            1,752            40            0
+  6        356,367            1,792            1,752            40            0
+97.77% (1,752B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->57.14% (1,024B) 0x4923D03: _IO_file_doallocate (filedoalloc.c:101)
+| ->57.14% (1,024B) 0x4933ECF: _IO_doallocbuf (genops.c:347)
+|   ->57.14% (1,024B) 0x4932CA3: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:486)
+|     ->57.14% (1,024B) 0x4925717: getdelim (iogetdelim.c:73)
+|       ->57.14% (1,024B) 0x48895A3: pthread_getattr_np (pthread_getattr_np.c:118)
+|         ->57.14% (1,024B) 0x401779: runtime/cgo(.text) (in /home/daqi/gnarklab/testCubitequation/test)
+|           
+->26.34% (472B) 0x492492D: __fopen_internal (iofopen.c:65)
+| ->26.34% (472B) 0x492492D: fopen@@GLIBC_2.2.5 (iofopen.c:86)
+|   ->26.34% (472B) 0x48894AA: pthread_getattr_np (pthread_getattr_np.c:81)
+|     ->26.34% (472B) 0x401779: runtime/cgo(.text) (in /home/daqi/gnarklab/testCubitequation/test)
+|       
+->13.39% (240B) 0x492559D: getdelim (iogetdelim.c:102)
+| ->13.39% (240B) 0x48895A3: pthread_getattr_np (pthread_getattr_np.c:118)
+|   ->13.39% (240B) 0x401779: runtime/cgo(.text) (in /home/daqi/gnarklab/testCubitequation/test)
+|     
+->00.89% (16B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+  7        356,367            1,544            1,512            32            0
+  8        357,713              512              488            24            0
+  9        357,840               24               16             8            0
+ 10        358,877               64               48            16            0
+ 11        363,428               24               16             8            0
+ 12        364,476                0                0             0            0
+ 13      1,240,425               40               24            16            0
+ 14      1,250,918              336              312            24            0
+ 15      1,267,825              376              336            40            0
+ 16      1,268,206              672              624            48            0
+92.86% (624B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->85.71% (576B) 0x40149DA: allocate_dtv (dl-tls.c:286)
+| ->85.71% (576B) 0x40149DA: _dl_allocate_tls (dl-tls.c:532)
+|   ->85.71% (576B) 0x4888322: allocate_stack (allocatestack.c:622)
+|     ->85.71% (576B) 0x4888322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+|       ->85.71% (576B) 0x4012F0: _cgo_try_pthread_create (in /home/daqi/gnarklab/testCubitequation/test)
+|         ->85.71% (576B) 0x7FFFFF: github.com/consensys/gnark-crypto/ecc/bls24-315.batchAddG2Affine[go.shape.[200]github.com/consensys/gnark-crypto/ecc/bls24-315.G2Affine,go.shape.[200]*github.com/consensys/gnark-crypto/ecc/bls24-315.G2Affine,go.shape.[200]github.com/consensys/gnark-crypto/ecc/bls24-315/internal/fptower.E4] (g2.go:1106)
+|           
+->07.14% (48B) 0x401811: runtime/cgo(.text) (in /home/daqi/gnarklab/testCubitequation/test)
+| ->07.14% (48B) 0x446BD5: runtime.newm1 (proc.go:2696)
+|   ->07.14% (48B) 0x446AF2: runtime.newm (proc.go:2676)
+|     ->03.57% (24B) 0x44706E: runtime.startm (proc.go:2870)
+|     | ->03.57% (24B) 0x447486: runtime.wakep (proc.go:3006)
+|     |   ->03.57% (24B) 0x44B393: runtime.newproc.func1 (proc.go:4884)
+|     |     ->03.57% (24B) 0x4731A9: runtime.systemstack.abi0 (asm_amd64.s:509)
+|     |       ->03.57% (24B) 0x477A3E: runtime.newproc.abi0 (<autogenerated>:1)
+|     |         ->03.57% (24B) 0xD48DDF: ???
+|     |           
+|     ->03.57% (24B) 0x46E324: runtime.main.func1 (proc.go:172)
+|       ->03.57% (24B) 0x4731A9: runtime.systemstack.abi0 (asm_amd64.s:509)
+|         ->03.57% (24B) 0x477A3E: runtime.newproc.abi0 (<autogenerated>:1)
+|           ->03.57% (24B) 0xD48DDF: ???
+|             
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
+--------------------------------------------------------------------------------
+  n        time(i)         total(B)   useful-heap(B) extra-heap(B)    stacks(B)
+--------------------------------------------------------------------------------
+ 17      1,286,343              712              648            64            0
+ 18      1,286,724            1,008              936            72            0
+ 19      1,290,063              968              912            56            0
+ 20      1,292,903              928              888            40            0
+ 21      1,318,560              968              912            56            0
+ 22      1,318,941            1,264            1,200            64            0
+ 23      1,323,557            1,224            1,176            48            0
+ 24      1,394,833            1,264            1,200            64            0
+ 25      1,395,214            1,560            1,488            72            0
+ 26    669,434,961            1,520            1,464            56            0
+96.32% (1,464B) (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+->94.74% (1,440B) 0x40149DA: allocate_dtv (dl-tls.c:286)
+| ->94.74% (1,440B) 0x40149DA: _dl_allocate_tls (dl-tls.c:532)
+|   ->94.74% (1,440B) 0x4888322: allocate_stack (allocatestack.c:622)
+|     ->94.74% (1,440B) 0x4888322: pthread_create@@GLIBC_2.2.5 (pthread_create.c:660)
+|       ->94.74% (1,440B) 0x4012F0: _cgo_try_pthread_create (in /home/daqi/gnarklab/testCubitequation/test)
+|         ->94.74% (1,440B) 0x7FFFFF: github.com/consensys/gnark-crypto/ecc/bls24-315.batchAddG2Affine[go.shape.[200]github.com/consensys/gnark-crypto/ecc/bls24-315.G2Affine,go.shape.[200]*github.com/consensys/gnark-crypto/ecc/bls24-315.G2Affine,go.shape.[200]github.com/consensys/gnark-crypto/ecc/bls24-315/internal/fptower.E4] (g2.go:1106)
+|           ->18.95% (288B) 0xFFFFFFFFFFFFFFFE: ???
+|             ->18.95% (288B) 0xFFFFFFFFFFFFFFFE: ???
+|               ->18.95% (288B) 0xFFFFFFFFFFFFFFFE: ???
+|                 
+->01.58% (24B) 0x401811: runtime/cgo(.text) (in /home/daqi/gnarklab/testCubitequation/test)
+| ->01.58% (24B) 0xC00008E6EF: ???
+| | ->01.58% (24B) 0x474DE3: runtime.asmcgocall.abi0 (asm_amd64.s:918)
+| |   ->01.58% (24B) 0xC0000061BF: ???
+| |     ->01.58% (24B) 0xD48DDF: ???
+| |       ->01.58% (24B) 0x477A3E: runtime.newproc.abi0 (<autogenerated>:1)
+| |         ->01.58% (24B) 0xD48DDF: ???
+| |           
+| ->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+| 
+->00.00% (0B) in 1+ places, all below ms_print's threshold (01.00%)
+
