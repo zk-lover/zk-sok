@@ -7,7 +7,7 @@
    - 这个三个都测了，用了groth16和plonk，代码在gnarklab下六个目录的test.go
 
 3. **halo2**
-   - 这个三个都测了，代码在halo2/halo2_proofs/examples的cubic_expression，range_proof，sha256同名rush文件
+   - 这个三个都测了，代码在halo2/halo2_proofs/examples的cubic_expression，range_proof，sha256同名rust文件
 
 4. **libiop**
    - 这个三个都测了，代码在libiop/libiop/tests/snark的test_aurora_snark.cpp，test_fractal_snark.cpp，test_ligero_snark.cpp
