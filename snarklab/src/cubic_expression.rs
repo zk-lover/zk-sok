@@ -62,7 +62,7 @@ impl<ConstraintF: Field> ConstraintSynthesizer<ConstraintF> for CubicPlusLinearC
     }
 }
 
-fn main() {
+pub fn main() {
     // 使用 BLS12-381 椭圆曲线
     test_prove_and_verify::<ark_bls12_381::Bls12_381>();
 }
