@@ -1,0 +1,11 @@
+massif.out.*
+*.txt
+
+# 忽略所有二进制文件
+*.exe
+*.bin
+*.o
+*.class
+*.dll
+*.so
+*.dylib

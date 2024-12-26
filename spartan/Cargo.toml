@@ -1,0 +1,24 @@
+[package]
+name = "Spartanlab"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+merlin = "3.0.0"
+curve25519-dalek = "4.1.1"
+rand = "0.8.5"
+serde = { version = "1.0", features = ["derive"] }
+bincode = "1.3.3"
+spartan = "0.9.0"
+
+[[bin]]
+name = "sha256"
+path = "src/sha256.rs"
+
+[[bin]]
+name = "cubic"
+path = "src/cubic.rs"
+
+[[bin]]
+name = "rangeproof" 
+path = "src/rangeproof.rs"
