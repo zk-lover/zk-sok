@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  gitbook:
+    image: fellah/gitbook:latest
+    container_name: gitbook
+    ports:
+      - "4000:4000"  
+    volumes:
+      - ./book:/srv/gitbook  # 将本地的 ./book 目录映射到容器中的 /gitbook
+    command: "gitbook serve"  
+    restart: unless-stopped
