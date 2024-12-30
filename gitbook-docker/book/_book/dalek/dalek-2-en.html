@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>libsnark-en · GitBook</title>
+        <title>dalek-en · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../arkworks/arkworks-1.html" />
+    <link rel="next" href="../plonky2/plonky2-2.html" />
     
     
-    <link rel="prev" href="libsnark-1.html" />
+    <link rel="prev" href="dalek-2.html" />
     
 
     </head>
@@ -181,9 +181,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="libsnark-1.html">
+        <li class="chapter " data-level="1.3.5" data-path="../libsnark/libsnark-1.html">
             
-                <a href="libsnark-1.html">
+                <a href="../libsnark/libsnark-1.html">
             
                     
                     libsnark
@@ -194,9 +194,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.6" data-path="libsnark-1-en.html">
+        <li class="chapter " data-level="1.3.6" data-path="../libsnark/libsnark-1-en.html">
             
-                <a href="libsnark-1-en.html">
+                <a href="../libsnark/libsnark-1-en.html">
             
                     
                     libsnark-en
@@ -233,9 +233,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.9" data-path="../dalek/dalek-1.html">
+        <li class="chapter " data-level="1.3.9" data-path="dalek-1.html">
             
-                <a href="../dalek/dalek-1.html">
+                <a href="dalek-1.html">
             
                     
                     dalek
@@ -246,9 +246,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.10" data-path="../dalek/dalek-1-en.html">
+        <li class="chapter " data-level="1.3.10" data-path="dalek-1-en.html">
             
-                <a href="../dalek/dalek-1-en.html">
+                <a href="dalek-1-en.html">
             
                     
                     dalek-en
@@ -382,9 +382,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="libsnark-2.html">
+        <li class="chapter " data-level="1.4.5" data-path="../libsnark/libsnark-2.html">
             
-                <a href="libsnark-2.html">
+                <a href="../libsnark/libsnark-2.html">
             
                     
                     libsnark
@@ -395,9 +395,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="libsnark-2-en.html">
+        <li class="chapter " data-level="1.4.6" data-path="../libsnark/libsnark-2-en.html">
             
-                <a href="libsnark-2-en.html">
+                <a href="../libsnark/libsnark-2-en.html">
             
                     
                     libsnark-en
@@ -434,9 +434,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.9" data-path="../dalek/dalek-2.html">
+        <li class="chapter " data-level="1.4.9" data-path="dalek-2.html">
             
-                <a href="../dalek/dalek-2.html">
+                <a href="dalek-2.html">
             
                     
                     dalek
@@ -447,9 +447,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.10" data-path="../dalek/dalek-2-en.html">
+        <li class="chapter active" data-level="1.4.10" data-path="dalek-2-en.html">
             
-                <a href="../dalek/dalek-2-en.html">
+                <a href="dalek-2-en.html">
             
                     
                     dalek-en
@@ -573,7 +573,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >libsnark-en</a>
+        <a href=".." >dalek-en</a>
     </h1>
 </div>
 
@@ -588,56 +588,57 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="1initpublicparams">1.init_public_params()</h1><ul><li>Input: None
+                                <h1 id="1-rangeproofprovesingle">1. RangeProof::prove_single</h1><ul><li><p><strong>Input</strong>:
+1. <code>&amp;bp_gens</code>: Bulletproofs generators used to create the proof.
+2. <code>&amp;pc_gens</code>: Pedersen generators used to create commitments.
+3. <code>&amp;mut prover_transcript</code>: Transcript object to record public information.
+4. <code>secret_value</code>: The secret value to be range-proved.
+5. <code>&amp;blinding</code>: The blinding factor for the Pedersen commitment.
+6. <code>32</code>: The bit length of the range being proved.</p></li>
+<li><p><strong>Output</strong>:
+1. <code>RangeProof</code>: The generated range proof.
+2. <code>CompressedRistretto</code>: The commitment to the secret value.</p></li>
+<li><p><strong>Functionality</strong>: Generates a range proof for a given secret value, ensuring the value lies within a specific range.</p></li></ul>
+<h1 id="2-rangeproofprovemultiple">2. RangeProof::prove_multiple</h1><ul><li><p><strong>Input</strong>:
+1. <code>&amp;bp_gens</code>: Bulletproofs public parameters.
+2. <code>&amp;pc_gens</code>: Pedersen commitment generators.
+3. <code>&amp;mut transcript</code>: A Merlin transcript to record the proving process.
+4. <code>&amp;values[0..*m]</code>: Multiple secret values to be range-proved.
+5. <code>&amp;blindings[0..*m]</code>: The blinding factors for each value.
+6. <code>*n</code>: The bit length of the range.</p></li>
+<li><p><strong>Output</strong>:</p><ul><li><strong>Type</strong>: <code>(RangeProof, Vec&lt;CompressedRistretto&gt;)</code>
+<ul><li><code>RangeProof</code>: The generated range proof.
 </li>
-<li>Output: None
-</li>
-<li>Function: Initializes the required public and private parameters for generating the subsequent R1CS (Rank-1 Constraint System) constraints.
+<li><code>Vec&lt;CompressedRistretto&gt;</code>: Commitments for each secret value.
 </li></ul>
-<h1 id="2-protoboard-pb">2. protoboard<fieldt> pb</fieldt></h1><ul><li>Description: A core structure in libsnark &#x2014; represents the circuit&#x2019;s protoboard (analogous to a breadboard in electronics).
 </li></ul>
-<h1 id="3-pbvariable-x">3. pb_variable<fieldt> x</fieldt></h1><ul><li>Description: A basic structure in libsnark &#x2014; represents a fundamental variable on the protoboard.
 </li></ul>
-<h1 id="4-xallocatepb-x">4. x.allocate(pb, &quot;x&quot;)</h1><ul><li>Member Function of pb_variable:
-</li>
-<li>Input: A protoboard variable pb and a string representing the name (&#x201C;x&#x201D;).
-</li>
-<li>Output: None
-</li>
-<li>Function: Adds the variable x to the protoboard and allocates space for it. After this, the variable x can be used on the protoboard, such as referencing it when adding constraints.
+<ul><li><strong>Functionality</strong>: Generates range proofs for multiple secret values, ensuring all values lie within the range <code>[0, 2^n)</code>.
 </li></ul>
-<h1 id="5-pbsetinputsizesint-size">5. pb.set_input_sizes(int size)</h1><ul><li>Member Function of protoboard:
+<h1 id="3-rangeproofverifysingle">3. RangeProof::verify_single</h1><ul><li><p><strong>Input</strong>:
+1. <code>&amp;bp_gens</code>: Bulletproofs generators used for verification.
+2. <code>&amp;pc_gens</code>: Pedersen generators used for verifying commitments.
+3. <code>&amp;mut verifier_transcript</code>: Transcript object consistent with the proving phase.
+4. <code>&amp;committed_value</code>: The provided Pedersen commitment.
+5. <code>32</code>: The bit length of the range to verify.</p></li>
+<li><p><strong>Output</strong>:</p><ul><li><code>Ok(())</code>: Indicates successful proof verification.  
 </li>
-<li>Input: An integer size representing the number of public inputs.
-</li>
-<li>Output: None
-</li>
-<li>Function: Sets the number of public inputs. The first size variables on the protoboard are considered public inputs, and the remaining ones are considered private (secret) variables.
+<li><code>Err(R1CSError)</code>: Indicates proof verification failure.
 </li></ul>
-<h1 id="6-pbaddr1csconstraintr1csconstraintx-x-sym1">6. pb.add_r1cs_constraint(r1cs_constraint<fieldt>(x, x, sym_1))</fieldt></h1><ul><li>Member Function of protoboard:
 </li>
-<li>Input: Three pb_variable variables, representing the multiplication constraint x * x = sym_1.
+<li><p><strong>Functionality</strong>: Verifies the correctness of a range proof, ensuring the committed secret value satisfies the range constraints.</p></li></ul>
+<h1 id="4-rangeproofverifymultiple">4. RangeProof::verify_multiple</h1><ul><li><p><strong>Input</strong>:
+1. <code>&amp;bp_gens</code>: Bulletproofs public parameters.
+2. <code>&amp;pc_gens</code>: Pedersen commitment generators.
+3. <code>&amp;mut transcript</code>: A Merlin transcript used during verification.
+4. <code>&amp;vc[0..m]</code>: Commitments associated with the proof.
+5. <code>n</code>: The bit length of the range.</p></li>
+<li><p><strong>Output</strong>:</p><ul><li><code>Ok(())</code>: Indicates successful verification.  
 </li>
-<li>Output: None
-</li>
-<li>Function: Adds an R1CS constraint representing x * x = sym_1.
+<li><code>Err(R1CSError)</code>: Indicates verification failure.
 </li></ul>
-<h1 id="7-pbvalx--3">7. pb.val(x) = 3</h1><ul><li>Member Function of protoboard:
 </li>
-<li>Input: An integer value.
-</li>
-<li>Output: None
-</li>
-<li>Function: Sets the value of x on the protoboard to 3.
-</li></ul>
-<h1 id="8-pbgetconstraintsystem">8. pb.get_constraint_system()</h1><ul><li>Member Function of protoboard:
-</li>
-<li>Input: None
-</li>
-<li>Output: r1cs_constraint_system
-</li>
-<li>Function: Retrieves the system of all R1CS constraints that have been created, which will be used for generating the subsequent proof.
-</li></ul>
+<li><p><strong>Functionality</strong>: Verifies range proofs for multiple values, ensuring all commitments lie within the specified range.</p></li></ul>
 
                                 
                                 </section>
@@ -665,12 +666,12 @@
 
             
                 
-                <a href="libsnark-1.html" class="navigation navigation-prev " aria-label="Previous page: libsnark">
+                <a href="dalek-2.html" class="navigation navigation-prev " aria-label="Previous page: dalek">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../arkworks/arkworks-1.html" class="navigation navigation-next " aria-label="Next page: arkworks">
+                <a href="../plonky2/plonky2-2.html" class="navigation navigation-next " aria-label="Next page: plonky2">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -681,7 +682,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"libsnark-en","level":"1.3.6","depth":2,"next":{"title":"arkworks","level":"1.3.7","depth":2,"path":"arkworks/arkworks-1.md","ref":"arkworks/arkworks-1.md","articles":[]},"previous":{"title":"libsnark","level":"1.3.5","depth":2,"path":"libsnark/libsnark-1.md","ref":"libsnark/libsnark-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"libsnark/libsnark-1-en.md","mtime":"2024-12-19T09:47:30.334Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2024-12-30T06:41:20.762Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"dalek-en","level":"1.4.10","depth":2,"next":{"title":"plonky2","level":"1.4.11","depth":2,"path":"plonky2/plonky2-2.md","ref":"plonky2/plonky2-2.md","articles":[]},"previous":{"title":"dalek","level":"1.4.9","depth":2,"path":"dalek/dalek-2.md","ref":"dalek/dalek-2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dalek/dalek-2-en.md","mtime":"2024-12-30T06:27:15.079Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2024-12-30T06:41:20.762Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

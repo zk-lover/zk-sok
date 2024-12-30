@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>libsnark-en · GitBook</title>
+        <title>Spartan · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../arkworks/arkworks-1.html" />
+    <link rel="next" href="Spartan-1-en.html" />
     
     
-    <link rel="prev" href="libsnark-1.html" />
+    <link rel="prev" href="../plonky2/plonky2-1-en.html" />
     
 
     </head>
@@ -181,9 +181,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.5" data-path="libsnark-1.html">
+        <li class="chapter " data-level="1.3.5" data-path="../libsnark/libsnark-1.html">
             
-                <a href="libsnark-1.html">
+                <a href="../libsnark/libsnark-1.html">
             
                     
                     libsnark
@@ -194,9 +194,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.6" data-path="libsnark-1-en.html">
+        <li class="chapter " data-level="1.3.6" data-path="../libsnark/libsnark-1-en.html">
             
-                <a href="libsnark-1-en.html">
+                <a href="../libsnark/libsnark-1-en.html">
             
                     
                     libsnark-en
@@ -285,9 +285,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.13" data-path="../Spartan/Spartan-1.html">
+        <li class="chapter active" data-level="1.3.13" data-path="Spartan-1.html">
             
-                <a href="../Spartan/Spartan-1.html">
+                <a href="Spartan-1.html">
             
                     
                     Spartan
@@ -298,9 +298,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.14" data-path="../Spartan/Spartan-1-en.html">
+        <li class="chapter " data-level="1.3.14" data-path="Spartan-1-en.html">
             
-                <a href="../Spartan/Spartan-1-en.html">
+                <a href="Spartan-1-en.html">
             
                     
                     Spartan-en
@@ -382,9 +382,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.5" data-path="libsnark-2.html">
+        <li class="chapter " data-level="1.4.5" data-path="../libsnark/libsnark-2.html">
             
-                <a href="libsnark-2.html">
+                <a href="../libsnark/libsnark-2.html">
             
                     
                     libsnark
@@ -395,9 +395,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.6" data-path="libsnark-2-en.html">
+        <li class="chapter " data-level="1.4.6" data-path="../libsnark/libsnark-2-en.html">
             
-                <a href="libsnark-2-en.html">
+                <a href="../libsnark/libsnark-2-en.html">
             
                     
                     libsnark-en
@@ -486,9 +486,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.13" data-path="../Spartan/Spartan-2.html">
+        <li class="chapter " data-level="1.4.13" data-path="Spartan-2.html">
             
-                <a href="../Spartan/Spartan-2.html">
+                <a href="Spartan-2.html">
             
                     
                     Spartan
@@ -499,9 +499,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.14" data-path="../Spartan/Spartan-2-en.html">
+        <li class="chapter " data-level="1.4.14" data-path="Spartan-2-en.html">
             
-                <a href="../Spartan/Spartan-2-en.html">
+                <a href="Spartan-2-en.html">
             
                     
                     Spartan-en
@@ -573,7 +573,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >libsnark-en</a>
+        <a href=".." >Spartan</a>
     </h1>
 </div>
 
@@ -588,56 +588,31 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="1initpublicparams">1.init_public_params()</h1><ul><li>Input: None
+                                <h1 id="1-let-mut-a-vecusize-usize-u8-32--vecnew">1. let mut A: Vec&lt;(usize, usize, [u8; 32])&gt; = Vec::new();</h1><ul><li>R1CS &#x4F7F;&#x7528;&#x7A00;&#x758F;&#x77E9;&#x9635;A,B,C&#x6765;&#x8868;&#x793A;&#x7EA6;&#x675F;&#x3002;&#x6BCF;&#x884C;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x7EA6;&#x675F;&#xFF0C;&#x6BCF;&#x5217;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x3001;&#x8F93;&#x5165;&#x6216;&#x5E38;&#x91CF;1&#x3002;
 </li>
-<li>Output: None
+<li><p>&#x8BE5;&#x4EE3;&#x7801;&#x7528;&#x6765;&#x5B9A;&#x4E49;&#x7A00;&#x758F;&#x77E9;&#x9635;;</p><h1 id="2-apush0-0-one">2. A.push((0, 0, one));</h1></li>
+<li><p>&#x529F;&#x80FD;:&#x7A00;&#x758F;&#x77E9;&#x9635;&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;,&#x7528;&#x6765;&#x8BBE;&#x7F6E;&#x77E9;&#x9635;&#x4E2D;&#x67D0;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x503C;;</p></li>
+<li><p>&#x8F93;&#x5165;:    &#x7EA6;&#x675F;&#x7F16;&#x53F7;&#xFF08;&#x884C;&#x53F7;&#xFF09;;&#x53D8;&#x91CF;&#x7F16;&#x53F7;&#xFF08;&#x5217;&#x53F7;&#xFF09;;&#x5BF9;&#x5E94;&#x7CFB;&#x6570;&#x503C;&#xFF08;&#x4EE5;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x5F62;&#x5F0F;&#x8868;&#x793A;&#xFF09;&#x3002;</p><h1 id="3-instancenewnumcons-numvars-numinputs-a-b-cunwrap">3. Instance::new(num_cons, num_vars, num_inputs, &amp;A, &amp;B, &amp;C).unwrap();</h1></li>
+<li><p>&#x529F;&#x80FD;:&#x4F7F;&#x7528; Instance::new &#x6784;&#x9020; R1CS &#x5B9E;&#x4F8B;;</p></li>
+<li><p>&#x8F93;&#x5165;:    
+1. num_cons: &#x7EA6;&#x675F;&#x6570;&#x91CF;&#x3002;
+2. num_vars: &#x53D8;&#x91CF;&#x6570;&#x91CF;&#x3002;
+3. num_inputs: &#x8F93;&#x5165;&#x6570;&#x91CF;&#x3002;
+4. &amp;A, &amp;B, &amp;C: &#x4E09;&#x4E2A;&#x7A00;&#x758F;&#x77E9;&#x9635;&#x3002;</p></li>
+<li><p>&#x8F93;&#x51FA;: &#x4E00;&#x4E2A;r1cs&#x5B9E;&#x4F8B;;</p><h1 id="4varsassignmentnewvars">4.VarsAssignment::new(&amp;vars)</h1></li>
+<li><p>&#x529F;&#x80FD;:&#x4F7F;&#x7528;&#x5206;&#x914D;&#x7684;&#x53D8;&#x91CF;&#x5411;&#x91CF;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; VarsAssignment &#x5BF9;&#x8C61;&#xFF0C;&#x8868;&#x793A;&#x6240;&#x6709;&#x53D8;&#x91CF;&#x7684;&#x8D4B;&#x503C;</p></li>
+<li>&#x8F93;&#x5165;:&amp;vars: &#x5F15;&#x7528;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x503C;&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x7C7B;&#x578B;&#x4E3A;&amp;Vec&lt;[u8; 32]&gt;,&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528; Curve25519 &#x6807;&#x91CF; (Scalar) &#x7684;&#x5B57;&#x8282;&#x8868;&#x793A;&#x6765;&#x5B58;&#x50A8;&#x3002;
 </li>
-<li>Function: Initializes the required public and private parameters for generating the subsequent R1CS (Rank-1 Constraint System) constraints.
-</li></ul>
-<h1 id="2-protoboard-pb">2. protoboard<fieldt> pb</fieldt></h1><ul><li>Description: A core structure in libsnark &#x2014; represents the circuit&#x2019;s protoboard (analogous to a breadboard in electronics).
-</li></ul>
-<h1 id="3-pbvariable-x">3. pb_variable<fieldt> x</fieldt></h1><ul><li>Description: A basic structure in libsnark &#x2014; represents a fundamental variable on the protoboard.
-</li></ul>
-<h1 id="4-xallocatepb-x">4. x.allocate(pb, &quot;x&quot;)</h1><ul><li>Member Function of pb_variable:
+<li><p>&#x8F93;&#x51FA;:&#x4E00;&#x4E2A; VarsAssignment &#x5B9E;&#x4F8B;&#xFF0C;&#x8868;&#x793A;&#x6240;&#x6709;&#x53D8;&#x91CF;&#x7684;&#x6709;&#x6548;&#x8D4B;&#x503C;&#x3002;</p><h1 id="5inputsassignmentnewinputsunwrap">5.InputsAssignment::new(&amp;inputs).unwrap()</h1></li>
+<li><p>&#x529F;&#x80FD;:&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8F93;&#x5165;&#x8D4B;&#x503C; (InputsAssignment) &#x5B9E;&#x4F8B;&#xFF0C;&#x8868;&#x793A; R1CS &#x7CFB;&#x7EDF;&#x4E2D;&#x6240;&#x6709;&#x516C;&#x5171;&#x8F93;&#x5165;&#x7684;&#x5177;&#x4F53;&#x503C;&#x3002;</p></li>
+<li>&#x8F93;&#x5165;:    &amp;inputs: &#x5F15;&#x7528;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x503C;&#x7684;&#x5411;&#x91CF;&#xFF0C;&#x7C7B;&#x578B;&#x4E3A;&amp;Vec&lt;[u8; 32]&gt;,&#x6BCF;&#x4E2A;&#x5143;&#x7D20;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x901A;&#x5E38;&#x4F7F;&#x7528; Curve25519 &#x6807;&#x91CF; (Scalar) &#x7684;&#x5B57;&#x8282;&#x8868;&#x793A;&#x6765;&#x5B58;&#x50A8;&#x3002;
 </li>
-<li>Input: A protoboard variable pb and a string representing the name (&#x201C;x&#x201D;).
-</li>
-<li>Output: None
-</li>
-<li>Function: Adds the variable x to the protoboard and allocates space for it. After this, the variable x can be used on the protoboard, such as referencing it when adding constraints.
-</li></ul>
-<h1 id="5-pbsetinputsizesint-size">5. pb.set_input_sizes(int size)</h1><ul><li>Member Function of protoboard:
-</li>
-<li>Input: An integer size representing the number of public inputs.
-</li>
-<li>Output: None
-</li>
-<li>Function: Sets the number of public inputs. The first size variables on the protoboard are considered public inputs, and the remaining ones are considered private (secret) variables.
-</li></ul>
-<h1 id="6-pbaddr1csconstraintr1csconstraintx-x-sym1">6. pb.add_r1cs_constraint(r1cs_constraint<fieldt>(x, x, sym_1))</fieldt></h1><ul><li>Member Function of protoboard:
-</li>
-<li>Input: Three pb_variable variables, representing the multiplication constraint x * x = sym_1.
-</li>
-<li>Output: None
-</li>
-<li>Function: Adds an R1CS constraint representing x * x = sym_1.
-</li></ul>
-<h1 id="7-pbvalx--3">7. pb.val(x) = 3</h1><ul><li>Member Function of protoboard:
-</li>
-<li>Input: An integer value.
-</li>
-<li>Output: None
-</li>
-<li>Function: Sets the value of x on the protoboard to 3.
-</li></ul>
-<h1 id="8-pbgetconstraintsystem">8. pb.get_constraint_system()</h1><ul><li>Member Function of protoboard:
-</li>
-<li>Input: None
-</li>
-<li>Output: r1cs_constraint_system
-</li>
-<li>Function: Retrieves the system of all R1CS constraints that have been created, which will be used for generating the subsequent proof.
-</li></ul>
+<li><p>&#x8F93;&#x51FA;:&#x4E00;&#x4E2A; InputsAssignment &#x5B9E;&#x4F8B;&#xFF0C;&#x8868;&#x793A;&#x6240;&#x6709;&#x516C;&#x5171;&#x8F93;&#x5165;&#x7684;&#x6709;&#x6548;&#x8D4B;&#x503C;&#x3002;</p><h1 id="4-instissatassignmentvars-assignmentinputs">4. inst.is_sat(&amp;assignment_vars, &amp;assignment_inputs)</h1></li>
+<li><p>&#x529F;&#x80FD;:inst&#x7684;&#x6210;&#x5458;&#x51FD;&#x6570;,&#x9A8C;&#x8BC1; R1CS &#x7CFB;&#x7EDF;&#x7684;&#x53EF;&#x6EE1;&#x8DB3;&#x6027;</p></li>
+<li><p>&#x8F93;&#x5165;:    
+1. assignment_vars&#xFF1A;&#x5206;&#x914D;&#x7684;&#x53D8;&#x91CF;&#x503C;&#x3002;
+2. assignment_inputs&#xFF1A;&#x5206;&#x914D;&#x7684;&#x516C;&#x5171;&#x8F93;&#x5165;&#x503C;&#x3002;</p></li>
+<li><p>&#x8F93;&#x51FA;:&#x4E00;&#x4E2A;bool&#x503C;&#xFF0C;&#x8868;&#x793A;&#x8BE5;R1CS&#x7CFB;&#x7EDF;&#x662F;&#x5426;&#x53EF;&#x6EE1;&#x8DB3;;</p></li></ul>
 
                                 
                                 </section>
@@ -665,12 +640,12 @@
 
             
                 
-                <a href="libsnark-1.html" class="navigation navigation-prev " aria-label="Previous page: libsnark">
+                <a href="../plonky2/plonky2-1-en.html" class="navigation navigation-prev " aria-label="Previous page: plonky2-en">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../arkworks/arkworks-1.html" class="navigation navigation-next " aria-label="Next page: arkworks">
+                <a href="Spartan-1-en.html" class="navigation navigation-next " aria-label="Next page: Spartan-en">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -681,7 +656,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"libsnark-en","level":"1.3.6","depth":2,"next":{"title":"arkworks","level":"1.3.7","depth":2,"path":"arkworks/arkworks-1.md","ref":"arkworks/arkworks-1.md","articles":[]},"previous":{"title":"libsnark","level":"1.3.5","depth":2,"path":"libsnark/libsnark-1.md","ref":"libsnark/libsnark-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"libsnark/libsnark-1-en.md","mtime":"2024-12-19T09:47:30.334Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2024-12-30T06:41:20.762Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Spartan","level":"1.3.13","depth":2,"next":{"title":"Spartan-en","level":"1.3.14","depth":2,"path":"Spartan/Spartan-1-en.md","ref":"Spartan/Spartan-1-en.md","articles":[]},"previous":{"title":"plonky2-en","level":"1.3.12","depth":2,"path":"plonky2/plonky2-1-en.md","ref":"plonky2/plonky2-1-en.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Spartan/Spartan-1.md","mtime":"2024-12-25T14:42:55.067Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2024-12-30T06:41:20.762Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
