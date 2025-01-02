@@ -73,6 +73,10 @@ fn produce_r1cs() -> (
   B.push((3, num_vars, one));
   C.push((3, num_vars + 1, one));
 
+  let r1cs_file = "sha256.r1cs";
+  // 加载 R1CS
+  let instance = Instance::from_file(r1cs_file).expect("Failed to load R1CS");
+
   let inst = Instance::new(num_cons, num_vars, num_inputs, &A, &B, &C).unwrap();
 
   // compute a satisfying assignment

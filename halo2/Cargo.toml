@@ -5,9 +5,12 @@ edition = "2021"
 
 [dependencies]
 halo2_proofs = "0.3.0"
+halo2_gadgets = { version = "0.3.1"}
 group = "0.13.0"
 pasta_curves = "0.5"
 rand_core = "0.6.0"
+halo2curves = "0.8.0"  
+rand = "0.8" 
 
 [[bin]]
 name = "cubic_expression"
@@ -16,3 +19,7 @@ path = "src/cubic_expression.rs"
 [[bin]] 
 name = "range_proof"
 path = "src/range_proof.rs"
+
+[[bin]] 
+name = "sha256"
+path = "src/sha256.rs"

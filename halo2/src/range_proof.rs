@@ -1,242 +1,163 @@
-use std::marker::PhantomData;
-use std::time::Instant;
-use group::ff::Field;
-use group::ff::PrimeField;
 use halo2_proofs::{
-    circuit::{AssignedCell, Chip, Layouter, Region, SimpleFloorPlanner, Value},
-    plonk::{Advice, Circuit, Column, ConstraintSystem, Error, Expression, Instance, Selector},
-    poly::Rotation,
+    circuit::{Layouter, SimpleFloorPlanner, Value},
+    plonk::{
+        Circuit, ConstraintSystem, Error, Expression, Selector,
+        create_proof, verify_proof, keygen_pk, keygen_vk, SingleVerifier
+    },
+    pasta::{Fp, EqAffine},  // 添加 EqAffine
+    poly::{commitment::Params, Rotation},
+    transcript::{Blake2bWrite, Blake2bRead, Challenge255},
 };
-use std::ops::Not;
+use rand_core::OsRng;  // 使用 rand_core 替代 rand
+use std::time::Instant;
 
-// ANCHOR: range-config
-#[derive(Clone, Debug)]
-struct RangeConfig {
-    advice: [Column<Advice>; 1],
-    instance: Column<Instance>,
-    s_range: Selector,
-}
-// ANCHOR END: range-config
-
-// ANCHOR: range-chip
-struct RangeChip<F: Field> {
-    config: RangeConfig,
-    _marker: PhantomData<F>,
-}
-// ANCHOR END: range-chip
-
-// ANCHOR: range-chip-impl
-impl<F: Field> Chip<F> for RangeChip<F> {
-    type Config = RangeConfig;
-    type Loaded = ();
-
-    fn config(&self) -> &Self::Config {
-        &self.config
-    }
-
-    fn loaded(&self) -> &Self::Loaded {
-        &()
-    }
-}
-
-impl<F: Field> RangeChip<F> {
-    fn construct(config: &<Self as Chip<F>>::Config, _loaded: <Self as Chip<F>>::Loaded) -> Self {
-        Self {
-            config: config.clone(),
-            _marker: PhantomData,
-        }
-    }
-
-    fn configure(
-        meta: &mut ConstraintSystem<F>,
-        advice: Column<Advice>,
-        instance: Column<Instance>,
-    ) -> <Self as Chip<F>>::Config {
-        let s_range = meta.selector();
-        
-        // 启用 Advice 列的相等性
-        meta.enable_equality(advice);
-        
-        // 启用 Instance 列的相等性
-        meta.enable_equality(instance);
-        
-        // 定义我们的 range check 门！
-        meta.create_gate("range check", |meta| {
-            let value = meta.query_advice(advice, Rotation::cur());
-            let s_range = meta.query_selector(s_range);
-
-            // 位检查：将值拆分为 8 个二进制位并检查每个位是 0 或 1
-            let mut constraints = Vec::new();
-            // 位检查：将值拆分为 8 个二进制位并检查每个位是 0 或 1
-            let mut current_value = value;
-            for i in 0..8 {
-                let bit = meta.query_advice(advice, Rotation(i as i32));
-                constraints.push(s_range.clone() * (bit.clone() * (bit.clone() - Expression::Constant(F::ONE))));
-    
-                // 使用 2 的幂来减少当前值中的位
-                let constant2 = F::ONE + F::ONE;
-                let power_of_two = constant2.pow_vartime(&[i as u64]);
-                current_value = current_value - bit.clone() * Expression::Constant(power_of_two);
-            }
-            constraints.push(s_range * current_value);
-
-            constraints
-        });
-
-        RangeConfig { advice: [advice], instance, s_range }
-    }
-}
-
-// ANCHOR END: range-chip-impl
-
-// ANCHOR: range-instructions-impl
-impl<F: Field + PrimeField> RangeChip<F> {
-    fn range_check(
-        &self,
-        layouter: &mut impl Layouter<F>,
-        value: &AssignedCell<F, F>,
-    ) -> Result<(), Error> {
-        let config = self.config();
-        layouter.assign_region(
-            || "range check",
-            |mut region: Region<'_, F>| {
-                // 启用选择器
-                config.s_range.enable(&mut region, 0)?;
-
-                // 复制输入值到第一个单元格
-                let value_cell = value.copy_advice(
-                    || "value",
-                    &mut region,
-                    config.advice[0],
-                    0
-                )?;
-
-                // 获取值
-                let value_value = value_cell.value().copied();
-
-                // 修改位提取逻辑
-                value_value.map(|v| {
-                    let mut num = v;
-                    let two = F::from(2u64);
-                    for i in 0..8 {
-                        // 修改比较逻辑，使用 Field 特征的方法
-                        let bit = {
-                            let mut temp = num;
-                            while temp.is_zero().not().into() {
-                                if (temp - two).is_zero().not().into() {
-                                    temp = temp - two;
-                                } else {
-                                    break;
-                                }
-                            }
-                            temp
-                        };
-                        
-                        region.assign_advice(
-                            || format!("bit {}", i),
-                            config.advice[0],
-                            i + 1,
-                            || Value::known(bit),
-                        ).unwrap();
-                        
-                        // 使用减法和乘法更新 num
-                        num = (num - bit) * (two.invert().unwrap());
-                    }
-                });
-
-                Ok(())
-            },
-        )
-    }
-}
-// ANCHOR END: range-instructions-impl
-
-// ANCHOR: circuit
 #[derive(Default)]
-struct RangeCircuit<F: Field + PrimeField> {
-    x: Value<F>,
+struct RangeProofCircuit {
+    input: Value<u64>,
 }
 
-impl<F: Field + PrimeField> Circuit<F> for RangeCircuit<F> {
-    type Config = RangeConfig;
+#[derive(Clone)]
+struct RangeProofConfig {
+    input: halo2_proofs::plonk::Column<halo2_proofs::plonk::Advice>,
+    bits: [halo2_proofs::plonk::Column<halo2_proofs::plonk::Advice>; 32],
+    selector: Selector,
+}
+
+impl Circuit<Fp> for RangeProofCircuit {
+    type Config = RangeProofConfig;
     type FloorPlanner = SimpleFloorPlanner;
 
     fn without_witnesses(&self) -> Self {
         Self::default()
     }
 
-    fn configure(meta: &mut ConstraintSystem<F>) -> Self::Config {
-        let advice = meta.advice_column();
-        let instance = meta.instance_column();
-        RangeChip::configure(meta, advice, instance)
+    fn configure(meta: &mut ConstraintSystem<Fp>) -> Self::Config {
+        let input = meta.advice_column();
+        let bits = [(); 32].map(|_| meta.advice_column());
+        let selector = meta.selector();
+
+        meta.enable_equality(input);
+        for bit in &bits {
+            meta.enable_equality(*bit);
+        }
+
+        meta.create_gate("Range Proof", |meta| {
+            let selector = meta.query_selector(selector);
+            let input = meta.query_advice(input, Rotation::cur());
+
+            let mut constraints = Vec::new();
+
+            for bit in bits.iter() {
+                let b = meta.query_advice(*bit, Rotation::cur());
+                constraints.push(selector.clone() * b.clone() * (b - Expression::Constant(Fp::one())));
+            }
+
+            let reconstructed_input = bits.iter().enumerate().fold(
+                Expression::Constant(Fp::zero()),
+                |acc, (i, bit)| {
+                    acc + meta.query_advice(*bit, Rotation::cur()) * Expression::Constant(Fp::from(1 << i))
+                },
+            );
+
+            constraints.push(selector * (input - reconstructed_input));
+
+            constraints
+        });
+
+        RangeProofConfig {
+            input,
+            bits,
+            selector,
+        }
     }
 
     fn synthesize(
         &self,
         config: Self::Config,
-        mut layouter: impl Layouter<F>,
+        mut layouter: impl Layouter<Fp>,
     ) -> Result<(), Error> {
-        let range_chip = RangeChip::<F>::construct(&config, ()); // 使用引用
-
-
-        // Load x as a private input.
-        let x = layouter.assign_region(
-            || "load x",
+        layouter.assign_region(
+            || "Range Proof",
             |mut region| {
-                region.assign_advice(|| "x", config.advice[0], 0, || self.x)
-
+                let input_val = self.input;
+                region.assign_advice(|| "input", config.input, 0, || input_val.map(Fp::from))?;
+    
+                // 使用 and_then 和 map 方法
+                let current_val = self.input.and_then(Value::known);
+                let mut current = 0u64;
+                
+                // 使用 map 处理值
+                current_val.map(|v| current = v);
+    
+                for i in 0..32 {
+                    let bit_val = current & 1;
+                    current >>= 1;
+    
+                    region.assign_advice(
+                        || format!("bit {}", i),
+                        config.bits[i],
+                        0,
+                        || Value::known(Fp::from(bit_val as u64)),
+                    )?;
+                }
+    
+                config.selector.enable(&mut region, 0)?;
+    
+                Ok(())
             },
-        )?;
-
-        // Check if x is within the range.
-        range_chip.range_check(&mut layouter, &x)?;
-
-        // Expose the result x as a public input.
-        layouter.constrain_instance(x.cell(), config.instance, 0)
+        )
     }
 }
-// ANCHOR END: circuit
 
-#[allow(clippy::many_single_char_names)]
 fn main() {
-    use halo2_proofs::{dev::MockProver, pasta::Fp};
-    use rand_core::OsRng;
-
-    let k = 5;
-    let rng = OsRng;
-
-    let x = Fp::random(rng);
-
-    let circuit = RangeCircuit {
-        x: Value::known(x),
+    // 参数设置
+    let k = 12;
+    let params = Params::<EqAffine>::new(k);
+    
+    // 创建电路实例
+    let circuit = RangeProofCircuit {
+        input: Value::known(12345678),
     };
 
-    let mut public_inputs = vec![x];
+    // 生成验证密钥和证明密钥
+    let vk = keygen_vk(&params, &circuit).expect("keygen_vk should not fail");
+    let pk = keygen_pk(&params, vk.clone(), &circuit).expect("keygen_pk should not fail");
 
-    // Given the correct public input, our circuit will verify.
+    // 生成证明
+    let mut transcript = Blake2bWrite::<_, _, Challenge255<_>>::init(vec![]);
+    println!("Creating proof...");
     let start1 = Instant::now();
-    let prover = MockProver::run(k, &circuit, vec![public_inputs.clone()]).unwrap();
-    
+    create_proof(
+        &params,
+        &pk,
+        &[circuit],
+        &[&[]],
+        OsRng,
+        &mut transcript,
+    ).expect("Proof generation should not fail");
     let start2 = Instant::now();
-    let verification_result = prover.verify();
+    let proof = transcript.finalize();
+
+    // 验证证明
+    let strategy = SingleVerifier::new(&params);  // 添加验证策略
+    let mut transcript = Blake2bRead::<_, _, Challenge255<_>>::init(&proof[..]);
+    let verify_result = verify_proof(
+        &params,
+        &vk,
+        strategy,  // 使用验证策略
+        &[&[]],
+        &mut transcript,  // 修改参数顺序
+    );
     let start3 = Instant::now();
-    let duration1 = start2.duration_since(start1);
-    let duration2 = start3.duration_since(start2);
 
-    let millis1 = duration1.as_secs_f64() * 1000.0;
-    let millis2 = duration2.as_secs_f64() * 1000.0;
-    println!("Prove time: {:.3} milliseconds", millis1);
-    println!("Verify time: {:.3} milliseconds", millis2);
-    if verification_result.is_ok() {
-        println!("Proof verification succeeded with correct public input.");
-    } else {
-        println!("Proof verification failed with correct public input.");
-    }
+    // 计算时间和大小
+    let prove_time = start2.duration_since(start1).as_secs_f64() * 1000.0;
+    let verify_time = start3.duration_since(start2).as_secs_f64() * 1000.0;
+    let proof_size = proof.len();
 
-    assert_eq!(verification_result, Ok(()));
-
-    // If we try some other public input, the proof will fail.
-    public_inputs[0] += Fp::one();
-    let prover = MockProver::run(k, &circuit, vec![public_inputs]).unwrap();
-    assert!(prover.verify().is_err());  
+    // 输出结果
+    println!("Prove time: {:.3} ms", prove_time);
+    println!("Verify time: {:.3} ms", verify_time);
+    println!("Proof size: {} bytes", proof_size);
+    println!("Verification result: {:?}", verify_result);
 }
