@@ -1,0 +1,35 @@
+### Hash Function
+
+Circom code is written with the following logic:
+
+* Input: The message is an input of length 512 bits (64 bytes).
+
+* Output: The hash value is 256 bits (32 bytes).
+
+* Instantiate the SHA-256 template.
+
+* Connect the input to the hasher's input.
+
+* Connect the output to the hash.
+
+* Instantiate the main component.
+
+```markup
+pragma circom 2.0.0;
+include "sha256.circom";  
+template Main() {
+    signal input in[512]; 
+    signal output hash[256];
+    component hasher = Sha256(512); 
+    for (var i = 0; i < 512; i++) {
+        hasher.in[i] <== in[i];
+    }
+    for (var i = 0; i < 256; i++) {
+        hash[i] <== hasher.out[i];
+    }
+}
+component main = Main();
+```
+
+
+
