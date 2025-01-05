@@ -6,6 +6,10 @@ use libspartan::{Instance, SNARKGens, SNARK};
 use merlin::Transcript;
 fn main() {
     // specify the size of an R1CS instance
+    // Since the Spartan library does not 
+    // provide relevant gadgets for the 
+    // sha256 circuit, we use a synthetic 
+    //example to estimate the circuit size.
     let num_vars = 1024;
     let num_cons = 32768;
     let num_inputs = 512;

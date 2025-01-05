@@ -5,10 +5,10 @@ edition = "2021"
 
 [dependencies]
 halo2_proofs = "0.3.0"
-halo2_gadgets = { version = "0.3.1"}
+halo2_gadgets = { version = "0.3.0", features = ["unstable-sha256-gadget"] }
 group = "0.13.0"
 pasta_curves = "0.5"
-rand_core = "0.6.0"
+rand_core = "0.6"
 halo2curves = "0.8.0"  
 rand = "0.8" 
 
