@@ -1,0 +1,1 @@
+/usr/bin/c++ -O2 -g -DNDEBUG -rdynamic CMakeFiles/range_proof.dir/rangeproof.cpp.o -o range_proof  ../deps/libsnark/libsnark/libsnark.a ../deps/libsnark/depends/libff/libff/libff.a -lgmp -lgmpxx -lcrypto -lsodium -lprocps /usr/lib/x86_64-linux-gnu/libgmp.so -lgmp -lgmpxx ../deps/libsnark/depends/libzm.a -lcrypto -lprocps 

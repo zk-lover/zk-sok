@@ -1,0 +1,1 @@
+/usr/bin/c++ -O2 -g -DNDEBUG -rdynamic CMakeFiles/cubic_expression.dir/cubicexpression.cpp.o -o cubic_expression  ../deps/libsnark/libsnark/libsnark.a ../deps/libsnark/depends/libff/libff/libff.a -lgmp -lgmpxx -lcrypto -lsodium -lprocps /usr/lib/x86_64-linux-gnu/libgmp.so -lgmp -lgmpxx ../deps/libsnark/depends/libzm.a -lcrypto -lprocps 
