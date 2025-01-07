@@ -13,6 +13,7 @@
 # 3. Instance::new(num_cons, num_vars, num_inputs, &A, &B, &C).unwrap();
 - **Functionality**: Constructs an R1CS instance using `Instance::new`.
 - **Input**:
+
   1. `num_cons`: Number of constraints.
   2. `num_vars`: Number of variables.
   3. `num_inputs`: Number of inputs.
@@ -34,6 +35,7 @@
 # 6. inst.is_sat(&assignment_vars, &assignment_inputs)
 - **Functionality**: A member function of `inst` that verifies the satisfiability of the R1CS system.
 - **Input**:
+
   1. `assignment_vars`: The assigned variable values.
   2. `assignment_inputs`: The assigned public input values.
 - **Output**: A `bool` value indicating whether the R1CS system is satisfiable.
