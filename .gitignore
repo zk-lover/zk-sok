@@ -1,4 +1,4 @@
 # 忽略目标目录
 target/
-
+gitbook-docker/book/_book/
 # 忽略特定文件
