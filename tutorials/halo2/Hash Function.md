@@ -1,0 +1,358 @@
+### Hash Function
+
+This code implements a SHA-256 zero-knowledge proof circuit using the Halo2 library. It defines a `Sha256Circuit` struct to handle input data and process it through the SHA-256 hash function. The code includes the configuration, synthesis, proof generation, and verification processes for the circuit. In the main function, it generates proving parameters, verification keys, and proving keys, then creates a proof. Finally, it verifies the generated proof and outputs a performance summary of the proof generation and verification times.
+
+Below, we will divide the code into code blocks and annotate them.
+
+##### Imports
+
+```rust
+use halo2_proofs::{
+    circuit::{Layouter, SimpleFloorPlanner, Value},
+    pasta::{Fp, EqAffine},
+    plonk::{Circuit, ConstraintSystem, Error},
+};
+use halo2_gadgets::sha256::{Sha256, Table16Chip, Table16Config, BlockWord};
+use rand_core::OsRng;
+use std::time::Instant;
+```
+
+* **`circuit`**: Provides tools for laying out circuits (`Layouter`), a simple floor planner (`SimpleFloorPlanner`), and handling circuit values (`Value`).
+
+* **`pasta`**: Includes types for finite fields (`Fp`) and elliptic curves (`EqAffine`).
+
+* **`plonk`**: Contains the core components of the PLONK protocol, including the `Circuit` trait, `ConstraintSystem` for defining constraints, and `Error` for error handling.
+
+* **`Sha256`**: Represents the SHA-256 hashing gadget.
+
+* **`Table16Chip`**: A chip implementation for SHA-256 using a 16-word table.
+
+* **`Table16Config`**: Configuration for the `Table16Chip`.
+
+* **`BlockWord`**: Represents a 32-bit word used in SHA-256 blocks.
+
+* **`OsRng`**: A cryptographically secure random number generator.
+
+* **`Instant`**: Used for measuring elapsed time.
+
+##### Defining the Circuit Structure
+
+```rust
+#[derive(Default)]
+struct Sha256Circuit {
+    pub input: Vec<u8>,
+}
+```
+
+* **`Sha256Circuit`**: A struct that represents the SHA-256 circuit.
+
+* **`input`**: A public field that holds the input data as a vector of bytes (`Vec<u8>`).
+
+* **`#[derive(Default)]`**: Automatically provides a default implementation for the struct, allowing it to be instantiated with default values.
+
+##### Implementing the Circuit Trait
+
+```rust
+impl Circuit<Fp> for Sha256Circuit {
+    type Config = Table16Config;
+    type FloorPlanner = SimpleFloorPlanner;
+```
+
+* **`Circuit<Fp>`**: Implements the `Circuit` trait for `Sha256Circuit` using the field type `Fp`.
+
+* **`type Config`**: Specifies the configuration type for the circuit, which is `Table16Config`.
+
+* **`type FloorPlanner`**: Specifies the floor planner type, which is `SimpleFloorPlanner`.
+
+```rust
+    fn without_witnesses(&self) -> Self {
+        Self::default()
+    }
+```
+
+* **`without_witnesses`**: Returns a default instance of the circuit without any witness data. This is useful for creating a circuit template without specific inputs.
+
+```rust
+    fn configure(meta: &mut ConstraintSystem<Fp>) -> Self::Config {
+        Table16Chip::configure(meta)
+    }
+```
+
+**Explanation**:
+
+* **`configure`**: Sets up the circuit's constraint system using `Table16Chip`. It configures the necessary constraints for the SHA-256 computation.
+
+##### Synthesizing the Circuit
+
+```rust
+    fn synthesize(
+        &self,
+        config: Self::Config,
+        mut layouter: impl Layouter<Fp>,
+    ) -> Result<(), Error> {
+        let table16_chip = Table16Chip::construct(config.clone());
+```
+
+* **`synthesize`**: The main function to build the circuit.
+
+* **`Table16Chip::construct`**: Constructs a new `Table16Chip` using the provided configuration.
+
+```rust
+        Table16Chip::load(config, &mut layouter.namespace(|| "load_table"))?;
+```
+
+* **`Table16Chip::load`**: Loads the necessary tables into the circuit's namespace, preparing it for SHA-256 operations.
+
+###### Input Padding
+
+```rust
+        let mut input_bytes = self.input.clone();
+        
+        let len = input_bytes.len();
+        let len_bits = len * 8;
+        
+        input_bytes.push(0x80);
+        while (input_bytes.len() + 8) % 64 != 0 {
+            input_bytes.push(0);
+        }
+        input_bytes.extend_from_slice(&((len_bits as u64).to_be_bytes()));
+```
+
+* Clones the input data to `input_bytes`.
+
+* Calculates the length of the input in bits.
+
+* Appends `0x80` to start padding.
+
+* Adds zeros until the input length is congruent to 56 modulo 64.
+
+* Appends the original input length in bits as an 8-byte big-endian integer.
+
+```rust
+        println!("Padded input length: {} bytes", input_bytes.len());
+```
+
+* **`println!`**: Outputs the padded input length for debugging purposes.
+
+###### Converting Input to Blocks
+
+```rust
+        let mut input_blocks = Vec::new();
+        for chunk in input_bytes.chunks(4) {
+            let mut buf = [0u8; 4];
+            buf[..chunk.len()].copy_from_slice(chunk);
+            input_blocks.push(BlockWord(Value::known(u32::from_be_bytes(buf))));
+        }
+```
+
+* Splits the padded input into 4-byte chunks.
+
+* Converts each chunk into a `BlockWord` and stores it in `input_blocks`.
+
+###### Preparing the Block
+
+```rust
+        let mut block = [BlockWord(Value::known(0u32)); 16];
+        for (i, word) in input_blocks.iter().take(16).enumerate() {
+            block[i] = *word;
+        }
+```
+
+* Initializes a block of 16 `BlockWord`s with zero values.
+
+* Fills the block with the first 16 words from `input_blocks`.
+
+```rust
+        let mut sha256 = Sha256::new(
+            table16_chip,
+            layouter.namespace(|| "sha256"),
+        )?;
+```
+
+* **`Sha256::new`**: Initializes a new SHA-256 instance using the `table16_chip` and a new namespace for SHA-256 operations.
+
+```rust
+        sha256.update(
+            layouter.namespace(|| "update"),
+            &block,
+        )?;
+```
+
+* **`sha256.update`**: Updates the SHA-256 state with the prepared block, processing the input data.
+
+```rust
+        let _digest = sha256.finalize(layouter.namespace(|| "finalize"))?;
+```
+
+* **`sha256.finalize`**: Finalizes the SHA-256 computation and retrieves the digest, completing the hash operation.
+
+##### Main
+
+```rust
+fn main() {
+    let k = 17;
+```
+
+* **`let k = 17;`**: Sets the security parameter `k`, which affects the size of the proof and the security level.
+
+###### Input Message
+
+```rust
+    let message = b"Hello, ZK!";
+    println!("Input message: {:?}", String::from_utf8_lossy(message));
+    println!("Message length: {} bytes", message.len());
+```
+
+* Defines a byte array `message` with the content "Hello, ZK!".
+
+* Prints the input message and its length for verification.
+
+###### Circuit Initialization
+
+```rust
+    let circuit = Sha256Circuit {
+        input: message.to_vec(),
+    };
+```
+
+* Creates an instance of `Sha256Circuit` with the input message converted to a vector of bytes.
+
+###### Parameter Generation
+
+```rust
+    println!("Creating parameters with k = {}...", k);
+    let start = Instant::now();
+    let params = halo2_proofs::poly::commitment::Params::<EqAffine>::new(k);
+    println!("Parameters created in: {:?}", start.elapsed());
+```
+
+* Prints a message indicating the start of parameter creation.
+
+* Uses `Params::<EqAffine>::new(k)` to create cryptographic parameters.
+
+* Measures and prints the time taken to create these parameters.
+
+###### Verification Key Generation
+
+```rust
+    println!("Generating verification key...");
+    let start = Instant::now();
+    let vk = halo2_proofs::plonk::keygen_vk(&params, &circuit).expect("keygen_vk failed");
+    println!("Verification key generated in: {:?}", start.elapsed());
+```
+
+* Prints a message indicating the start of verification key generation.
+
+* Calls `keygen_vk` to generate the verification key for the circuit.
+
+* Measures and prints the time taken for this process.
+
+###### Proving Key Generation
+
+```rust
+    println!("Generating proving key...");
+    let start = Instant::now();
+    let pk = halo2_proofs::plonk::keygen_pk(&params, vk.clone(), &circuit).expect("keygen_pk failed");
+    println!("Proving key generated in: {:?}", start.elapsed());
+```
+
+* Prints a message indicating the start of proving key generation.
+
+* Calls `keygen_pk` to generate the proving key using the parameters and verification key.
+
+* Measures and prints the time taken for this process.
+
+###### Proof Creation
+
+```rust
+    println!("Creating proof...");
+    let start = Instant::now();
+    let mut transcript = halo2_proofs::transcript::Blake2bWrite::<_, _, halo2_proofs::transcript::Challenge255<_>>::init(vec![]);
+```
+
+* Prints a message indicating the start of proof creation.
+
+* Initializes a `Blake2bWrite` transcript for proof creation, which will store the proof data.
+
+```rust
+    halo2_proofs::plonk::create_proof(
+        &params,
+        &pk,
+        &[circuit],
+        &[&[]],
+        OsRng,
+        &mut transcript,
+    ).expect("proof generation failed");
+```
+
+* **`create_proof`**: Generates the proof using the parameters, proving key, and circuit. It uses `OsRng` for randomness and writes the proof to the transcript.
+
+###### Finalizing the Proof
+
+```rust
+    let proof = transcript.finalize();
+    let proof_time = start.elapsed();
+    println!("Proof created in: {:?}", proof_time);
+    println!("Proof size: {} bytes", proof.len());
+```
+
+* Finalizes the transcript to obtain the proof.
+
+* Measures and prints the time taken to create the proof.
+
+* Prints the size of the proof in bytes.
+
+###### Proof Verification
+
+```rust
+    println!("Verifying proof...");
+    let start = Instant::now();
+    let mut transcript = halo2_proofs::transcript::Blake2bRead::<_, _, halo2_proofs::transcript::Challenge255<_>>::init(&proof[..]);
+    let strategy = halo2_proofs::plonk::SingleVerifier::new(&params);
+```
+
+* Prints a message indicating the start of proof verification.
+
+* Initializes a `Blake2bRead` transcript for reading the proof.
+
+* Creates a `SingleVerifier` strategy for verifying the proof.
+
+```rust
+    let result = halo2_proofs::plonk::verify_proof(
+        &params,
+        &vk,
+        strategy,
+        &[&[]], 
+        &mut transcript,
+    );
+    let verify_time = start.elapsed();
+```
+
+* **`verify_proof`**: Verifies the proof using the parameters, verification key, and strategy. It reads from the transcript and measures the time taken.
+
+###### Verification Result
+
+```rust
+    match result {
+        Ok(_) => println!("Proof verification successful in: {:?}", verify_time),
+        Err(e) => println!("Proof verification failed in: {:?} - Error: {:?}", verify_time, e),
+    }
+```
+
+* Matches the result of the verification.
+
+* Prints a success message with the verification time if successful.
+
+* Prints an error message with the verification time and error details if failed.
+
+###### Performance Summary
+
+```rust
+    println!("\nPerformance Summary:");
+    println!("- Proof Generation Time: {:?}", proof_time);
+    println!("- Proof Verification Time: {:?}", verify_time);
+}
+```
+
+* Prints a summary of the performance, including the time taken for proof generation and verification.
+

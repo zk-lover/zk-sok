@@ -1,0 +1,74 @@
+### Range Proof
+
+This code uses the libsnark library to implement a zero-knowledge proof system. It begins by initializing curve parameters and creating a protoboard. Several variables are defined for comparison operations. The code calculates a maximum value (2 raised to the power of 32) using a loop and employs a `comparison_gadget` to generate R1CS constraints. It then generates a keypair and assigns a secret value (18) to the variable `x`. A proof is generated and subsequently verified for its validity. Finally, the code outputs the number of R1CS constraints, the primary (public) input, the auxiliary (private) input, the verification status, and the time taken for proving and verification.
+
+Below, we will divide the code into code blocks and annotate them.
+
+Variables and constraints:
+
+```Objective-C++
+protoboard<FieldT> pb;
+pb_variable<FieldT> x, max;
+pb_variable<FieldT> less, less_or_eq;
+
+x.allocate(pb, "x");
+max.allocate(pb, "max");
+less.allocate(pb, "less"); // must have
+less_or_eq.allocate(pb, "less_or_eq");
+```
+
+Calculate 2^32 and store it in the variable **max**：
+
+```Objective-C++
+pb.val(max) = FieldT::one(); 
+FieldT two = FieldT::one() + FieldT::one(); 
+for (int i = 0; i < 32; ++i) {
+    pb.val(max) = pb.val(max) * two; 
+}
+```
+
+Use **comparison_gadget** to create a comparison circuit to check if **x** is less than or equal to **max**, then generate the constraints：
+
+```Objective-C++
+comparison_gadget<FieldT> cmp(pb, 32, x, max, less, less_or_eq, "cmp");
+cmp.generate_r1cs_constraints();
+```
+
+Extract the constraint system from the **protoboard** and generate the **key pair**:
+
+```Objective-C++
+const r1cs_constraint_system<FieldT> constraint_system = pb.get_constraint_system();
+// generate keypair
+const r1cs_se_ppzksnark_keypair<default_r1cs_se_ppzksnark_pp> keypair = r1cs_se_ppzksnark_generator<default_r1cs_se_ppzksnark_pp>(constraint_system);
+```
+
+Set a secret value of **18** for the variable **x** and generate the **R1CS witness**. Then, use the generated public key and witness to create the **proof**, recording the time required to generate the proof:
+
+```Objective-C++
+// Add witness values
+pb.val(x) = 18; // secret
+cmp.generate_r1cs_witness();
+
+// generate proof
+const r1cs_se_ppzksnark_proof<default_r1cs_se_ppzksnark_pp> proof = r1cs_se_ppzksnark_prover<default_r1cs_se_ppzksnark_pp>(keypair.pk, pb.primary_input(), pb.auxiliary_input());
+
+auto clock2 = std::chrono::high_resolution_clock::now();
+auto duration1 = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(clock2 - clock1).count();
+```
+
+Finally, verify the proof, calculate the verification time, and output the results.
+
+```Objective-C++
+// verify
+bool verified = r1cs_se_ppzksnark_verifier_strong_IC<default_r1cs_se_ppzksnark_pp>(keypair.vk, pb.primary_input(), proof);
+auto clock3 = std::chrono::high_resolution_clock::now();
+auto duration2 = std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(clock3 - clock2).count();
+
+cout << "Number of R1CS constraints: " << constraint_system.num_constraints() << endl;
+cout << "Primary (public) input: " << pb.primary_input() << endl;
+cout << "Auxiliary (private) input: " << pb.auxiliary_input() << endl;
+cout << "Verification status: " << verified << endl;
+cout << "Total proving time (milliseconds): " << duration1<< endl;
+cout << "Total verification time (milliseconds): " << duration2<< endl;
+```
+
