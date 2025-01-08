@@ -1,0 +1,824 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>halo2 · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter2.html" />
+    
+    
+    <link rel="prev" href="../libiop/libiop-1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1.html">
+            
+                <a href="../chapter1.html">
+            
+                    
+                    Original program
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2.html">
+            
+                <a href="../chapter2.html">
+            
+                    
+                    Constraint system
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../gnark/gnark-1-en.html">
+            
+                <a href="../gnark/gnark-1-en.html">
+            
+                    
+                    gnark
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../snarkjs/snarkjs-1-en.html">
+            
+                <a href="../snarkjs/snarkjs-1-en.html">
+            
+                    
+                    snarkjs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../libsnark/libsnark-1-en.html">
+            
+                <a href="../libsnark/libsnark-1-en.html">
+            
+                    
+                    libsnark
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../arkworks/arkworks-1-en.html">
+            
+                <a href="../arkworks/arkworks-1-en.html">
+            
+                    
+                    arkworks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../dalek/dalek-1-en.html">
+            
+                <a href="../dalek/dalek-1-en.html">
+            
+                    
+                    dalek
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../plonky2/plonky2-1-en.html">
+            
+                <a href="../plonky2/plonky2-1-en.html">
+            
+                    
+                    plonky2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../Spartan/Spartan-1-en.html">
+            
+                <a href="../Spartan/Spartan-1-en.html">
+            
+                    
+                    Spartan
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../libiop/libiop-1.html">
+            
+                <a href="../libiop/libiop-1.html">
+            
+                    
+                    libiop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.9" data-path="halo2-1-en.html">
+            
+                <a href="halo2-1-en.html">
+            
+                    
+                    halo2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter2.html">
+            
+                <a href="../chapter2.html">
+            
+                    
+                    Proving system
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../gnark/gnark-2-en.html">
+            
+                <a href="../gnark/gnark-2-en.html">
+            
+                    
+                    gnark
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../snarkjs/snarkjs-2-en.html">
+            
+                <a href="../snarkjs/snarkjs-2-en.html">
+            
+                    
+                    snarkjs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../libsnark/libsnark-2-en.html">
+            
+                <a href="../libsnark/libsnark-2-en.html">
+            
+                    
+                    libsnark
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../arkworks/arkworks-2-en.html">
+            
+                <a href="../arkworks/arkworks-2-en.html">
+            
+                    
+                    arkworks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../dalek/dalek-2-en.html">
+            
+                <a href="../dalek/dalek-2-en.html">
+            
+                    
+                    dalek
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../plonky2/plonky2-2-en.html">
+            
+                <a href="../plonky2/plonky2-2-en.html">
+            
+                    
+                    plonky2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../Spartan/Spartan-2-en.html">
+            
+                <a href="../Spartan/Spartan-2-en.html">
+            
+                    
+                    Spartan
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../libiop/libiop-2-en.html">
+            
+                <a href="../libiop/libiop-2-en.html">
+            
+                    
+                    libiop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="halo2-2-en.html">
+            
+                <a href="halo2-2-en.html">
+            
+                    
+                    halo2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter2.html">
+            
+                <a href="../chapter2.html">
+            
+                    
+                    Optimizers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../conclusion.html">
+            
+                <a href="../conclusion.html">
+            
+                    
+                    Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >halo2</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="1-define-instructions">1. Define Instructions</h1><ul><li><p>First, we need to define the instructions on which our circuit relies. Below are common instructions:
+1. Load a private number into the circuit.
+2. Set a number as a public input to the circuit.
+3. Specify the computational logic.</p></li>
+<li><p><strong>Example</strong>:</p><pre><code>trait NumericInstructions&lt;F: Field&gt;: Chip&lt;F&gt; {
+  /// Variable representing a number.
+  type Num;
+
+  /// Loads a number into the circuit as a private input.
+  fn load_private(&amp;self, layouter: impl Layouter&lt;F&gt;, a: Value&lt;F&gt;) -&gt; Result&lt;Self::Num, Error&gt;;
+
+  /// Loads a number into the circuit as a fixed constant.
+  fn load_constant(&amp;self, layouter: impl Layouter&lt;F&gt;, constant: F) -&gt; Result&lt;Self::Num, Error&gt;;
+
+  /// Returns `c = a * b`.
+  fn mul(
+      &amp;self,
+      layouter: impl Layouter&lt;F&gt;,
+      a: Self::Num,
+      b: Self::Num,
+  ) -&gt; Result&lt;Self::Num, Error&gt;;
+
+  /// Exposes a number as a public input to the circuit.
+  fn expose_public(
+      &amp;self,
+      layouter: impl Layouter&lt;F&gt;,
+      num: Self::Num,
+      row: usize,
+  ) -&gt; Result&lt;(), Error&gt;;
+}</code></pre>
+<h1 id="2-define-a-chip">2. Define a Chip</h1></li>
+<li><p>The chip should implement the instructions defined in the <code>NumericInstructions</code> trait.</p></li></ul>
+<h2 id="example-implementation">Example Implementation</h2><pre><code>struct FieldChip&lt;F: FieldExt&gt; {
+    config: FieldConfig,
+    _marker: PhantomData&lt;F&gt;,
+}</code></pre>
+<h2 id="chip-implementation">Chip Implementation</h2><ul><li><p>Each &quot;chip&quot; type must implement the <code>Chip</code> interface to ensure compatibility with the circuit framework.</p><pre><code>impl&lt;F: FieldExt&gt; Chip&lt;F&gt; for FieldChip&lt;F&gt; {
+  type Config = FieldConfig;
+  type Loaded = ();
+
+  fn config(&amp;self) -&gt; &amp;Self::Config {
+      &amp;self.config
+  }
+
+  fn loaded(&amp;self) -&gt; &amp;Self::Loaded {
+      &amp;()
+  }
+}</code></pre>
+</li></ul>
+<h1 id="3-configure-the-chip">3. Configure the Chip</h1><ul><li>The chip needs to be configured with the required columns, permutations, and gates necessary to implement the desired functionality.
+</li></ul>
+<pre><code>struct FieldConfig {
+    advice: [Column&lt;Advice&gt;; 2],
+    // This is the public input (instance) column.
+    instance: Column&lt;Instance&gt;,
+    // We need a selector to enable the multiplication gate, so that we aren&apos;t placing
+    // any constraints on cells where `NumericInstructions::mul` is not being used.
+    // This is important when building larger circuits, where columns are used by
+    // multiple sets of instructions.
+    s_mul: Selector,
+}
+
+impl&lt;F: Field&gt; FieldChip&lt;F&gt; {
+    fn construct(config: &lt;Self as Chip&lt;F&gt;&gt;::Config) -&gt; Self {
+        Self {
+            config,
+            _marker: PhantomData,
+        }
+    }
+
+    fn configure(
+        meta: &amp;mut ConstraintSystem&lt;F&gt;,
+        advice: [Column&lt;Advice&gt;; 2],
+        instance: Column&lt;Instance&gt;,
+        constant: Column&lt;Fixed&gt;,
+    ) -&gt; &lt;Self as Chip&lt;F&gt;&gt;::Config {
+        meta.enable_equality(instance);
+        meta.enable_constant(constant);
+        for column in &amp;advice {
+            meta.enable_equality(*column);
+        }
+        let s_mul = meta.selector();
+
+        // Define our multiplication gate!
+        meta.create_gate(&quot;mul&quot;, |meta| {
+            // To implement multiplication, we need three advice cells and a selector
+            // cell. We arrange them like so:
+            //
+            // | a0  | a1  | s_mul |
+            // |-----|-----|-------|
+            // | lhs | rhs | s_mul |
+            // | out |     |       |
+            //
+            // Gates may refer to any relative offsets we want, but each distinct
+            // offset adds a cost to the proof. The most common offsets are 0 (the
+            // current row), 1 (the next row), and -1 (the previous row), for which
+            // `Rotation` has specific constructors.
+            let lhs = meta.query_advice(advice[0], Rotation::cur());
+            let rhs = meta.query_advice(advice[1], Rotation::cur());
+            let out = meta.query_advice(advice[0], Rotation::next());
+            let s_mul = meta.query_selector(s_mul);
+
+            // Finally, we return the polynomial expressions that constrain this gate.
+            // For our multiplication gate, we only need a single polynomial constraint.
+            //
+            // The polynomial expressions returned from `create_gate` will be
+            // constrained by the proving system to equal zero. Our expression
+            // has the following properties:
+            // - When s_mul = 0, any value is allowed in lhs, rhs, and out.
+            // - When s_mul != 0, this constrains lhs * rhs = out.
+            vec![s_mul * (lhs * rhs - out)]
+        });
+
+        FieldConfig {
+            advice,
+            instance,
+            s_mul,
+        }
+    }
+}</code></pre>
+<h1 id="4-implement-chip-functionality">4. Implement Chip Functionality</h1><ul><li>Once the chip configuration is set, the next step is to implement the desired functionality for the chip by defining its behavior using the <code>NumericInstructions</code> trait.
+</li></ul>
+<h2 id="full-chip-implementation-example">Full Chip Implementation Example</h2><pre><code>/// A variable representing a number.
+#[derive(Clone)]
+struct Number&lt;F: Field&gt;(AssignedCell&lt;F, F&gt;);
+
+impl&lt;F: Field&gt; NumericInstructions&lt;F&gt; for FieldChip&lt;F&gt; {
+    type Num = Number&lt;F&gt;;
+
+    fn load_private(
+        &amp;self,
+        mut layouter: impl Layouter&lt;F&gt;,
+        value: Value&lt;F&gt;,
+    ) -&gt; Result&lt;Self::Num, Error&gt; {
+        let config = self.config();
+
+        layouter.assign_region(
+            || &quot;load private&quot;,
+            |mut region| {
+                region
+                    .assign_advice(|| &quot;private input&quot;, config.advice[0], 0, || value)
+                    .map(Number)
+            },
+        )
+    }
+
+    fn load_constant(
+        &amp;self,
+        mut layouter: impl Layouter&lt;F&gt;,
+        constant: F,
+    ) -&gt; Result&lt;Self::Num, Error&gt; {
+        let config = self.config();
+
+        layouter.assign_region(
+            || &quot;load constant&quot;,
+            |mut region| {
+                region
+                    .assign_advice_from_constant(|| &quot;constant value&quot;, config.advice[0], 0, constant)
+                    .map(Number)
+            },
+        )
+    }
+
+    fn mul(
+        &amp;self,
+        mut layouter: impl Layouter&lt;F&gt;,
+        a: Self::Num,
+        b: Self::Num,
+    ) -&gt; Result&lt;Self::Num, Error&gt; {
+        let config = self.config();
+
+        layouter.assign_region(
+            || &quot;mul&quot;,
+            |mut region: Region&lt;&apos;_, F&gt;| {
+                // We only want to use a single multiplication gate in this region,
+                // so we enable it at region offset 0; this means it will constrain
+                // cells at offsets 0 and 1.
+                config.s_mul.enable(&amp;mut region, 0)?;
+
+                // The inputs we&apos;ve been given could be located anywhere in the circuit,
+                // but we can only rely on relative offsets inside this region. So we
+                // assign new cells inside the region and constrain them to have the
+                // same values as the inputs.
+                a.0.copy_advice(|| &quot;lhs&quot;, &amp;mut region, config.advice[0], 0)?;
+                b.0.copy_advice(|| &quot;rhs&quot;, &amp;mut region, config.advice[1], 0)?;
+
+                // Now we can assign the multiplication result, which is to be assigned
+                // into the output position.
+                let value = a.0.value().copied() * b.0.value();
+
+                // Finally, we do the assignment to the output, returning a
+                // variable to be used in another part of the circuit.
+                region
+                    .assign_advice(|| &quot;lhs * rhs&quot;, config.advice[0], 1, || value)
+                    .map(Number)
+            },
+        )
+    }
+
+    fn expose_public(
+        &amp;self,
+        mut layouter: impl Layouter&lt;F&gt;,
+        num: Self::Num,
+        row: usize,
+    ) -&gt; Result&lt;(), Error&gt; {
+        let config = self.config();
+
+        layouter.constrain_instance(num.0.cell(), config.instance, row)
+    }
+}</code></pre>
+<h1 id="5-construct-the-circuit">5. Construct the Circuit</h1><ul><li>After defining and implementing the chip, the circuit is constructed by combining the configured chip and the logic for the desired computation.
+</li></ul>
+<h2 id="circuit-example">Circuit Example</h2><pre><code>/// The full circuit implementation.
+///
+/// In this struct we store the private input variables. We use `Option&lt;F&gt;` because
+/// they won&apos;t have any value during key generation. During proving, if any of these
+/// were `None` we would get an error.
+#[derive(Default)]
+struct MyCircuit&lt;F: Field&gt; {
+    constant: F,
+    a: Value&lt;F&gt;,
+    b: Value&lt;F&gt;,
+}
+
+impl&lt;F: Field&gt; Circuit&lt;F&gt; for MyCircuit&lt;F&gt; {
+    // Since we are using a single chip for everything, we can just reuse its config.
+    type Config = FieldConfig;
+    type FloorPlanner = SimpleFloorPlanner;
+
+    fn without_witnesses(&amp;self) -&gt; Self {
+        Self::default()
+    }
+
+    fn configure(meta: &amp;mut ConstraintSystem&lt;F&gt;) -&gt; Self::Config {
+        // We create the two advice columns that FieldChip uses for I/O.
+        let advice = [meta.advice_column(), meta.advice_column()];
+
+        // We also need an instance column to store public inputs.
+        let instance = meta.instance_column();
+
+        // Create a fixed column to load constants.
+        let constant = meta.fixed_column();
+
+        FieldChip::configure(meta, advice, instance, constant)
+    }
+
+    fn synthesize(
+        &amp;self,
+        config: Self::Config,
+        mut layouter: impl Layouter&lt;F&gt;,
+    ) -&gt; Result&lt;(), Error&gt; {
+        let field_chip = FieldChip::&lt;F&gt;::construct(config);
+
+        // Load our private values into the circuit.
+        let a = field_chip.load_private(layouter.namespace(|| &quot;load a&quot;), self.a)?;
+        let b = field_chip.load_private(layouter.namespace(|| &quot;load b&quot;), self.b)?;
+
+        // Load the constant factor into the circuit.
+        let constant =
+            field_chip.load_constant(layouter.namespace(|| &quot;load constant&quot;), self.constant)?;
+
+        // We only have access to plain multiplication.
+        // We could implement our circuit as:
+        //     asq  = a*a
+        //     bsq  = b*b
+        //     absq = asq*bsq
+        //     c    = constant*asq*bsq
+        //
+        // but it&apos;s more efficient to implement it as:
+        //     ab   = a*b
+        //     absq = ab^2
+        //     c    = constant*absq
+        let ab = field_chip.mul(layouter.namespace(|| &quot;a * b&quot;), a, b)?;
+        let absq = field_chip.mul(layouter.namespace(|| &quot;ab * ab&quot;), ab.clone(), ab)?;
+        let c = field_chip.mul(layouter.namespace(|| &quot;constant * absq&quot;), constant, absq)?;
+
+        // Expose the result as a public input to the circuit.
+        field_chip.expose_public(layouter.namespace(|| &quot;expose c&quot;), c, 0)
+    }
+}</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../libiop/libiop-1.html" class="navigation navigation-prev " aria-label="Previous page: libiop">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter2.html" class="navigation navigation-next " aria-label="Next page: Proving system">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"halo2","level":"1.3.9","depth":2,"next":{"title":"Proving system","level":"1.4","depth":1,"path":"chapter2.md","ref":"chapter2.md","articles":[{"title":"gnark","level":"1.4.1","depth":2,"path":"gnark/gnark-2-en.md","ref":"gnark/gnark-2-en.md","articles":[]},{"title":"snarkjs","level":"1.4.2","depth":2,"path":"snarkjs/snarkjs-2-en.md","ref":"snarkjs/snarkjs-2-en.md","articles":[]},{"title":"libsnark","level":"1.4.3","depth":2,"path":"libsnark/libsnark-2-en.md","ref":"libsnark/libsnark-2-en.md","articles":[]},{"title":"arkworks","level":"1.4.4","depth":2,"path":"arkworks/arkworks-2-en.md","ref":"arkworks/arkworks-2-en.md","articles":[]},{"title":"dalek","level":"1.4.5","depth":2,"path":"dalek/dalek-2-en.md","ref":"dalek/dalek-2-en.md","articles":[]},{"title":"plonky2","level":"1.4.6","depth":2,"path":"plonky2/plonky2-2-en.md","ref":"plonky2/plonky2-2-en.md","articles":[]},{"title":"Spartan","level":"1.4.7","depth":2,"path":"Spartan/Spartan-2-en.md","ref":"Spartan/Spartan-2-en.md","articles":[]},{"title":"libiop","level":"1.4.8","depth":2,"path":"libiop/libiop-2-en.md","ref":"libiop/libiop-2-en.md","articles":[]},{"title":"halo2","level":"1.4.9","depth":2,"path":"halo2/halo2-2-en.md","ref":"halo2/halo2-2-en.md","articles":[]}]},"previous":{"title":"libiop","level":"1.3.8","depth":2,"path":"libiop/libiop-1.md","ref":"libiop/libiop-1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"halo2/halo2-1-en.md","mtime":"2025-01-07T05:44:46.929Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2025-01-07T02:12:06.377Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

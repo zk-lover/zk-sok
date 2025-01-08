@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "*.tcc": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/Users/gozya/Downloads/science/zksok/zk-sok/libiop"
 }
