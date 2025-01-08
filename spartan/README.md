@@ -1,11 +1,13 @@
 # spartan
 
+Spartan is an efficient zero-knowledge proof (ZKP) system that aims to provide concise and low-cost proof generation and verification capabilities. It was developed by researchers at the Massachusetts Institute of Technology (MIT) and focuses on efficient, flexible zero-knowledge proof protocols with low computational and storage overhead. Spartan is a specially optimized SNARK (Succinct Non-Interactive Zero-Knowledge Proof) system, mainly used in decentralized applications, blockchains, and cryptographic protocols that require privacy protection and data verification.
+
 ## Docker setup
 
 Create a Docker image. This will take a few minutes. You only have to do 
 this once.
 ```
-$ docker build -t spartan
+$ docker build -t spartan .
 ```
 
 Spin up a Docker container from the image.

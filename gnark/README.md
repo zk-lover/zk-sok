@@ -1,5 +1,7 @@
 # gnark
 
+gnark is a zero-knowledge proof (ZKP) library implemented in Go, focusing on providing efficient and easy-to-use tools to build and verify zero-knowledge proofs. It provides implementations of zero-knowledge proof protocols (such as Plonk, Groth16, etc.) and supports the construction of various types of circuits, suitable for application scenarios such as blockchain, privacy-preserving computing, and encryption protocols.
+
 ## Docker setup
 
 Create a Docker image. This will take a few minutes. You only have to do 

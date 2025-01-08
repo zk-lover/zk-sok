@@ -1,11 +1,13 @@
 # halo2
 
+Halo2 is a library for building zero-knowledge proof (ZKP) circuits, which aims to provide developers with efficient and flexible tools to design and verify zero-knowledge proofs, especially supporting the Plonk protocol and the Groth16 protocol. It is the second-generation library of the Halo series developed by the Zcash team, which aims to help developers achieve privacy protection and decentralized computing in a wider range of scenarios by providing a more efficient, scalable and upgradeable zero-knowledge proof system.
+
 ## Docker setup
 
 Create a Docker image. This will take a few minutes. You only have to do 
 this once.
 ```
-$ docker build -t halo2
+$ docker build -t halo2 .
 ```
 
 Spin up a Docker container from the image.

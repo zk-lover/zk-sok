@@ -11,11 +11,11 @@ plonky2_util = { git = "https://github.com/polymerdao/plonky2", rev = "4cb0b48df
 plonky2_field = { git = "https://github.com/polymerdao/plonky2", rev = "4cb0b48df1d227d5461a4c28ed025aaea64e2e62" }
 plonky2_u32 = { git = "https://github.com/polymerdao/plonky2", rev = "4cb0b48df1d227d5461a4c28ed025aaea64e2e62" }
 anyhow = "1.0.40"
-keccak-hash = "0.10.0"
-itertools = "0.10.0"
+keccak-hash = "0.11.0"
+itertools = "0.14.0"
 log = "0.4.14"
 sha2 = "0.10"
-env_logger = "0.10.0"
+env_logger = "0.11.6"
 rand = "0.8.4"
 
 [profile.release]

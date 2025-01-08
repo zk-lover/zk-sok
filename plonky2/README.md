@@ -19,13 +19,14 @@ Please note that any changes you make in the container are not persistent.
 
 ## Running examples
 
+Since plonky2 does not provide gadgets related to sha256 circuit construction, we sought an open source implementation of the forked plonky2 library and placed it in our plonky2-sha256 directory.
+
 Navigate to the directory of the program you would like to run.
 Our examples are at `/root/src`.
 Run the following code to execute the examples.
 ```
 $ cargo run --bin cubic_expression
 $ cargo run --bin rangeproof
-$ cargo run --bin sha256
 ```
 
 ## Modifying examples

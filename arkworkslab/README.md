@@ -1,12 +1,14 @@
 # arkworks
+Arkworks is a Rust ecosystem for zk-SNARK programming.The core goal of arkworks is to provide a powerful cryptographic library for the Rust ecosystem, covering a wide range of mathematical and cryptographic algorithms, with a particular focus on supporting efficient ZKP architectures. It includes implementations of elliptic curves, finite fields, homomorphic encryption, SNARK, and other cryptographic primitives, allowing developers to easily implement complex cryptographic protocols in the Rust environment.
 
-groth16 library
+Their crypto-primitives library provides a lot of useful cryptographic primitive gadgets, such as commitment, signature, encryption, etc.
+
 ## Docker setup
 
 Create a Docker image. This will take a few minutes. You only have to do 
 this once.
 ```
-$ docker build -t arkworks
+$ docker build -t arkworks .
 ```
 
 Spin up a Docker container from the image.
