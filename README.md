@@ -82,7 +82,7 @@ These are classic scenarios using zero-knowledge proofs. We tested these three s
 - *Basic information*: Pasta curves are a series of efficient and pairing-friendly curves proposed by Arkworks. Pallas and Vesta form a pair of friendly curves in the Pasta curve series, supporting efficient zero-knowledge proofs and cryptographic protocols.  
 - *Application*: Pasta curve is suitable for application scenarios that require low latency and high throughput, especially in blockchain applications involving large-scale data verification.
 
-### libraries surpported
+### Curves supported in libraries
 1.**libsnark**
 - Supported curves:
 
