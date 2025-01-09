@@ -39,75 +39,117 @@ These are classic scenarios using zero-knowledge proofs. We tested these three s
 
 ### Sample Program Descriptions
 
-1.**cubic_expression**:
+1. **cubic_expression**:
 
 - This program demonstrates a cubic arithmetic polynomial, proving \(x^3 + x + 5 = 35\). It is a classic example used by many libraries, papers, and blogs. By constructing a zero-knowledge proof for cubic_expression, users can see the basic usage of ZKP.
 
 2. **range_proof**:
    
-   - This program proves that a number \(x\) is within a specified range. In our example, it proves that \(x\) is between 0 and 2^32. This scenario is practical for zero-knowledge proofs, such as the range proof of transaction amounts on the blockchain. The usual practice involves decomposing \(x\) into binary bits, determining whether each bit is 0 or 1, and ensuring the reconstructed value equals the original value.
+- This program proves that a number \(x\) is within a specified range. In our example, it proves that \(x\) is between 0 and 2^32. This scenario is practical for zero-knowledge proofs, such as the range proof of transaction amounts on the blockchain. The usual practice involves decomposing \(x\) into binary bits, determining whether each bit is 0 or 1, and ensuring the reconstructed value equals the original value.
 3. **sha256**:
    
-   - This program implements the SHA-256 hash, a common cryptographic primitive widely used in various scenarios. Due to its complex construction and calculation process, using zero-knowledge proof requires tens of thousands of circuit constraints. This example allows users to assess the zkSNARK library's ability to implement complex circuits.
+- This program implements the SHA-256 hash, a common cryptographic primitive widely used in various scenarios. Due to its complex construction and calculation process, using zero-knowledge proof requires tens of thousands of circuit constraints. This example allows users to assess the zkSNARK library's ability to implement complex circuits.
 
 ## Curve
 
-libsnark: “edwards”：基于 Edwards 曲线的实例，提供 80 位安全性;“bn128”：基于 Barreto-Naehrig 曲线的实例，提供 128 位安全性。底层曲线实现是 [ate-pairing];“alt_bn128”：“bn128”的替代品，速度稍慢，但避免了动态代码生成。bn128 需要 x86-64 CPU，而其他曲线选择应该与架构无关;MNT4、MNT6;
-cmake -DCURVE=choice（其中choice是以下之一：ALT_BN128、BN128、EDWARDS、MNT4、MNT6）
-将默认曲线设置为上述之一（参见椭圆曲线选择）。
+### Common elliptic curves
+1.**Edwards curve**
 
-arkworks: 
+- *Basic information*: Edwards curve is a curve widely used in efficient encryption protocols, especially for building encryption algorithms such as EdDSA and elliptic curve Diffie-Hellman (ECDH). Edwards curves have additive and bilinear properties, which can efficiently support curve-based encryption protocols. They provide up to 80 bits of security and have good efficiency in addition operations.  
+- *Application*: Commonly used in systems that require lower computing resources, such as low-power devices and embedded systems.
 
-BLS12-381 and embedded curves:
-ark-bls12-381: Implements the BLS12-381 pairing-friendly curve
-ark-ed-on-bls12-381: Implements a Twisted Edwards curve atop the scalar field of BLS12-381
-ark-ed-on-bls12-381-bandersnatch: Implements Bandersnatch, another Twisted Edwards curve atop the scalar field of BLS12-381
+2.**BN128 curve**  
+- *Basic information*: BN128 curve is a pairing-friendly curve, which is widely used to build efficient zero-knowledge proof systems. It supports efficient ate pairing operations and usually provides 128 bits of security. Due to its good mathematical properties, BN128 has become one of the mainstream curves for building protocols such as Groth16 and Plonk.  
+- *Application*: BN128 curve is the preferred curve in many pairing-based ZKP libraries (such as libsnark and snarkjs), suitable for application scenarios that require zero-knowledge proofs such as cryptocurrencies.  
+  
+3.**BLS12-381 curve**
 
-BLS12-377 and related curves:
-ark-bls12-377: Implements the BLS12-377 pairing-friendly curve
-ark-ed-on-bls12-377: Implements a Twisted Edwards curve atop the scalar field of BLS12-377
-ark-bw6-761: Implements the BW6-761 pairing-friendly curve, which is a curve whose scalar field equals the base field of BLS12-377
-ark-ed-on-bw6-761: Implements a Twisted Edwards curve atop the scalar field of BW6-761
-ark-cp6-782: Implements the CP6-782 pairing-friendly curve, which is a curve whose scalar field equals the base field of BLS12-377
-ark-ed-on-cp6-782: Implements a Twisted Edwards curve atop the scalar field of CP6-782. This is the same curve as in ark-ed-on-bw6-761
+- *Basic information*: BLS12-381 curve is a bilinear elliptic curve specially designed for BLS signature and pairing algorithms. It is one of the widely used curves in modern zero-knowledge proof protocols (such as Plonk and Groth16), providing 128-bit security. BLS12-381 supports efficient pairing operations and is suitable for building efficient and scalable zero-knowledge proof systems.  
+- *Application*: Widely used in blockchain, cryptocurrency and other scenarios that require zero-knowledge proofs, such as zk-SNARKs and zk-STARKs.
+  
+4.**MNT curve (MNT4 and MNT6)**
 
-BN254 and related curves
-ark-bn254: Implements the BN254 pairing-friendly curve
-ark-ed-on-bn254: Implements a Twisted Edwards curve atop the scalar field of BN254
-ark-grumpkin: Implements the Grumpkin curve. A curve that forms a cycle with bn254.
+- *Basic information*: MNT4 and MNT6 curves are pairing-friendly curves, especially suitable for building efficient pairing operations. They provide 298 bits and 753 bits of security respectively, and are suitable for cryptographic protocols that require large-scale data processing.  
+- *Application*: MNT curves are often used in scenarios with higher security requirements, especially in some protocols that require multiple levels of encryption.
+  
+5.**Ristretto255 and Curve25519**
 
-MNT-298 cycle of curves and related curves
-ark-mnt4-298: Implements the MNT4-298 pairing-friendly curve. This curve forms a pairing-friendly cycle with MNT6-298
-ark-mnt6-298: Implements the MNT6-298 pairing-friendly curve. This curve forms a pairing-friendly cycle with MNT4-298
-ark-ed-on-mnt4-298: Implements a Twisted Edwards curve atop the scalar field of MNT4-298
+- *Basic information*: Curve25519 is an efficient elliptic curve designed for high security and low computational overhead. Ristretto255 is an acceleration protocol on Curve25519, providing a more secure and efficient way to operate elliptic curves.  
+- *Application*: In efficient and fast cryptographic protocols (such as Spartan), Ristretto255 is widely used for fast encryption and signing operations.
+  
+6.**Pasta curve**
 
-MNT-753 cycle of curves and related curves
-ark-mnt4-753: Implements the MNT4-753 pairing-friendly curve. This curve forms a pairing-friendly cycle with MNT6-753
-ark-mnt6-753: Implements the MNT6-753 pairing-friendly curve. This curve forms a pairing-friendly cycle with MNT4-753
-ark-ed-on-mnt4-753: Implements a Twisted Edwards curve atop the scalar field of MNT4-753
+- *Basic information*: Pasta curves are a series of efficient and pairing-friendly curves proposed by Arkworks. Pallas and Vesta form a pair of friendly curves in the Pasta curve series, supporting efficient zero-knowledge proofs and cryptographic protocols.  
+- *Application*: Pasta curve is suitable for application scenarios that require low latency and high throughput, especially in blockchain applications involving large-scale data verification.
 
-Pasta cycle of curves
-ark-pallas: Implements Pallas, a prime-order curve that forms an amicable pair with Vesta
-ark-vesta: Implements Vesta, a prime-order curve that forms an amicable pair with Pallas
+### libraries surpported
+1.**libsnark**
+- Supported curves:
 
-gnark:Elliptic curve cryptography & Pairing on:
-bn254 (audit report)
-bls12-381 (audit report)
-bls24-317
-bls12-377 / bw6-761
-bls24-315 / bw6-633
-Each of these curves has a twistededwards sub-package with its companion curve which allow efficient elliptic curve cryptography inside zkSNARK circuits.
+  edwards: Based on Edwards curve, provides 80-bit security.
 
-snarkjs:
-The first parameter after new refers to the type of curve you wish to use. At the moment, we support both bn128 and bls12-381.
+  bn128: Based on Barreto-Naehrig curve, provides 128-bit security and supports ate-pairing.
 
-libiop:
-无
+  alt_bn128: Alternative to BN128, avoiding dynamic code generation and suitable for different hardware architectures.
 
-Spartan:
-Standardized security: Spartan's security relies on the hardness of computing discrete logarithms (a standard cryptographic assumption) in the random oracle model. libspartan uses ristretto255, a prime-order group abstraction atop curve25519 (a high-speed elliptic curve). We use curve25519-dalek for arithmetic over ristretto255.
+  MNT4 and MNT6: Pairing-friendly curves for high security requirements.
+- Usage: When building, you can specify the curve to use through CMake. For example:
+```
+cmake -DCURVE=BN128 ..
+```
+This will choose to use the BN128 curve to build the libsnark library.  
+2.**arkworks**
+- Supported curves:
 
-halo2：EccChip
-halo2_gadgets provides a chip that implements EccInstructions using 10 advice columns. The chip is currently restricted to the Pallas curve, but will be extended to support the Vesta curve in the near future.
+  BLS12-381: bilinear elliptic curve, suitable for efficient pairing operations.
 
-Plonky2：To avoid the difficulties associated with elliptic curve cycles, we turn to FRI
+  BLS12-377 and BLS12-377 derivatives: for higher security requirements.
+
+  BN254: another common pairing-friendly curve.
+
+  MNT4, MNT6: for large-scale cryptographic operations.
+
+  Pasta (Pallas and Vesta): efficient curve pairs, supporting large-scale applications.
+- Usage: When using arkworks, you can select the corresponding curve in the code, such as:
+```
+use ark_bls12_381::Bls12_381;
+```
+3.**gnark**
+- Supported curves:
+
+  Common curves such as bn254, bls12-381, bls12-377, bw6-761, etc.
+
+  twisted Edwards subpackage: used to efficiently perform elliptic curve cryptographic operations in ZK-SNARK circuits.
+- Usage: In gnark, you can select the corresponding curve type, for example:
+```
+curve := gnark.NewBls12_381()
+```
+4.**snarkjs**
+- Supported curves:
+
+  bn128 and bls12-381.
+- Usage: When using snarkjs, you can specify the curve type during initialization, such as:
+```
+const curve = new snarkjs.bls12_381();
+```
+5.**libiop**
+- Supported curves:
+
+  libiop does not explicitly list the supported elliptic curves, but it focuses on providing input and output protocols for zero-knowledge proofs and relies on other libraries to implement elliptic curve operations. 
+
+6.**Spartan**
+- Supported curves:
+
+  Curve25519 and Ristretto255 curves, which provide efficient elliptic curve operations.
+- Usage: In Spartan, curve operations are usually implemented through curve25519-dalek.
+
+7.**halo2**
+- Supported curves:
+
+  The current version mainly supports Pallas curves, and will expand to support Vesta curves in the future.
+- Usage: In Halo2, when using elliptic curves, it is usually necessary to use the EccChip component to perform elliptic curve operations.
+
+8.**Plonky2**
+- Core design:
+
+  The core design of Plonky2 does not rely on elliptic curves, but is based on polynomial commitments and FRI protocols. Although the core architecture of Plonky2 avoids the complexity of elliptic curves, it may use elliptic curves in some auxiliary operations.
