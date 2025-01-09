@@ -58,10 +58,7 @@ func main() {
 		bits: 32,
 	}
 	// Step 3: Create a witness
-	//此处hashfunc需要和ccs的曲线相同
-
 	// Step 4: Assign values to the circuit
-
 	// Step 5: Generate the full witness
 	witness, err := frontend.NewWitness(&assignment, ecc.BN254.ScalarField())
 	if err != nil {

@@ -1,28 +1,28 @@
 pragma circom 2.0.0;
 
-include "sha256.circom";  // 包含 sha256.circom 模板
+include "/app/node_modules/circomlib/circuits/sha256.circom";  // Include sha256.circom template
 
-// 定义主电路
+// Define main circuit
 template Main() {
-    // 输入：消息是一个长度为 512 位（64 字节）的输入
-    signal input in[512];  // SHA-256 的输入应为 512 位
+    // Input: message is 512 bits (64 bytes) input
+    signal input in[512];  // SHA-256 input should be 512 bits
 
-    // 输出：哈希值是 256 位（32 字节）
+    // Output: hash value is 256 bits (32 bytes)
     signal output hash[256];
 
-    // 实例化 SHA-256 模板
-    component hasher = Sha256(512);  // 使用 512 位的 SHA-256 模板
+    // Instantiate SHA-256 template
+    component hasher = Sha256(512);  // Use 512-bit SHA-256 template
 
-    // 将输入连接到 hasher 的输入
+    // Connect input to hasher's input
     for (var i = 0; i < 512; i++) {
         hasher.in[i] <== in[i];
     }
 
-    // 将输出连接到 hash
+    // Connect output to hash
     for (var i = 0; i < 256; i++) {
         hash[i] <== hasher.out[i];
     }
 }
 
-// 使用 Main 作为主组件
+// Use Main as the main component
 component main = Main();

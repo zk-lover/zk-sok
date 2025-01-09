@@ -9,12 +9,10 @@ snarkjs r1cs print range_proof.r1cs range_proof.sym
 
 snarkjs wtns calculate range_proof_js/range_proof.wasm input.json witness.wtns
 
-snarkjs fflonk setup circuit.r1cs pot14_final.ptau circuit.zkey
-
-snarkjs zkey verify range_proof.r1cs pot14_final.ptau circuit.zkey
+snarkjs fflonk setup range_proof.r1cs pot14_final.ptau circuit.zkey
 
 snarkjs zkey export verificationkey circuit.zkey verification_key.json
 
-time snarkjs plonk prove circuit.zkey witness.wtns proof.json public.json
+time snarkjs fflonk prove circuit.zkey witness.wtns proof.json public.json
 
-time snarkjs plonk verify verification_key.json public.json proof.json
+time snarkjs fflonk verify verification_key.json public.json proof.json

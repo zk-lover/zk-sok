@@ -17,8 +17,6 @@ $ docker run -it --rm spartan
 
 Please note that any changes you make in the container are not persistent. 
 
-## Architecture
-
 ## Running examples
 
 Navigate to the directory of the program you would like to run.

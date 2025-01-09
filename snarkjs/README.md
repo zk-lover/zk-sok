@@ -39,6 +39,8 @@ Enter a directory, you'll find 4 files:
 - a start.sh file, which contains the full steps to run the program. 
 - a quick_start.sh file, which can be used when you have a final.ptau file. The final.ptau file contains the public parameters required by the circuit and is used to ensure the credibility of the circuit. It is a necessary file in the proof process. snarkjs provides a command to generate this file. As the maximum constraints of the circuit increase, the file generation time is slower. snarkjs officially provides final.ptau files ranging from 256 constraints to 256 mega constraints. You can choose to generate it yourself or download it.
 
+tips：To testsha256 requires a big ptau file, if you generate it yourself, it will take a long time.   
+
 You can simply run the 'start.sh' to execute the examples.
 ```
 $ ./start.sh

@@ -26,7 +26,7 @@ Our examples are at `/root/src`.
 Run the following code to execute the examples.
 ```
 $ cargo run --bin cubic_expression
-$ cargo run --bin rangeproof
+$ cargo run --bin range_proof
 $ cargo run --bin sha256
 ```
 

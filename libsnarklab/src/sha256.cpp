@@ -73,7 +73,7 @@ int one_input_hash_gadget(int num_iterations) {
     }
 
     cout << "Number of constraints: " << constraint_system.num_constraints() << endl;
-    cout << "Proof size (bytes): " << 1019/8 << endl;  // 固定大小
+    cout << "Proof size (bytes): " << 1019/8 << endl; 
     cout << "Proving time (ms): " << tp.count() * 1000 << endl;
     cout << "Verification time (ms): " << tv.count() * 1000 << endl;
 
@@ -81,7 +81,7 @@ int one_input_hash_gadget(int num_iterations) {
 }
 
 int main() {
-    // 禁用详细输出
+    // Disable detailed profiling output
     libff::inhibit_profiling_info = true;
     libff::inhibit_profiling_counters = true;
     

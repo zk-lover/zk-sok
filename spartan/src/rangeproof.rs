@@ -18,13 +18,13 @@ fn main() {
         assignment_inputs,
     ) = produce_rangeproof_r1cs();
 
-    // 生成公共参数
+    // Generate public parameters
     let gens = SNARKGens::new(num_cons, num_vars, num_inputs, num_non_zero_entries);
 
-    // 创建对 R1CS 实例的承诺
+    // Create commitment to R1CS instance
     let (comm, decomm) = SNARK::encode(&inst, &gens);
 
-    // 生成证明
+    // Generate proof
     let mut prover_transcript = Transcript::new(b"rangeproof_example");
     let start1 = Instant::now();
     let proof = SNARK::prove(
@@ -38,11 +38,11 @@ fn main() {
     );
     let start2 = Instant::now();
     
-    // 序列化证明以获取大小
+    // Serialize proof to get size
     let serialized_proof = bincode::serialize(&proof).expect("Serialization failed");
     println!("Proof size: {} bytes", serialized_proof.len());
 
-    // 验证证明
+    // Verify proof
     let mut verifier_transcript = Transcript::new(b"rangeproof_example");
     assert!(proof
         .verify(&comm, &assignment_inputs, &mut verifier_transcript, &gens)
@@ -66,7 +66,7 @@ fn produce_rangeproof_r1cs() -> (
     let num_vars = 32;
     let num_cons = 33;
     let num_inputs = 1;
-    //libspartan 库可能会对稀疏矩阵的非零项进行内部优化，实际的非零项可能少于理论计算值。
+    // The libspartan library may internally optimize non-zero entries in sparse matrices, actual non-zero entries may be less than theoretical calculation
     let num_non_zero_entries = 64;
 
     let mut A: Vec<(usize, usize, [u8; 32])> = Vec::new();
@@ -75,14 +75,14 @@ fn produce_rangeproof_r1cs() -> (
 
     let one = Scalar::ONE.to_bytes();
 
-    // 1. 二进制约束：bi * bi = bi
+    // 1. Binary constraint: bi * bi = bi
     for i in 0..num_vars {
         A.push((i, i, one));
         B.push((i, i, one));
         C.push((i, i, one));
     }
 
-    // 2. 和约束：sum(bi * 2^i) = x
+    // 2. Sum constraint: sum(bi * 2^i) = x
     let mut coeff = Scalar::ONE;
     for i in 0..num_vars {
         A.push((num_vars, i, coeff.to_bytes()));
@@ -93,7 +93,7 @@ fn produce_rangeproof_r1cs() -> (
 
     let x = Scalar::from(1234u32);
     
-    // 将 x 分解为二进制位
+    // Decompose x into binary bits
     let mut vars = vec![Scalar::ZERO.to_bytes(); num_vars];
     let x_bytes = x.to_bytes();
     
@@ -106,7 +106,7 @@ fn produce_rangeproof_r1cs() -> (
         }
     }
 
-    // 创建 VarsAssignment 和 InputsAssignment
+    // Create VarsAssignment and InputsAssignment
     let assignment_vars = VarsAssignment::new(&vars).unwrap();
     let mut inputs = vec![Scalar::ZERO.to_bytes(); num_inputs];
     inputs[0] = x.to_bytes();

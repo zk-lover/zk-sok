@@ -20,10 +20,10 @@ use ark_crypto_primitives::{
     snark::{SNARK, CircuitSpecificSetupSNARK},
 };
 
-// SHA256 电路定义
+// SHA256 Circuit Definition
 struct Sha256Circuit<ConstraintF: Field> {
-    preimage: Option<Vec<u8>>,  // 要哈希的输入
-    hash: Option<Vec<u8>>,      // 要验证的预期哈希值
+    preimage: Option<Vec<u8>>,  // Input to be hashed
+    hash: Option<Vec<u8>>,      // Expected hash value to verify
     _phantom: PhantomData<ConstraintF>,
 }
 
@@ -32,24 +32,24 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for Sha256Circu
         self,
         cs: ConstraintSystemRef<ConstraintF>,
     ) -> Result<(), SynthesisError> {
-        // 修改：将哈希值作为私有输入而不是公共输入
+        // Modification: Make hash value a private input instead of public input
         let preimage_var = UInt8::new_witness_vec(
             ark_relations::ns!(cs, "preimage"),
             self.preimage.as_deref().unwrap_or(&[]),
         )?;
 
-        let hash_var = UInt8::new_witness_vec(  // 改为 witness 而不是 input
+        let hash_var = UInt8::new_witness_vec(  // Changed to witness instead of input
             ark_relations::ns!(cs, "hash"),
             self.hash.as_deref().unwrap_or(&[]),
         )?;
 
-        // 使用 SHA256 gadget 计算哈希
+        // Use SHA256 gadget to compute hash
         let computed_hash = Sha256Gadget::<ConstraintF>::evaluate(
             &UnitVar::default(),
             &preimage_var,
         )?;
 
-        // 添加约束：计算出的哈希值必须等于输入的哈希值
+        // Add constraint: computed hash must equal input hash
         for (computed_byte, expected_byte) in computed_hash.0.iter().zip(hash_var.iter()) {
             computed_byte.enforce_equal(expected_byte)?;
         }
@@ -59,7 +59,7 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for Sha256Circu
 }
 
 fn main() {
-    // 在 BLS12-381 曲线上进行测试
+    // Test on BLS12-381 curve
     test_prove_and_verify::<Bls12_381>();
 }
 
@@ -70,14 +70,14 @@ where
     let mut rng = test_rng();
     let mut prover_rng = ChaChaRng::seed_from_u64(rng.next_u32() as u64);
 
-    // 设置输入数据
+    // Setup input data
     let preimage = b"Hello, World!".to_vec();
     let mut hasher = Sha256::new();
     hasher.update(&preimage);
     let hash = hasher.finalize().to_vec();
 
     println!("Setting up circuit...");
-    // 设置电路
+    // Setup circuit
     let setup_circuit = Sha256Circuit {
         preimage: None,
         hash: None,
@@ -103,7 +103,7 @@ where
 
     println!("Processing verification key...");
     let pvk = prepare_verifying_key(&vk);
-    // 修改：将32字节分成4组，每组8字节
+    // Modification: Split 32 bytes into 4 groups of 8 bytes each
     let mut combined_hash = E::ScalarField::zero();
     for (i, chunk) in hash.chunks(8).enumerate() {
         let mut chunk_value = E::ScalarField::zero();
@@ -121,12 +121,12 @@ where
     println!("\nVerifying proof...");
     let verification_result = Groth16::<E>::verify_with_processed_vk(
         &pvk,
-        &[],  // 空的公共输入
+        &[],  // Empty public inputs
         &proof,
     );
     let start3 = Instant::now();
 
-    // 修改：通过 pvk.vk 访问 gamma_abc_g1
+    // Modification: Access gamma_abc_g1 through pvk.vk
     match &verification_result {
         Ok(valid) => println!("Verification completed with result: {}", valid),
         Err(e) => {
@@ -137,7 +137,7 @@ where
         }
     }
 
-    // 计算时间和输出结果
+    // Calculate timing and output results
     let prove_time = start2.duration_since(start1).as_secs_f64() * 1000.0;
     let verify_time = start3.duration_since(start2).as_secs_f64() * 1000.0;
     let proof_size = std::mem::size_of_val(&proof);

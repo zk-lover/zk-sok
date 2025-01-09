@@ -39,41 +39,14 @@ pub fn prove_sha256(msg: &[u8]) -> Result<()> {
     println!("Circuit statistics:");
     println!("- Number of gates: {}", builder.num_gates());
     println!("- Number of public inputs: {}", builder.num_public_inputs());
-    
-    // 打印每种门类型的统计信息
-    builder.print_gate_counts(0);
-
-    // 手动计算约束总数
-    let base_sum_63_constraints = 368 * (63 + 2); // num_limbs + 2 约束
-    let base_sum_32_constraints = 616 * (32 + 2); // num_limbs + 2 约束
-    let arithmetic_constraints = 4647 * 20;  // num_ops 约束
-    let u32_arithmetic_constraints = 200 * 3 * 2; // 两个 U32ArithmeticGate，每个有 3 个约束
-
-    let total_constraints = base_sum_63_constraints + 
-                          base_sum_32_constraints + 
-                          arithmetic_constraints + 
-                          u32_arithmetic_constraints;
-
-    println!("Constraints breakdown:");
-    println!("- BaseSumGate(63): {} gates * {} constraints = {}", 368, 65, base_sum_63_constraints);
-    println!("- BaseSumGate(32): {} gates * {} constraints = {}", 616, 34, base_sum_32_constraints);
-    println!("- ArithmeticGate: {} gates * {} constraints = {}", 4647, 20, arithmetic_constraints);
-    println!("- U32ArithmeticGate: {} gates * {} constraints = {}", 200, 6, u32_arithmetic_constraints);
-    println!("Total constraints: {}", total_constraints);
 
     let data = builder.build::<C>();
-    let timing = TimingTree::new("prove", Level::Debug);
     let proof = data.prove(pw).unwrap();
     let proof_bytes = proof.to_bytes();
     let size = proof_bytes.len();
     println!("Size of proof_bytes: {}", size);
-    timing.print();
 
-    let timing = TimingTree::new("verify", Level::Debug);
-    let res = data.verify(proof);
-    timing.print();
-
-    res
+    data.verify(proof)
 }
 
 fn main() -> Result<()> {

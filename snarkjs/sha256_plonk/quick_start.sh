@@ -9,9 +9,7 @@ snarkjs r1cs print sha256_example.r1cs sha256_example.sym
 
 snarkjs wtns calculate sha256_example_js/sha256_example.wasm input.json witness.wtns
 
-snarkjs plonk setup circuit.r1cs pot20_final.ptau circuit_final.zkey
-
-snarkjs zkey verify sha256_example.r1cs pot20_final.ptau circuit_final.zkey
+snarkjs plonk setup sha256_example.r1cs pot20_final.ptau circuit_final.zkey
 
 snarkjs zkey export verificationkey circuit_final.zkey verification_key.json
 

@@ -12,7 +12,7 @@ fn main() -> Result<()> {
     type C = PoseidonGoldilocksConfig;
     type F = <C as GenericConfig<D>>::F;
 
-    let config = CircuitConfig::standard_recursion_zk_config();//或者用standard_recursion_zk_config
+    let config = CircuitConfig::standard_recursion_zk_config(); // Or use standard_recursion_zk_config
     let mut builder = CircuitBuilder::<F, D>::new(config);
 
     // The secret value.
@@ -26,7 +26,7 @@ fn main() -> Result<()> {
     builder.range_check(value, log_max);
     println!("Gates after range check: {}", builder.num_gates());
 
-    // 添加调试信息
+    // Add debug information
     println!("Number of gates before building: {}", builder.num_gates());
     println!("Number of public inputs: {}", builder.num_public_inputs());
 
@@ -39,13 +39,13 @@ fn main() -> Result<()> {
     );
     
     let start1 = Instant::now();
-    // 构建电路数据
+    // Build circuit data
     let data = builder.build::<C>();
-    // 生成证明
+    // Generate proof
     let proof = data.prove(pw)?;
     let start2 = Instant::now();
     
-    // 转换证明为字节数组
+    // Convert proof to byte array
     let proof_bytes = proof.to_bytes();
     let size = proof_bytes.len();
     println!("Size of proof_bytes: {}", size);

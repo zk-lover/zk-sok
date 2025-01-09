@@ -38,7 +38,7 @@ fn main() -> Result<()> {
     let start1 = Instant::now();
     let proof = data.prove(pw)?;
     let start2 = Instant::now();
-    // 调用 `to_bytes()` 方法将 `proof` 转换为字节数组
+
     let proof_bytes = proof.to_bytes();
     // 获取字节数组的大小
     let size = proof_bytes.len();

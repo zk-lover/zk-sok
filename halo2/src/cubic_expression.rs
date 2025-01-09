@@ -10,7 +10,6 @@ use halo2_proofs::{
 };
 use pasta_curves::Fp;
 
-// 自定义分配器
 struct CountingAllocator {
     total: AtomicUsize,
 }
@@ -42,7 +41,6 @@ unsafe impl GlobalAlloc for CountingAllocator {
     }
 }
 
-// 使用 Once 和 Lazy 实现全局分配器
 static INIT: Once = Once::new();
 static mut GLOBAL_ALLOCATOR: Option<CountingAllocator> = None;
 
@@ -67,7 +65,6 @@ unsafe impl GlobalAlloc for CountingAllocatorWrapper {
     }
 }
 
-// 设置全局分配器
 #[global_allocator]
 static GLOBAL: CountingAllocatorWrapper = CountingAllocatorWrapper;
 // ANCHOR: field-instructions
@@ -513,7 +510,7 @@ impl<F: Field> FieldInstructions<F> for FieldChip<F> {
         let five = F::ONE + F::ONE + F::ONE + F::ONE + F::ONE;
         let constant_5 = self.load_constant(
             layouter.namespace(|| "load constant 5"),
-            five// 使用 Fp::from 而不是 F::from
+            five
         )?;
         
         // Calculate y = x^3 + x + 5

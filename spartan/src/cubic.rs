@@ -74,8 +74,8 @@ fn produce_r1cs() -> (
   C.push((3, num_vars + 1, one));
 
   let r1cs_file = "sha256.r1cs";
-  // 加载 R1CS
-  let instance = Instance::from_file(r1cs_file).expect("Failed to load R1CS");
+
+  //let instance = Instance::from_file(r1cs_file).expect("Failed to load R1CS");
 
   let inst = Instance::new(num_cons, num_vars, num_inputs, &A, &B, &C).unwrap();
 
@@ -146,10 +146,8 @@ fn main() {
     &mut prover_transcript,
   );
   let start2 = Instant::now();
-  // 使用 bincode 序列化 proof
+  
   let serialized_proof = bincode::serialize(&proof).expect("Serialization failed");
-
-  // 输出序列化后的字节大小
   println!("Serialized proof size: {} bytes", serialized_proof.len());
 
   // verify the proof of satisfiability

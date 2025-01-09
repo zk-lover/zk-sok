@@ -28,8 +28,6 @@ func (c *Circuit) Define(api frontend.API) error {
 
 func main() {
 
-	// Step 1: Compile the circuit
-
 	circuit := Circuit{
 		bits: 32,
 	}
@@ -70,7 +68,6 @@ func main() {
 		log.Fatalf("failed to create witness: %v", err)
 	}
 
-	// Step 6: Extract the public witness
 	publicWitness, err := witness.Public()
 	if err != nil {
 		log.Fatalf("failed to extract public witness: %v", err)
@@ -87,7 +84,6 @@ func main() {
 	proofSize := buf.Len()
 	fmt.Printf("Proof size: %d bytes\n", proofSize)
 
-	// Step 8: Verify the proof
 	err = plonk.Verify(proof, vk, publicWitness)
 	if err != nil {
 		log.Fatal(err)

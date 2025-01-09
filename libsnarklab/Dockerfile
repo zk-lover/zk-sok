@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-markdown \
     libboost-program-options-dev \
+    libsodium-dev \ 
+    libsodium23 \   
     libssl-dev \
     pkg-config \
     libprocps-dev \
@@ -23,6 +25,3 @@ WORKDIR /app
 
 # 复制项目文件（包括已经初始化的子模块）
 COPY . /app
-
-# 获取并初始化 submodule
-RUN git submodule update --init --recursive

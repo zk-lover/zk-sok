@@ -13,7 +13,7 @@ use ark_std::{
 };
 use std::time::Instant;
 
-/// 定义一个电路来证明x在0-2^32范围内
+/// Define a circuit to prove x is in range [0, 2^32]
 struct RangeProofCircuit<F: Field> {
     x: Option<F>,
 }
@@ -23,10 +23,10 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for RangeProofC
         self,
         cs: ConstraintSystemRef<ConstraintF>,
     ) -> Result<(), SynthesisError> {
-        // 声明输入变量x
+        // Declare input variable x
         let x = cs.new_input_variable(|| self.x.ok_or(SynthesisError::AssignmentMissing))?;
 
-        // 将x分解为32个二进制位
+        // Decompose x into 32 binary bits
         let mut bits = Vec::new();
         for i in 0..32 {
             let bit = cs.new_witness_variable(|| {
@@ -36,7 +36,7 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for RangeProofC
                 Ok(if bit_val { ConstraintF::one() } else { ConstraintF::zero() })
             })?;
 
-            // 约束每个位只能是0或1：bit * (1 - bit) = 0
+            // Constrain each bit to be 0 or 1: bit * (1 - bit) = 0
             cs.enforce_constraint(
                 lc!() + bit,
                 lc!() + (ConstraintF::one(), Variable::One) - bit,
@@ -46,7 +46,7 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for RangeProofC
             bits.push(bit);
         }
 
-        // 约束位的组合等于x
+        // Constrain the combination of bits equals x
         let mut lc = lc!();
         let mut coeff = ConstraintF::one();
         for bit in bits.iter() {
@@ -54,14 +54,14 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for RangeProofC
             coeff = coeff.double();
         }
         
-        // 确保位的组合等于x
+        // Ensure the combination of bits equals x
         cs.enforce_constraint(
             lc!() + lc,
             lc!() + (ConstraintF::one(), Variable::One),
             lc!() + x
         )?;
 
-        // 打印电路约束数量
+        // Print number of constraints
         println!("Number of constraints: {}", cs.num_constraints());
         Ok(())
     }
@@ -71,30 +71,30 @@ fn main() {
     test_prove_and_verify::<ark_bls12_381::Bls12_381>();
 }
 
-/// 证明和验证函数
+/// Proof and verification function
 fn test_prove_and_verify<E>()
 where
     E: Pairing,
 {
     let mut rng = ark_std::rand::rngs::StdRng::seed_from_u64(test_rng().next_u64());
 
-    // 设置电路
+    // Setup circuit
     let (pk, vk) = Groth16::<E>::setup(RangeProofCircuit { x: None }, &mut rng).unwrap();
 
     let pvk = prepare_verifying_key::<E>(&vk);
 
-    // 计算和打印 pk 和 vk 的未压缩大小
+    // Calculate and print uncompressed sizes of pk and vk
     let pk_size = pk.uncompressed_size();
     let vk_size = vk.uncompressed_size();
     println!("Uncompressed pk size: {} bytes", pk_size);
     println!("Uncompressed vk size: {} bytes", vk_size);
     println!("Total uncompressed size (pk + vk): {} bytes", pk_size + vk_size);
 
-    // 生成一个0-2^32范围内的随机数
+    // Generate a random number in range [0, 2^32]
     let x = E::ScalarField::from(rng.next_u32() as u64);
 
     let start1 = Instant::now();
-    // 生成证明
+    // Generate proof
     let proof = Groth16::<E>::prove(
         &pk,
         RangeProofCircuit { x: Some(x) },
@@ -102,13 +102,13 @@ where
     )
     .unwrap();
     let start2 = Instant::now();
-    // 输出未压缩证明的大小
+    // Output uncompressed proof size
     let uncompressed_size = proof.uncompressed_size();
     println!("Uncompressed proof size: {} bytes", uncompressed_size);
-    // 验证证明
+    // Verify the proof
     let is_valid = Groth16::<E>::verify_with_processed_vk(&pvk, &[x], &proof).unwrap();
     let start3 = Instant::now();
-    println!("Proof is valid: {}", is_valid); // 打印证明结果
+    println!("Proof is valid: {}", is_valid); // Print proof result
     let duration1 = start2.duration_since(start1);
     let duration2 = start3.duration_since(start2);
 

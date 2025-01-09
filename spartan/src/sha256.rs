@@ -28,10 +28,10 @@ fn main() {
     let mut prover_transcript = Transcript::new(b"snark_example");
     let start1 = Instant::now();
     let proof = SNARK::prove(&inst, &comm, &decomm, vars, &inputs, &gens, &mut prover_transcript);
-    // 使用 bincode 序列化 proof
+
     let serialized_proof = bincode::serialize(&proof).expect("Serialization failed");
 
-    // 输出序列化后的字节大小
+
     println!("Serialized proof size: {} bytes", serialized_proof.len());
     let start2 = Instant::now();
     // verify the proof of satisfiability

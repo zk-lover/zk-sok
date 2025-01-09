@@ -26,12 +26,10 @@ snarkjs r1cs export json cubic_expression.r1cs cubic_expression.r1cs.json
 
 snarkjs wtns calculate cubic_expression_js/cubic_expression.wasm input.json witness.wtns
 
-snarkjs fflonk setup circuit.r1cs pot14_final.ptau circuit.zkey
-
-snarkjs zkey verify cubic_expression.r1cs pot14_final.ptau circuit.zkey
+snarkjs fflonk setup cubic_expression.r1cs pot14_final.ptau circuit.zkey
 
 snarkjs zkey export verificationkey circuit.zkey verification_key.json
 
-time snarkjs plonk prove circuit.zkey witness.wtns proof.json public.json
+time snarkjs fflonk prove circuit.zkey witness.wtns proof.json public.json
 
-time snarkjs plonk verify verification_key.json public.json proof.json
+time snarkjs fflonk verify verification_key.json public.json proof.json

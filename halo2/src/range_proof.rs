@@ -4,11 +4,11 @@ use halo2_proofs::{
         Circuit, ConstraintSystem, Error, Expression, Selector,
         create_proof, verify_proof, keygen_pk, keygen_vk, SingleVerifier
     },
-    pasta::{Fp, EqAffine},  // 添加 EqAffine
+    pasta::{Fp, EqAffine},  // Add EqAffine
     poly::{commitment::Params, Rotation},
     transcript::{Blake2bWrite, Blake2bRead, Challenge255},
 };
-use rand_core::OsRng;  // 使用 rand_core 替代 rand
+use rand_core::OsRng;  // Use rand_core instead of rand
 use std::time::Instant;
 
 #[derive(Default)]
@@ -82,11 +82,11 @@ impl Circuit<Fp> for RangeProofCircuit {
                 let input_val = self.input;
                 region.assign_advice(|| "input", config.input, 0, || input_val.map(Fp::from))?;
     
-                // 使用 and_then 和 map 方法
+                // Use and_then and map methods
                 let current_val = self.input.and_then(Value::known);
                 let mut current = 0u64;
                 
-                // 使用 map 处理值
+                // Use map to process value
                 current_val.map(|v| current = v);
     
                 for i in 0..32 {
@@ -110,20 +110,20 @@ impl Circuit<Fp> for RangeProofCircuit {
 }
 
 fn main() {
-    // 参数设置
+    // Parameter setup
     let k = 12;
     let params = Params::<EqAffine>::new(k);
     
-    // 创建电路实例
+    // Create circuit instance
     let circuit = RangeProofCircuit {
         input: Value::known(12345678),
     };
 
-    // 生成验证密钥和证明密钥
+    // Generate verification key and proving key
     let vk = keygen_vk(&params, &circuit).expect("keygen_vk should not fail");
     let pk = keygen_pk(&params, vk.clone(), &circuit).expect("keygen_pk should not fail");
 
-    // 生成证明
+    // Generate proof
     let mut transcript = Blake2bWrite::<_, _, Challenge255<_>>::init(vec![]);
     println!("Creating proof...");
     let start1 = Instant::now();
@@ -138,24 +138,24 @@ fn main() {
     let start2 = Instant::now();
     let proof = transcript.finalize();
 
-    // 验证证明
-    let strategy = SingleVerifier::new(&params);  // 添加验证策略
+    // Verify proof
+    let strategy = SingleVerifier::new(&params);  // Add verification strategy
     let mut transcript = Blake2bRead::<_, _, Challenge255<_>>::init(&proof[..]);
     let verify_result = verify_proof(
         &params,
         &vk,
-        strategy,  // 使用验证策略
+        strategy,  // Use verification strategy
         &[&[]],
-        &mut transcript,  // 修改参数顺序
+        &mut transcript,  // Modify parameter order
     );
     let start3 = Instant::now();
 
-    // 计算时间和大小
+    // Calculate time and size
     let prove_time = start2.duration_since(start1).as_secs_f64() * 1000.0;
     let verify_time = start3.duration_since(start2).as_secs_f64() * 1000.0;
     let proof_size = proof.len();
 
-    // 输出结果
+    // Output results
     println!("Prove time: {:.3} ms", prove_time);
     println!("Verify time: {:.3} ms", verify_time);
     println!("Proof size: {} bytes", proof_size);

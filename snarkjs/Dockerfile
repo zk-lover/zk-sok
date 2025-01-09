@@ -11,23 +11,23 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     clang \
     libssl-dev \
-    cmake \
-    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    cmake
 
-# 安装 snarkjs
-RUN npm install -g snarkjs
+# 安装 Rust 并设置环境变量
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
-# 克隆并编译 Circom
 RUN git clone https://github.com/iden3/circom.git /circom && \
     cd /circom && \
     cargo build --release && \
-    cargo install --path .
+    cargo install --path circom
 
-# 设置 PATH 环境变量
-ENV PATH="/root/.cargo/bin:/app:/circom/target/release:${PATH}"
+# RUN npm config set registry https://registry.npmmirror.com
 
-# 将当前工作目录复制到容器中的工作目录
+RUN npm install -g snarkjs
+
 COPY . /app
 
-# 设置默认命令
+RUN find /app -type f -name "*.sh" -exec chmod +x {} \;
+
 CMD ["bash"]

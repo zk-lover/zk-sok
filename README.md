@@ -110,4 +110,4 @@ Standardized security: Spartan's security relies on the hardness of computing di
 halo2：EccChip
 halo2_gadgets provides a chip that implements EccInstructions using 10 advice columns. The chip is currently restricted to the Pallas curve, but will be extended to support the Vesta curve in the near future.
 
-Plonky2：To avoid the difficulties associated with elliptic curve cycles, we turn to FRI
+Plonky2：To avoid the difficulties associated with elliptic curve cycles, the core design of Plonky2 is based on polynomial commitments and the FRI protocol
