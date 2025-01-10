@@ -3,5 +3,5 @@
 	url = https://github.com/scipr-lab/libsnark.git
 
 [submodule "libioplab/deps/libiop"]
-    path = libioplab/deps/libiop
-    url = https://github.com/scipr-lab/libiop.git
+	path = libioplab/deps/libiop
+	url = https://github.com/scipr-lab/libiop.git
