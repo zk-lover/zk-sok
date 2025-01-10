@@ -1,4 +1,4 @@
-# PLONKY2 Gadget Documentation
+# `plonky2` Gadget Documentation
 
 plonky2 provides a set of powerful and modular gadgets for building zero-knowledge proof circuits. These gadgets simplify common cryptographic and arithmetic operations, making it easier for developers to build efficient circuits for real-world applications. Key gadgets include support for arithmetic operations, polynomial operations, lookup tables, range checking, and hash functions, among others.
 
