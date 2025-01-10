@@ -1,3 +1,5 @@
+In this section, we will introduce the relevant APIs of libsnark's proof system.
+
 # 1.r1cs_ppzksnark_generator<default_r1cs_ppzksnark_pp>(constraint_system)
 - Input: A constraint circuit of type r1cs_constraint_system.
 - Output: A r1cs_ppzksnark_keypair type key pair.
@@ -12,3 +14,8 @@
 - Input: keypair.vk (verification key), pb.primary_input() (public input), proof (proof).
 - Output: A boolean variable verified (verification result, true indicates successful verification).
 - Function: Verifies the correctness of the computation using the verification key and proof.
+
+libsnark supports multiple zkp, and you can select different zkp by modifying default_r1cs_ppzksnark_pp. Common zkp names and corresponding relationships are as follows:
+BCTV14: default_r1cs_ppzksnark_pp
+Groth16: default_r1cs_gg_ppzksnark_pp
+GM17: default_r1cs_se_ppzksnark_pp

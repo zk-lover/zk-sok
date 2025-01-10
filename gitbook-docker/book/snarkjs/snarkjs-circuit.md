@@ -1,3 +1,11 @@
+Unlike other zero-knowledge proof libraries, snarkjs uses the Circom language to write circuits instead of traditional programming languages like Go, C++ or Rust.
+snarkjs provides powerful command-line tools that make it easy for developers to generate and verify zero-knowledge proofs using circuits written in Circom. Through these command-line tools, users can easily perform circuit compilation, key generation, proof generation and verification operations. Common commands include:
+snarkjs compile: Compiles Circom circuit files into R1CS constraint systems and generates key files suitable for proofs.
+snarkjs setup: Generates trusted setup, typically used to generate verification keys and proving keys.
+snarkjs prove: Generates zero-knowledge proofs based on inputs and circuit constraints.
+snarkjs verify: Verifies the correctness of zero-knowledge proofs, ensuring proofs are consistent with circuit constraints.
+Circom is a language designed specifically for zero-knowledge proof circuits, with concise and intuitive syntax similar to C++ but more readable. It focuses on describing mathematical constraints in circuits while avoiding the complexity of low-level implementation. Next, we'll briefly introduce Circom's syntax, structure and API to help developers quickly get started with writing zero-knowledge proof circuits using Circom.
+
 # 1. Basic Structure
 
 Circom code consists of multiple **templates** and the **main circuit**. Each template defines the logic of a circuit, and templates can be instantiated in the main circuit or other templates.
