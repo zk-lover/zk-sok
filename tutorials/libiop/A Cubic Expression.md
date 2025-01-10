@@ -1,6 +1,6 @@
 ## A Cubic Expression
 
-### Aurora ZKP systems
+### 1. Aurora ZKP systems
 
 #### Circuit Setup
 
