@@ -1,10 +1,10 @@
-### A Cubic Expression
+## A Cubic Expression
 
 This code uses the `arkworks` ecosystem to implement a zero-knowledge proof system with the Groth16 proving system. It defines a circuit to compute x^3 + x + 1 = y, generates constraints, and performs setup using the BLS12-381 curve. It then creates a proof for the equation, verifies its validity, and measures the performance by calculating the sizes of keys and proof, as well as the time taken for proving and verifying.
 
 Below, we will divide the code into code blocks and annotate them.
 
-##### Imports
+### 1. Imports from artworks
 
 ```rust
 use ark_groth16::{prepare_verifying_key, Groth16};
@@ -32,6 +32,8 @@ use std::time::Instant;
   * `Field` and `One`: Traits for field arithmetic.
 
   * `ConstraintSynthesizer`: Trait for defining R1CS (Rank-1 Constraint System) circuits.
+
+### 2. Circuit Construction
 
 ##### Circuit Definition
 
@@ -124,7 +126,7 @@ impl<ConstraintF: Field> ConstraintSynthesizer<ConstraintF> for CubicPlusLinearC
 
 * **Constraint Count**: Prints the total number of constraints in the circuit.
 
-##### Main
+### 3. ZK Proof Generation and Verification
 
 ```rust
 pub fn main() {

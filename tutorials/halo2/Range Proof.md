@@ -1,10 +1,10 @@
-### Range Proof
+## Range Proof
 
 This code implements a range proof circuit using Halo2. It defines a `RangeProofCircuit` struct to verify if a 64-bit integer is within a specific range. The circuit works by decomposing the input integer into 32 binary bits and creating constraints for each bit. The code also includes logic for generating and verifying proofs using Halo2's `create_proof` and `verify_proof` functions. Finally, it measures the time taken to generate and verify the proof, and outputs the proof size and verification result.
 
 Below, we will divide the code into code blocks and annotate them.
 
-##### Imports
+### 1. Imports from halo2
 
 ```rust
 use halo2_proofs::{
@@ -34,6 +34,8 @@ use std::time::Instant;
 * **`rand_core::OsRng`**: Provides a secure random number generator.
 
 * **`std::time::Instant`**: Used for precise time measurement.
+
+### 2. Circuit Construction
 
 ##### Defining Circuit Structures
 
@@ -226,7 +228,7 @@ impl Circuit<Fp> for RangeProofCircuit {
 
 * **Completes**: The synthesis process by returning `Ok(())` if successful.
 
-#### Main
+### 3. ZK Proof Generation and Verification
 
 ```rust
 fn main() {

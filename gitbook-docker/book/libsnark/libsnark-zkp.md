@@ -1,4 +1,4 @@
-# libsnark ZKP Documentation
+# `libsnark` ZKP Documentation
 
 In this section, we will introduce the relevant APIs of libsnark's proof system.
 

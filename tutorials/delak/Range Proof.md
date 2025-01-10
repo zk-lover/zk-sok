@@ -1,10 +1,10 @@
-### Range Proof
+## Range Proof
 
 This code uses the `bulletproofs` and `curve25519-dalek` libraries to generate and verify a range proof on Curve25519. It initializes a random number generator and Pedersen commitment generators, then creates a `BulletproofGens` object for generating the range proof. The code selects a value within the range of 0 to 2^32-1 (specifically 1234567890) for the proof and generates a random blinding factor. It then creates a range proof, measuring the time taken and the size of the proof. Finally, the code verifies the proof and outputs the verification result and the time taken for verification.
 
 Below, we will divide the code into code blocks and annotate them.
 
-##### Imports
+### 1. Imports from delak
 
 ```rust
 extern crate bulletproofs;
@@ -32,7 +32,9 @@ use std::time::Instant;
 
 * `std::time::Instant` is used for measuring time durations.
 
-#### Main
+### 2. ZK Proof Generation and Verification
+
+In this program, we do not construct circuits but use the Bulletproofs library to generate and verify range proofs. Therefore, we will introduce the generation and verification of zk proofs below.
 
 ```rust
 fn main() {

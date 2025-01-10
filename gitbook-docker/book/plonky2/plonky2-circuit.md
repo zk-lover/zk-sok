@@ -1,6 +1,6 @@
-# Plonky2 Circuit Documentation
+# `plonky2` Circuit Documentation
 
-plonky2 provides a modular framework for building zero-knowledge proof circuits, allowing developers to define constraints using Circuit features, and circuits are composed of gadgets and constraints, enabling flexible and scalable circuit design. The framework supports efficient proof generation, is optimized for large-scale applications, and includes features such as recursive proofs and polynomial commitment schemes for high-performance zk-SNARKs.
+plonky2 is an advanced zero-knowledge proof library optimized for speed and scalability, offering support for recursive proofs and fast prover times. It implements a highly optimized variant of the Plonk protocol, leveraging techniques like fast FFTs and parallelized operations for efficient proof generation. With its focus on recursive composability, plonky2 allows developers to build large, layered circuits while maintaining manageable proof sizes. This makes it particularly well-suited for applications requiring rapid verification and scalable ZKP systems, such as rollups and off-chain computations.
 
 In this section, we will introduce the circuit building APIs of plonky2, including CircuitBuilder, PartialWitness, and CircuitConfig.
 
@@ -46,6 +46,9 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       let result = builder.add(target_a, target_b);
       ```
 1.5. **add_const(target: Target, constant: F)**
+   ```
+   pub fn add_const(&mut self, x: Target, c: F) -> Target
+   ```
    - **Input:** Target `target` and constant `constant`.
    - **Output:** Returns the target after adding the constant.
    - **Purpose:** Adds a constant to the target.

@@ -1,10 +1,10 @@
-### Range Proof
+## Range Proof
 
 This code uses the Plonky2 library to prove that a given value lies within a specified range. It first sets up the circuit configuration and creates a circuit builder, adding a virtual target as the secret value. This value is registered as a public input for later printing. The code performs a range check on the value using the `range_check` method and outputs the number of gates in the circuit. It then sets a partial witness value, constructs the circuit data, and generates a proof. The generated proof is converted to a byte array, and its size is printed. Finally, the code verifies the proof and outputs the time taken to generate and verify the proof.
 
 Below, we will divide the code into code blocks and annotate them.
 
-##### Imports
+### 1. Imports from plonky2
 
 ```rust
 use anyhow::Result;
@@ -18,9 +18,9 @@ use std::time::Instant;
 
 * Import necessary modules and traits. `anyhow::Result` is used for error handling. `plonky2` modules are used for building and working with zero-knowledge proofs.
 
-##### Main
+### 2. Circuit Construction
 
-**Constants and Type Aliases**:
+##### Constants and Type Aliases
 
 ```rust
 fn main() -> Result<()> {
@@ -35,7 +35,7 @@ fn main() -> Result<()> {
 
 * `F` is a type alias for the field type derived from the configuration.
 
-**Circuit Configuration**:
+##### Circuit Configuration
 
 ```rust
     let config = CircuitConfig::standard_recursion_zk_config();
@@ -46,7 +46,7 @@ fn main() -> Result<()> {
 
 * `builder` is an instance of `CircuitBuilder` initialized with the configuration, used to construct the circuit.
 
-**Virtual Target and Public Input**:
+##### Virtual Target and Public Input
 
 ```rust
     let value = builder.add_virtual_target();
@@ -57,7 +57,7 @@ fn main() -> Result<()> {
 
 * `value` is registered as a public input, allowing it to be printed later.
 
-**Range Check**:
+##### Range Check
 
 ```rust
     let log_max = 32;
@@ -74,7 +74,9 @@ fn main() -> Result<()> {
 
 * Prints the number of gates and public inputs before building the circuit.
 
-**Partial Witness**:
+### 3. ZK Proof Generation and Verification
+
+##### Partial Witness
 
 ```rust
     let mut pw = PartialWitness::new();
@@ -85,7 +87,7 @@ fn main() -> Result<()> {
 
 * The target is set to `10086` using `from_canonical_usize`.
 
-**Proof Construction**:
+##### Proof Construction
 
 ```rust
     println!("Constructing inner proof with {} gates", builder.num_gates());
@@ -105,7 +107,7 @@ fn main() -> Result<()> {
 
 * `start2` records the time after proof generation.
 
-**Proof Serialization**:
+##### Proof Serialization
 
 ```rust
     let proof_bytes = proof.to_bytes();
@@ -115,7 +117,7 @@ fn main() -> Result<()> {
 
 * Converts the proof to a byte array and prints its size.
 
-**Proof Verification**:
+##### Proof Verification
 
 ```rust
     println!("Value {} is less than 2^{}", proof.public_inputs[0], log_max);
@@ -127,7 +129,7 @@ fn main() -> Result<()> {
 
 * `start3` records the time after verification.
 
-**Timing and Completion**
+##### Timing and Completion
 
 ```rust
     let duration1 = start2.duration_since(start1);

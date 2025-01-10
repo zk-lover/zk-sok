@@ -1,4 +1,4 @@
-# gnark ZKP Documentation
+# `gnark` ZKP Documentation
 
 In this section, we introduce the relevant APIs of gnark's proof system, including Setup, Prove, and Verify.
 

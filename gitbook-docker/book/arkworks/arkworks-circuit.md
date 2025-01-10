@@ -1,7 +1,8 @@
-# `Arkworks` Circuit Documentation
-`arkworks` provides a flexible and modular framework for building zero-knowledge proof circuits. It allows developers to construct circuits by defining constraints directly using its rich set of libraries, such as `ark-relations` for constraint systems and `ark-crypto-primitives` for cryptographic components.  
+# `arkworks` Circuit Documentation
 
-Developers can create custom circuits by leveraging the `ConstraintSynthesizer` trait, which requires the implementation of the `generate_constraints` method. Within this method, developers describe the relationships and constraints among variables, and `arkworks` takes care of compiling these constraints into a rank-1 constraint system (R1CS). This design enables developers to efficiently define and customize circuits.
+arkworks provides a modular and extensible framework for constructing zero-knowledge proofs, designed around the concept of reusable and composable constraint systems. It allows developers to build circuits using its rich set of libraries, such as ark-relations for constraint definitions and ark-crypto-primitives for cryptographic building blocks. By leveraging the ConstraintSynthesizer trait, developers can efficiently define and customize circuits, while arkworks handles the compilation into rank-1 constraint systems (R1CS). Its focus on flexibility and integration with other cryptographic tools makes arkworks a preferred choice for modern cryptographic applications.
+
+In this section, we introduce the relevant APIs of arkworks's circuit, including Variable,ConstraintSystemRef and ConstraintSynthesizer.
 
 ## 1. ConstraintSynthesizer
 

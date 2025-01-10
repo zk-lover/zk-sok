@@ -1,4 +1,5 @@
-# Spartan ZKP Documentation
+# `Spartan` ZKP Documentation
+
 In this section, we introduce the relevant APIs of Spartan's proof system, including Setup, Prove, and Verify.  
 
 

@@ -1,12 +1,14 @@
-### Range Proof
+## Range Proof
 
-#### Range Proof Implemented Based on Groth16
+### Range Proof Implemented Based on Groth16
 
 This code implements a simple zero-knowledge proof (zkSNARK) process using the Groth16 protocol. It defines a circuit (`Circuit`) and compiles it into a constraint system (R1CS) using `frontend.Compile`. Then, it sets up the proving and verifying keys (`pk` and `vk`) with `groth16.Setup`. The code creates an assignment instance (`assignment`), generates a full witness, and extracts the public witness. It proceeds to generate a proof and finally verifies the proof to ensure its correctness. The entire process involves defining the circuit, compiling it, generating the proof, and verifying it.
 
 Below, we will divide the code into code blocks and annotate them.
 
-###### Define the circuit
+### 1. Circuit Construction
+
+##### Define the circuit
 
 ```Go
 type Circuit struct {
@@ -25,7 +27,7 @@ func (c *Circuit) Define(api frontend.API) error {
 
 * The `Define` method specifies the circuit's constraints, using `rangecheck` to verify if `Vals` is within the specified bit range.
 
-###### Main():
+##### Main():
 
 ```Go
 circuit := Circuit{
@@ -39,6 +41,10 @@ if err != nil {
 
 Create a `Circuit` instance and compile the circuit using the `frontend.Compile` function to compile the circuit into a constraint system (ccs). Here, `ecc.BN254.ScalarField()` is used as the scalar field, and `scs.NewBuilder` is used as the builder.
 
+### 2. ZK Proof Generation and Verification
+
+##### Use the Groth16 to set up zkSNARK
+
 ```Go
 pk, vk, err := groth16.Setup(ccs)
 if err != nil {
@@ -46,7 +52,7 @@ if err != nil {
 }
 ```
 
-Use the Groth16 protocol to set up zkSNARK, generating the proving key `pk` and the verifying key `vk`.
+Generating the proving key `pk` and the verifying key `vk`.
 
 ```Go
 var buf1 bytes.Buffer
@@ -111,15 +117,17 @@ fmt.Println("Proof verified successfully")
 
 Verify the proof and output the result.
 
-#### Range Proof Implemented Based on Plonk
+### Range Proof Implemented Based on Plonk
 
 This code implements a process using the gnark library for circuit compilation, proof generation, and verification. It defines a circuit structure `Circuit` with a variable `Vals` and a bit length `bits`. In the `main` function, the circuit is compiled into a sparse R1CS format, and then SRS and SRS Lagrange forms are generated. The PLONK protocol is used to set up the proving and verification keys. An instance of the circuit assignment is created, and a corresponding proof is generated. Finally, the proof is verified for correctness, and the verification result is printed.
 
 Below, we will divide the code into code blocks and annotate them.
 
+### 1. Circuit Construction
+
 The circuit structure and circuit constraints are the same as in the Groth16.
 
-###### Main
+##### Main
 
 ```Go
 circuit := Circuit{
@@ -140,6 +148,8 @@ if err != nil {
     panic(err)
 }
 ```
+
+### 2. ZK Proof Generation and Verification
 
 Generate SRS
 

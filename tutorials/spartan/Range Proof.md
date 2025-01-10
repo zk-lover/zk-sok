@@ -1,10 +1,10 @@
-### Range Proof
+## Range Proof
 
 This code implements a range proof using a Rank-1 Constraint System (R1CS). It leverages the `curve25519_dalek`, `libspartan`, and `merlin` libraries to create and verify a SNARK (Succinct Non-interactive Argument of Knowledge) proof. The code first generates public parameters and commits to an R1CS instance. It then generates a proof, serializes it to determine its size, and verifies the proof's correctness. The time taken for proof generation and verification is printed. The `produce_rangeproof_r1cs` function is responsible for creating the R1CS instance and assigning values to its variables and inputs.
 
 Below, we will divide the code into code blocks and annotate them.
 
-##### Imports
+### 1. Imports from plonky2
 
 ```rust
 #![allow(non_snake_case)]
@@ -27,7 +27,7 @@ use std::time::Instant;
 
 * `std::time::Instant` is used for measuring time intervals.
 
-#### Main
+### 2. Circuit Construction
 
 ##### Setup
 
@@ -65,6 +65,8 @@ fn main() {
 ```
 
 * A commitment to the R1CS instance is created using `SNARK::encode`, which returns both the commitment and a decommitment.
+
+### 3. ZK Proof Generation and Verification
 
 ##### Generate Proof
 

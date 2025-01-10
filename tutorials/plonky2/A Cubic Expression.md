@@ -1,4 +1,4 @@
-### A Cubic Expression
+## A Cubic Expression
 
 This code uses the Plonky2 library to construct a simple circuit for proving a statement about a polynomial expression. Specifically, it builds a circuit to compute the expression x^3 + x + 1 and generates and verifies a proof of this expression using Plonky2's proving system. The code sets up the circuit configuration and constructs the circuit, defines virtual targets and public inputs, and then generates a proof for a specific input value (e.g, x = 3). It converts the proof to a byte array to determine its size. Finally, the code verifies the generated proof and outputs the time taken to generate and verify the proof.
 
@@ -14,7 +14,7 @@ We demonstrates a complete zero-knowledge proof system where:
 
 4. We measure the performance and size characteristics of the proof system
 
-##### Imports:
+### 1. Imports from plonky2
 
 ```rust
 use anyhow::Result;
@@ -40,7 +40,9 @@ use std::time::Instant;
 
 * `Instant`: Used for performance timing measurements
 
-##### Function and Type Setup:
+### 2. Circuit Construction
+
+##### Function and Type Setup
 
 ```rust
 fn main() -> Result<()> {
@@ -57,7 +59,7 @@ fn main() -> Result<()> {
 
 * `F`: Type alias for the field elements used in the circuit (derived from the config)
 
-##### Circuit Configuration:
+##### Circuit Configuration
 
 ```rust
     let config = CircuitConfig::standard_recursion_zk_config();
@@ -70,7 +72,7 @@ fn main() -> Result<()> {
 
 * The builder is mutable because we'll be adding constraints and gates to it
 
-##### Arithmetic Circuit Construction:
+##### Arithmetic Circuit Construction
 
 ```rust
     let x = builder.add_virtual_target();
@@ -88,7 +90,9 @@ fn main() -> Result<()> {
 
 * Each intermediate value (a, b, d, e) represents a wire in the circuit
 
-##### Public Input and Witness Setup:
+### 3. ZK Proof Generation and Verification
+
+##### Public Input and Witness Setup
 
 ```rust
     builder.register_public_input(x);
@@ -112,7 +116,7 @@ fn main() -> Result<()> {
 
 * `build`: Finalizes the circuit and creates the proving/verifying key pair
 
-##### Proof Generation and Size Measurement:
+##### Proof Generation and Size Measurement
 
 ```rust
     let start1 = Instant::now();
@@ -131,7 +135,7 @@ fn main() -> Result<()> {
 
 * Measures and prints the proof size in bytes
 
-##### Verification and Timing Output:
+##### Verification and Timing Output
 
 ```rust
     println!(

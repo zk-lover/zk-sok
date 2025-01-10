@@ -1,4 +1,4 @@
-### A Cubic Expression
+## A Cubic Expression
 
 ### A Cubic Expression Implemented Based on Groth16
 
@@ -6,7 +6,7 @@ This code defines a simple circuit `CubicCircuit` with the constraint x^3 + x + 
 
 Below, we will divide the code into code blocks and annotate them.
 
-###### The first code block is used to import the necessary packages.
+### 1. Imports from gnark
 
 ```Go
 import (
@@ -33,7 +33,9 @@ import (
 
 * `net/http` and `net/http/pprof` are used to start an HTTP server for performance profiling.
 
-###### The second code block is used to define the circuit.
+### 2. Circuit Construction
+
+##### Circuit Definition
 
 ```Go
 type CubicCircuit struct {
@@ -46,7 +48,7 @@ type CubicCircuit struct {
 
 * `X` is a secret variable, and `Y` is a public variable.
 
-###### The third code block is used to define the circuit constraints.
+###### Circuit Constraints
 
 ```Go
 func (circuit *CubicCircuit) Define(api frontend.API) error {
@@ -58,7 +60,7 @@ func (circuit *CubicCircuit) Define(api frontend.API) error {
 
 The `Define` method specifies the circuit's constraint condition, which is x^3 + x + 1 = y.
 
-###### Next is the main function.
+### 3. ZK Proof Generation and Verification
 
 ```Go
 go func() {
@@ -119,11 +121,13 @@ groth16.Verify(proof, vk, publicWitness)
 
 Generate the proof and verify it. Serialize the proof and output its size.
 
-#### A Cubic Expression Implemented Based on Plonk
+### A Cubic Expression Implemented Based on Plonk
 
 This code defines a simple circuit `CubicCircuit` to verify the polynomial equation x^3 + x + 1 = y. It uses the `gnark` library to compile the circuit into a constraint system (R1CS). The code then creates the necessary data for a KZG commitment scheme and uses the `plonk` protocol for setup, proof generation, and verification. Finally, it calculates and outputs the sizes of the generated proof and the structured reference string (SRS).
 
 Below, we will divide the code into code blocks and annotate them.
+
+### 1. Imports from gnark
 
 ```Go
 import (
@@ -143,6 +147,8 @@ import (
 
 Import the packages for the Plonk scheme.
 
+### 2. Circuit Construction
+
 ```Go
 type CubicCircuit struct {
 	X frontend.Variable `gnark:"x"`
@@ -158,8 +164,6 @@ func (circuit *CubicCircuit) Define(api frontend.API) error {
 
 Then define the circuit structure and circuit constraints, which are the same as in the Groth16 scheme.
 
-##### Main
-
 ###### Compile the circuit
 
 ```Go
@@ -173,6 +177,8 @@ if err != nil {
 * Define the circuit instance: Create an instance of `CubicCircuit`.
 
 * Compile the circuit: Use `frontend.Compile` to compile the circuit into R1CS (Rank-1 Constraint System), which is an intermediate representation of the circuit suitable for subsequent proof generation.
+
+### 3. ZK Proof Generation and Verification
 
 ###### Create KZG data
 

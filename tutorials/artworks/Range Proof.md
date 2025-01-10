@@ -4,7 +4,7 @@ This code implements a zero-knowledge proof circuit using the Groth16 protocol f
 
 Below, we will divide the code into code blocks and annotate them.
 
-##### Imports
+### 1. Imports from artworks
 
 ```rust
 use ark_groth16::{prepare_verifying_key, Groth16};
@@ -26,6 +26,8 @@ use std::time::Instant;
 * Import necessary modules from the `arkworks` library for Groth16 zk-SNARKs, field operations, serialization, and R1CS (Rank-1 Constraint System).
 
 * Import standard library modules for random number generation and timing.
+
+### 2. Circuit Construction
 
 ##### Circuit Definition
 
@@ -115,7 +117,7 @@ Ok(())
 
 * Print the total number of constraints in the circuit for debugging purposes.
 
-##### Main
+### 3. ZK Proof Generation and Verification
 
 ```rust
 fn main() {

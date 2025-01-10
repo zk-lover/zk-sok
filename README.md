@@ -20,20 +20,22 @@ The goal of this project is to narrow the gap between academia and industry in t
 This repository has three main contributions:
 
 1.**Sample Code**: We provide sample code that allows users to conduct preliminary testing of these zkSNARK libraries.
+
 2.**Tutorial**: A detailed tutorial explaining the logical construction in the sample programs.
-3.**Extended Documentation (Wiki Book)**: This document explains how to construct the circuit for each library's frontend, how to use the ZKP scheme to prove in the backend, and the related APIs involved in the gadgets provided by the library. Additionally, it explains the curves supported by each library.**Wiki Book**: [zk-sok](#)
+
+3.**Extended Documentation (Wiki Book)**: This document explains how to construct the circuit for each library's frontend, how to use the ZKP scheme to prove in the backend, and the related APIs involved in the gadgets provided by the library. Additionally, it explains the curves supported by each library.
 
 ## Paper
 
-The paper  [zk-sok](#) attached to this repository systematically explores zkSNARK in theory and tests it experimentally.
+The paper "SoK: Understanding zk-SNARKs: The Gap Between Research and Practice," included in this repository, provides a systematic exploration of zk-SNARKs, combining theoretical analysis with experimental evaluation.
 
 ## Sample Programs
 
 We constructed three sample programs for each library, including:
 
-- **cubic_expression** (single-digit circuit constraint)；
-- **range_proof** (two-digit circuit constraint)；
-- **sha256** (ten thousand-level circuit constraint)
+- **cubic_expression** (Order of the circuit constraints: single digit)
+- **range_proof** (Order of the circuit constraints: two or three digits)
+- **sha256** (Order of the circuit constraints: five or six digits)
 
 These are classic scenarios using zero-knowledge proofs. We tested these three sample programs to understand the architecture, usage, and related functions of these zkSNARK libraries.
 

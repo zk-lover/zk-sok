@@ -1,6 +1,6 @@
-# Spartan Circuit Documentation
+# `Spartan` Circuit Documentation
 
-Spartan provides a flexible and efficient framework for building zero-knowledge proof circuits, designed to enable developers to create scalable and high-performance zk-SNARKs. The framework allows developers to define circuit constraints using Spartan’s specialized APIs, and circuits are composed of gadgets and constraints, facilitating easy integration of cryptographic primitives and custom logic. 
+Spartan introduces an innovative approach to zero-knowledge proofs by eliminating the need for trusted setups and offering succinct proofs with minimal cryptographic assumptions. Its unique use of polynomial commitments and efficient encoding of constraint systems allows for faster proof generation and verification. Spartan’s lightweight design makes it suitable for resource-constrained environments, and its support for non-interactive proofs provides strong guarantees of privacy and correctness. This combination of efficiency and simplicity positions Spartan as a powerful tool for building privacy-preserving systems in real-world applications.
 
 In this section, we will introduce the circuit building APIs of Spartan, including Instance, VarsAssignment, and InputsAssignment.
 
