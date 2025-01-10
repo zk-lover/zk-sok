@@ -4,6 +4,9 @@ FROM ubuntu:20.04
 # 避免交互式提示
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 设置编译器标志
+ENV CXXFLAGS="-Wno-error=deprecated-declarations -Wno-error=unused-result"
+
 # 安装必要的依赖
 RUN apt-get update && apt-get install -y \
     git \
@@ -18,6 +21,11 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     pkg-config \
     libprocps-dev \
+    libgtest-dev \   
+    && cd /usr/src/gtest \
+    && cmake CMakeLists.txt \
+    && make \
+    && cp lib/*.a /usr/lib \
     && apt-get clean
 
 # 设置工作目录

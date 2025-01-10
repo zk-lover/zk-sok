@@ -1,10 +1,9 @@
-# snarkjs  
-snarkjs is a JavaScript library for building and verifying zero-knowledge proofs (ZKPs). It provides multiple SNARK implementations, including groth16, plonk, and fflonk, and supports developers to integrate zero-knowledge proofs into web applications, blockchain applications, and other JavaScript environments.
-
-Library framework of snarkjs:
-In terms of circuits, snarkjs provides integration with Circom, which can generate circuits through the Circom compiler and generate corresponding proofs. The language style of Circom is similar to conventional programming languages, which is convenient for developers to learn and use. In addition, snarkjs also provides a command line tool (CLI) for developers to run directly in the terminal and quickly generate circuits and proofs.
-
+# Snarkjs  
+Snarkjs is a javascript library started in 2019 which implements Groth16 , Plonk , and FFlonk. The goal of snarkjs is to provide comprehensive zk toolchains for website and blockchain scenarios. In zero-knowledge concepts, snarkjs provides a compiler called circom, and the syntax is similar to C or javascript.  
+Circom in snarkjs is a powerful compiler. It allows users to independently write their constraints in a file with a high-level language (e.g., DSL) that is very similar to C and JavaScript. When writing circom codes, the user is not required to use snarkjs APIs, which distinguishes snarkjs from all other zk-SNARK libraries. When using circom, we successfully implement our sample programs and then compile them to R1CS for testing. Other zk-SNARK libraries, such as Arkworks , are also gradually starting to support circom.  
 The team also provides a Circomlib repository, which provides many circuits of cryptographic primitives, such as various comparison logics, ecdsa, sha256, etc.
+
+Next we show how to build Docker to run our sample program based on the Snarkjs library.
 
 ## Docker setup
 

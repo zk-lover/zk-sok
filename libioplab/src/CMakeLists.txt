@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(iop_benchmarks)
 
+# 在项目开始时禁用 benchmark 测试
+set(BENCHMARK_ENABLE_TESTING OFF)
+set(BENCHMARK_ENABLE_GTEST_TESTS OFF)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

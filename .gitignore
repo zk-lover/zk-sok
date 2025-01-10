@@ -1,5 +1,3 @@
-# 忽略目标目录
 target/
 gitbook-docker/book/_book/
-build/
-# 忽略特定文件
+**/build/

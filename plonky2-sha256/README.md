@@ -1,5 +1,7 @@
 ## Running examples
 
+Because plonky2 does not provide gadgets related to the circuit implementation of sha256, it is difficult for us to build it directly. But we found that the team used the previous version of plonky2 to implement sha256.
+
 This code is from https://github.com/polymerdao/plonky2-sha256. We only made a few minor modifications to make it more suitable as an example program.
 
 ## Docker setup

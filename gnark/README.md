@@ -1,6 +1,9 @@
 # gnark
 
-gnark is a zero-knowledge proof (ZKP) library implemented in Go, focusing on providing efficient and easy-to-use tools to build and verify zero-knowledge proofs. It provides implementations of zero-knowledge proof protocols (such as Plonk, Groth16, etc.) and supports the construction of various types of circuits, suitable for application scenarios such as blockchain, privacy-preserving computing, and encryption protocols.
+Gnark is a high-performance, open-source Golang library for creating zero-knowledge proofs, specifically zk-SNARK applications originating from 2022. Gnark implements two schemes, Groth16 and Plonk. One main feature is that Gnark provides a high-level language for specifying the proof’s logic, and its APIs allow developers to easily create, verify, and deploy zero-knowledge proofs. It also includes a built-in compiler that transforms the high-level language into a low-level representation that can be run on various platforms. Gnark aims to be user-friendly and has various tutorials, including an executable playground for beginners to learn its programming style.  
+Gnark provides two relevant classes, frontend and backend. The output of the frontend function is a preprocessed circuit. With the circuit, backend functions choose a proving system, assign a valid witness, and output a proof. In the frontend, gnark provides a DSL specified in api class, which is convenient to add constraints. Additionally, gnark provides a set of pre-built circuit components, such as SHA256 and elliptic curve arithmetic, that can be used to build more complex circuits. 
+
+Next we show how to build Docker to run our sample program based on the Gnark library.
 
 ## Docker setup
 

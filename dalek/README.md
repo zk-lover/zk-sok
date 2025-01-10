@@ -2,6 +2,10 @@
 
 dalek-bulletproofs is a Rust-based zero-knowledge proof (ZKP) library that focuses on the efficient implementation of the Bulletproofs protocol. Bulletproofs is a zero-knowledge proof protocol that is primarily used to build compact and efficient proofs, especially suitable for cryptocurrency and privacy-preserving applications.
 
+Dalek does not provide any firmware related to gadgets.
+
+Next we show how to build Docker to run our sample program based on the dalek library.
+
 
 
 ## Docker setup

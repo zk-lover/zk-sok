@@ -1,5 +1,11 @@
 # plonky2
 
+Plonky2 is an optimized version of Plonk, a common general-purpose zero-knowledge proof protocol, and aims to achieve higher performance than traditional ZKP systems (such as zk-SNARKs and zk-STARKs) through deep optimization of mathematics and implementation. It is able to generate and verify proofs very quickly, especially suitable for scenarios that require low latency and high throughput. Plonky2 uses FRI as a core building block and is able to generate SNARK proofs with very small proof size and verification overhead.
+
+plonky2 provides a set of powerful and modular gadgets for building zero-knowledge proof circuits. These gadgets simplify common cryptographic and arithmetic operations, making it easier for developers to build efficient circuits for real-world applications. Key gadgets include support for arithmetic operations, polynomial operations, lookup tables, range checking, and hash functions, among others.
+
+Next we show how to build Docker to run our sample program based on the plonky2 library.
+    
 ## Docker setup
 
 Create a Docker image. This will take a few minutes. You only have to do 

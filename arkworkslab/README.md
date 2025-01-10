@@ -1,7 +1,12 @@
 # arkworks
-Arkworks is a Rust ecosystem for zk-SNARK programming.The core goal of arkworks is to provide a powerful cryptographic library for the Rust ecosystem, covering a wide range of mathematical and cryptographic algorithms, with a particular focus on supporting efficient ZKP architectures. It includes implementations of elliptic curves, finite fields, homomorphic encryption, SNARK, and other cryptographic primitives, allowing developers to easily implement complex cryptographic protocols in the Rust environment.
+Arkworks is a Rust ecosystem for zk-SNARK programming that started in 2022. Arkworks implements several latest academic zk-SNARK approaches including Groth16, Plonk, marlin, gm17 etc.. The schemes implemented in Arkworks span
+various categories and exhibit diverse properties, such as transparency, small proof size, URS, elastic proofs, and postquantum security.  
+Arkworks provides an explicit toolchain for compiling circuits and choosing proof systems. In the compiling phase, there are three predefined data types: finite field, elliptic curve, and polynomial. Arkworks provides gadgets API for these data types to generate a generic constraint system (i.e., R1CS). When choosing proof systems, arkworks provides several sublibraries separating different categories of zk-SNARK approaches. We follow the tutorials in arkworks and successfully implement our sample programs with Groth16. Arkworks also provides a repository binding to
+circom’s R1CS, facilitating the generation of Groth16 Proof and Witness generation in Rust.
 
 Their crypto-primitives library provides a lot of useful cryptographic primitive gadgets, such as commitment, signature, encryption, etc.
+
+Next we show how to build Docker to run our sample program based on the arkworks library.
 
 ## Docker setup
 

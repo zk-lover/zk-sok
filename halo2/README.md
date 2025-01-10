@@ -1,6 +1,12 @@
 # halo2
 
-Halo2 is a library for building zero-knowledge proof (ZKP) circuits, which aims to provide developers with efficient and flexible tools to design and verify zero-knowledge proofs, especially supporting the Plonk protocol and the Groth16 protocol. It is the second-generation library of the Halo series developed by the Zcash team, which aims to help developers achieve privacy protection and decentralized computing in a wider range of scenarios by providing a more efficient, scalable and upgradeable zero-knowledge proof system.
+Halo2 is a Rust library developed by Electric Coin Company(ECC). Halo2 introduces new features and improvements based on Plonk, including recursive proofs of proof systems and parallel computation. Due to the long review cycle in submission, halo2 has not been published yet, but a detailed online book is provided to demonstrate its design `Halo2 Book`.  
+Halo2 provides many available functions for building a circuit. It implements redundant gate-level constraints,
+including addition, multiplication, array, sum, etc. There are also high-level constraints like the inner product and range
+check (with lookup tables). For popular zero-knowledge applications like hash and signature, halo2 provides an integrated
+API as a part of its tools.
+
+Next we show how to build Docker to run our sample program based on the halo2 library.
 
 ## Docker setup
 
