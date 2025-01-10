@@ -1,5 +1,18 @@
 # PLONKY2 Gadget Documentation
 
+plonky2 provides a set of powerful and modular gadgets for building zero-knowledge proof circuits. These gadgets simplify common cryptographic and arithmetic operations, making it easier for developers to build efficient circuits for real-world applications. Key gadgets include support for arithmetic operations, polynomial operations, lookup tables, range checking, and hash functions, among others.
+
+For example, in the plonky2/src/gadgets directory:  
+The `arithmetic.rs` file provides gadgets for basic arithmetic operations, including addition, multiplication, and exponentiation over finite fields, useful for general-purpose circuit construction.  
+The `lookup.rs` file includes gadgets for implementing lookup tables, which help optimize certain computations by precomputing values in a table and checking them within the circuit.  
+The `polynomial.rs` file provides gadgets for various operations on polynomials.  
+The `range_check.rs` file includes gadgets for verifying that values lie within a specified range, a common operation in many cryptographic proofs to ensure that the values stay within the valid domain.
+
+in the plonky2/src/hashes directory:  
+plonky2 provides gadgets related to keccak, poseidon, and merkel_tree.
+
+The following introduces some specific gadgets and provides examples:
+
 ## 1. permute and permute_swapped
 
 `permute` and `permute_swapped` are core methods for implementing algebraic permutations in circuits. They are commonly used in cryptographic operations, such as hash function implementations or Merkle tree verifications.

@@ -1,4 +1,7 @@
 # Arkworks Gadget Documentation
+
+Arkworks provides a variety of commonly used gadgets that developers can use directly to build circuits for specific applications，mainly included in the `ark_crypto_primitives` crate. They cover a variety of functions, such as cryptographic primitives, hash functions, signature algorithm polynomial operations, etc. In addition, Arkworks also provides a variety of elliptic curve implementations, including BLS12, BN, MNT curves, etc. The following introduces some specific gadgets and provides examples
+
 ## 1.CommGadget (Pedersen Commitment Gadget)
 
 CommGadget is an implementation of the Pedersen commitment constraint circuit. It allows verification of Pedersen commitments in zero-knowledge proof systems. CommGadget generates commitment values by combining inputs, randomness, and precomputed parameters. It implements the `CommitmentGadget` trait to convert the commitment algorithm into circuit constraints.

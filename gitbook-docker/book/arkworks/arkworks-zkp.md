@@ -1,4 +1,7 @@
-# 1. Groth16::setup
+# `arkworks` ZKP Documentation
+In this section, we introduce the relevant APIs of `arkworks`'s proof system, including Setup, Prove, and Verify.
+
+## 1. Groth16::setup
 - **Functionality**: Generates a set of keys for proving and verifying based on the input circuit.
 - **Input**:
 
@@ -8,7 +11,7 @@
   1. `pk (Proving Key)`: Type `ark_groth16::ProvingKey<E>`.
   2. `vk (Verifying Key)`: Type `ark_groth16::VerifyingKey<E>`.
 
-# 2. Groth16::prove
+## 2. Groth16::prove
 - **Functionality**: Generates a zero-knowledge proof (proof) based on circuit constraints, proving key, public key, and inputs.
 - **Input**:
 
@@ -19,12 +22,12 @@
 
   `proof`: Type `Proof<E>`, a zero-knowledge proof object representing that the inputs `x` and outputs `y` satisfy the circuit constraints.
 
-# 3. prepare_verifying_key
+## 3. prepare_verifying_key
 - **Functionality**: Preprocesses the verifying key (`VerifyingKey`) to generate an optimized verifying key (`PreparedVerifyingKey`).
 - **Input**: A verifying key (`VerifyingKey`).
 - **Output**: An optimized verifying key (`PreparedVerifyingKey`).
 
-# 4. Groth16::verify_with_processed_vk
+## 4. Groth16::verify_with_processed_vk
 - **Functionality**: Verifies the correctness of a zero-knowledge proof.
 - **Input**:
 

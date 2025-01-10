@@ -1,3 +1,7 @@
+# Spartan ZKP Documentation
+In this section, we introduce the relevant APIs of Spartan's proof system, including Setup, Prove, and Verify.  
+
+
 # 1. SNARKGens::new
 - **Functionality**: Initializes public parameters for the SNARK system, used for generating and verifying zero-knowledge proofs.
 - **Input**:

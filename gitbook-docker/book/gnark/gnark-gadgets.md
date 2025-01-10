@@ -1,4 +1,5 @@
-gnark provides many commonly used gadgets in the gnark/std directory, which can be used directly by developers to build circuits for their own applications, including signatures, hashes, polynomial extensions, interpolation, sumcheck protocol, range checks, etc. For example:
+# `gnark` Gadget Documentation
+`gnark` provides many commonly used gadgets in the gnark/std directory, which can be used directly by developers to build circuits for their own applications, including signatures, hashes, polynomial extensions, interpolation, sumcheck protocol, range checks, etc. For example:
 
 - The hashes directory provides frontend.APIs related to mimc, sha2, sha3, etc.;
 - The signature directory provides frontend.APIs related to ecdsa, eddsa, etc.;
@@ -8,7 +9,7 @@ gnark provides many commonly used gadgets in the gnark/std directory, which can 
   
 In addition, gnark also provides some commonly used cryptographic primitives in the gnark/crypto directory, focusing on providing encryption and mathematical operation support for gnark. Especially in terms of elliptic curve operations, gnark provides rich support, including: BN, BLS12, BLS24 and BW6 curves, etc.
 
-Some commonly used gadgets are as follows:
+The following introduces some specific gadgets and provides examples:
 
 ## 1. Range check
 

@@ -1,4 +1,8 @@
-# SPARTAN-GADGET
+# Spartan Gadget Documentation
+
+Spartan mainly provides some basic gadgets to assist in building zero-knowledge proof circuits, but does not provide ready-made solutions for specific applications (such as hash functions, signature algorithms, encryption primitives, etc.). Therefore, if you need to implement these personalized applications in Spartan, you may need to design and build the corresponding circuit components yourself according to actual needs. This usually involves converting the logic of the application into a circuit structure and verifying and proving it through the basic functions provided by Spartan. 
+
+Below, we will briefly introduce some common gadgets in Spartan for circuit construction.
 
 ## 1. ProductCircuit
 

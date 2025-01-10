@@ -1,4 +1,8 @@
-# Arkworks Circuit Documentation
+# `Arkworks` Circuit Documentation
+`arkworks` provides a flexible and modular framework for building zero-knowledge proof circuits. It allows developers to construct circuits by defining constraints directly using its rich set of libraries, such as `ark-relations` for constraint systems and `ark-crypto-primitives` for cryptographic components.  
+
+Developers can create custom circuits by leveraging the `ConstraintSynthesizer` trait, which requires the implementation of the `generate_constraints` method. Within this method, developers describe the relationships and constraints among variables, and `arkworks` takes care of compiling these constraints into a rank-1 constraint system (R1CS). This design enables developers to efficiently define and customize circuits.
+
 ## 1. ConstraintSynthesizer
 
 ### Purpose:
@@ -8,7 +12,10 @@
 - A generic `ConstraintF`, representing the finite field type used in the constraint system.
 
 ### Related Methods:
-#### 1. generate_constraints
+#### 1.1 generate_constraints
+```
+fn generate_constraints(self, cs: ConstraintSystemRef<F>) -> crate::r1cs::Result<()>;
+```
 - **Input:**
   - `cs: ConstraintSystemRef<ConstraintF>`: Reference to the constraint system.
 - **Output:**
@@ -39,7 +46,10 @@ impl<ConstraintF: Field> ConstraintSynthesizer<ConstraintF> for MyCircuit<Constr
 - Contains variables and linear combinations of the R1CS (Rank-1 Constraint System).
 
 ### Related Methods:
-#### 1. new_input_variable
+#### 2.1. new_input_variable
+```
+pub fn new_input_variable<Func>(&self, f: Func) -> crate::r1cs::Result<Variable>
+```
 - **Input:**
   - A closure that returns the specific value of the public input.
 - **Output:**
@@ -47,7 +57,10 @@ impl<ConstraintF: Field> ConstraintSynthesizer<ConstraintF> for MyCircuit<Constr
 - **Purpose:**
   - Defines the public input variables of the circuit.
 
-#### 2. new_witness_variable
+#### 2.2. new_witness_variable
+```
+pub fn new_witness_variable<Func>(&self, f: Func) -> crate::r1cs::Result<Variable>
+```
 - **Input:**
   - A closure that returns the specific value of the witness variable.
 - **Output:**
@@ -55,7 +68,15 @@ impl<ConstraintF: Field> ConstraintSynthesizer<ConstraintF> for MyCircuit<Constr
 - **Purpose:**
   - Defines the witness variables in the circuit (used only by the prover).
 
-#### 3. enforce_constraint
+#### 2.3. enforce_constraint
+```
+pub fn enforce_constraint(
+        &self,
+        a: LinearCombination<F>,
+        b: LinearCombination<F>,
+        c: LinearCombination<F>,
+    ) -> crate::r1cs::Result<()>
+```
 - **Input:**
   - Three linear combinations: `lc_a`, `lc_b`, `lc_c`, corresponding to the constraint `A * B = C`.
 - **Output:**
@@ -63,7 +84,10 @@ impl<ConstraintF: Field> ConstraintSynthesizer<ConstraintF> for MyCircuit<Constr
 - **Purpose:**
   - Adds a multiplication constraint ensuring `A * B = C`.
 
-#### 4. num_constraints
+#### 2.4. num_constraints
+```
+ pub fn num_constraints(&self) -> usize
+```
 - **Input:** None.
 - **Output:**
   - `usize`: The number of constraints currently in the system.
@@ -95,7 +119,7 @@ cs.enforce_constraint(lc!() + x, lc!() + y, lc!() + z)?;
 - A linear combination of several variables and their coefficients.
 
 ### Related Macro:
-#### 1. lc!
+#### 4.1. lc!
 - Simplifies the creation of linear combinations.
 
 #### Example:

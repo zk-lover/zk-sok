@@ -1,3 +1,4 @@
+# libsnark Gadget Documentation
 libsnark not only provides gadgets for building circuits, which makes it easier for developers to construct circuit structures, but also offers some commonly used gadgets that developers can directly use to build circuits for specific applications. These include hash functions, cryptographic primitives, elliptic curve operations, Merkle trees, and more.
 
 For example, in the `gadgetlib1/gadgets` directory:
@@ -6,11 +7,9 @@ For example, in the `gadgetlib1/gadgets` directory:
 - The `curves` directory provides gadgets related to elliptic curve operations, such as `G1_add_gadget`, `G1_mul_gadget`.
 - The `merkles` directory provides gadgets related to Merkle trees, such as `merkle_tree_check_update_gadget`, `merkle_authentication_path_variable`.
 
-Here are examples of some commonly used gadgets:
+The following introduces some specific gadgets and provides examples:
 
-# 3. Common Gadgets
-
-## 1. sha256_two_to_one_hash_gadget
+### 1. sha256_two_to_one_hash_gadget
 - `sha256_two_to_one_hash_gadget` is a component that implements the SHA256 compression function as a 2-to-1 hash function. It supports two constructors:
   - Constructor 1: 
     - `protoboard<FieldT> &pb`: The constraint system's protoboard.
@@ -25,7 +24,7 @@ Here are examples of some commonly used gadgets:
     - `const digest_variable<FieldT> &output`: The hash output.
     - `const std::string &annotation_prefix`: The identifier for the gadget.
 
-## 2. merkle_tree_check_update_gadget
+### 2. merkle_tree_check_update_gadget
 - `merkle_tree_check_update_gadget` is used to verify the update relationship between two Merkle tree roots (R1 and R2):
   1. Check if the verification path P is a valid path for the leaf node corresponding to value V1 at address A in the Merkle tree with root R1.
   2. Check if the verification path P is a valid path for the leaf node corresponding to value V2 at address A in the Merkle tree with root R2.
@@ -39,7 +38,7 @@ Here are examples of some commonly used gadgets:
   7. `const pb_linear_combination<FieldT> &update_successful`: A boolean variable indicating whether the update is successful.
   8. `const std::string &annotation_prefix`: The identifier for the gadget.
 
-## 3. G1_add_gadget
+### 3. G1_add_gadget
 - `G1_add_gadget` is used to verify whether the point addition operation on the elliptic curve G1 is correct (verify if the result point C is the sum of points A and B: C = A + B).
 - Constructor:
   1. `protoboard &pb`: The protoboard used to construct the R1CS.
