@@ -20,7 +20,9 @@ The goal of this project is to narrow the gap between academia and industry in t
 This repository has three main contributions:
 
 1.**Sample Code**: We provide sample code that allows users to conduct preliminary testing of these zkSNARK libraries.
+
 2.**Tutorial**: A detailed tutorial explaining the logical construction in the sample programs.
+
 3.**Extended Documentation (Wiki Book)**: This document explains how to construct the circuit for each library's frontend, how to use the ZKP scheme to prove in the backend, and the related APIs involved in the gadgets provided by the library. Additionally, it explains the curves supported by each library.**Wiki Book**: [zk-sok](#)
 
 ## Paper
