@@ -23,11 +23,11 @@ This repository has three main contributions:
 
 2.**Tutorial**: A detailed tutorial explaining the logical construction in the sample programs.
 
-3.**Extended Documentation (Wiki Book)**: This document explains how to construct the circuit for each library's frontend, how to use the ZKP scheme to prove in the backend, and the related APIs involved in the gadgets provided by the library. Additionally, it explains the curves supported by each library.**Wiki Book**: [zk-sok](#)
+3.**Extended Documentation (Wiki Book)**: This document explains how to construct the circuit for each library's frontend, how to use the ZKP scheme to prove in the backend, and the related APIs involved in the gadgets provided by the library. Additionally, it explains the curves supported by each library.
 
 ## Paper
 
-The paper  [zk-sok](#) attached to this repository systematically explores zkSNARK in theory and tests it experimentally.
+The paper  _"SoK: Understanding zk-SNARKs: The Gap Between Research and Practice"_ attached to this repository systematically explores zkSNARK in theory and tests it experimentally.
 
 ## Sample Programs
 
