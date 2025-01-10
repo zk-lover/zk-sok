@@ -43,7 +43,7 @@ assert_eq!(
     hex::decode("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad").unwrap()
 ); // Verify result
 ```
-# ElGamalEncGadget
+# 3.ElGamalEncGadget
 
 ElGamalEncGadget is a circuit constraint implementation of the ElGamal encryption scheme. It allows verification of ElGamal encryption operations in zero-knowledge proofs.
 
@@ -66,7 +66,7 @@ let rand_var = ElGamalEncGadget::<JubJub, EdwardsVar>::RandomnessVar::new_witnes
 
 let ciphertext_var = ElGamalEncGadget::<JubJub, EdwardsVar>::encrypt(&params_var, &msg_var, &rand_var, &pk_var).unwrap();
 ```
-# PathVar
+# 4.PathVar
 
 PathVar is a circuit constraint gadget for Merkle tree path verification and updates. It allows verification of whether a leaf node belongs to a given Merkle tree in zero-knowledge proofs and supports updating leaf nodes.
 
@@ -90,7 +90,7 @@ let two_to_one_params = ...; // Two-to-one hash parameters
 let is_valid = path_var.verify_membership(&leaf_params, &two_to_one_params, &root, &leaf).unwrap();
 assert!(is_valid.value().unwrap());
 ```
-# PRFGadget
+# 5.PRFGadget
 
 PRFGadget is a circuit constraint implementation of a pseudorandom function (PRF). It allows verification of PRF computations in zero-knowledge proofs, constraining the PRF logic within the circuit.
 
@@ -109,7 +109,7 @@ type MyPRFGadget = ...; // Specific PRFGadget implementation
 // Compute PRF output
 let output_var = MyPRFGadget::evaluate(&seed, &input).unwrap();
 ```
-# SchnorrRandomizePkGadget
+# 6.SchnorrRandomizePkGadget
 
 SchnorrRandomizePkGadget is a circuit constraint implementation for public key randomization in Schnorr signatures. It allows verification of the correctness of Schnorr public key randomization operations in zero-knowledge proofs.
 

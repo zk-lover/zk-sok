@@ -15,9 +15,9 @@ The following introduces some specific gadgets and provides examples:
 
 ```
 func (c *Circuit) Define(api frontend.API) error {
-r := rangecheck.New(api)
-r.Check(c.Vals, c.bits)
-...
+    r := rangecheck.New(api)
+    r.Check(c.Vals, c.bits)
+    ...
 }
 ```
 
@@ -26,10 +26,10 @@ r.Check(c.Vals, c.bits)
 ```
 func (c *Circuit) Define(api frontend.API) error {
 h, err := sha2.New(api)
-...
-h.Write(c.In)
-res := h.Sum()
-...
+    ...
+    h.Write(c.In)
+    res := h.Sum()
+    ...
 }
 ```
 
@@ -37,7 +37,9 @@ res := h.Sum()
 
 ```
 type eddsaCircuit struct {
-PublicKey eddsa.PublicKey `gnark:",public"`
-Signature eddsa.Signature `gnark:",public"`
-Message frontend.Variable `gnark:",public"` } ... privateKey, err := eddsa.New(twistededwards.BN254, crand.Reader) publicKey := privateKey.Public() ... ```
+    PublicKey eddsa.PublicKey `gnark:",public"`
+    Signature eddsa.Signature `gnark:",public"`
+    Message frontend.Variable `gnark:",public"` } ... 
+    privateKey, err := eddsa.New(twistededwards.BN254, crand.Reader) 
+    publicKey := privateKey.Public() ... 
 ```

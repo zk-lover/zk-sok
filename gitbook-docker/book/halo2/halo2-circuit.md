@@ -14,6 +14,7 @@ The following sections describe the key structures and functions used in the `ha
 - `Loaded`: Associated type, representing the state that needs to be loaded before circuit synthesis.
 
 **Related Functions:**
+
 1. `config` 
   ```
   fn config(&self) -> &Self::Config;
@@ -51,6 +52,7 @@ The `Circuit` trait is an abstract interface for circuit implementations. It def
 - `synthesize` method: Generates the circuit during the synthesis phase, including column allocation and value assignment.
 
 **Related Functions:**
+
 1. `without_witnesses` 
   ```
   fn without_witnesses(&self) -> Self;
@@ -118,6 +120,7 @@ The `Circuit` trait is an abstract interface for circuit implementations. It def
          }
      }
      ```
+
 ## 3. AssignedCell
 
 **Purpose:**
@@ -129,6 +132,7 @@ Represents an assigned circuit cell, including its value and location informatio
 - `_marker`: `PhantomData`, used to carry the type information of the generic `F`.
 
 **Related Functions:**
+
 1. `value` 
    - **Input:** None
    - **Output:** Returns the cell's value, type `Value<&V>`.
@@ -186,6 +190,7 @@ Represents a region in the circuit, responsible for cell allocation and constrai
 - `region`: Dynamically borrowed `RegionLayouter`.
 
 **Related Functions:**
+
 1. `assign_advice` 
   ```
   pub fn assign_advice<'v, V, VR, A, AR>(
@@ -248,6 +253,7 @@ Provides an abstraction for circuit layout strategies, implementing cell allocat
 Defined as a trait, specific types need to implement its s.
 
 **Related Functions:**
+
 1. `assign_region` 
   ```
   fn assign_region<A, AR, N, NR>(&mut self, name: N, assignment: A) -> Result<AR, Error>
@@ -281,6 +287,7 @@ Represents a lookup table in the circuit, used for assigning fixed values.
 - `table`: Dynamically borrowed `TableLayouter`.
 
 **Related Functions:**
+
 1. `assign_cell` 
   ```
   pub fn assign_cell<'v, V, VR, A, AR>(

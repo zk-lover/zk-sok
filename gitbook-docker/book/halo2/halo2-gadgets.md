@@ -37,10 +37,7 @@ let boolean_expression = bool_check(expression);
 
 ### Core Functions:
 ternary implements a ternary selection operation: if `a` then `b` else `c`.
-- If `a` is a boolean, returns `b` or `c`:
-  \[
-  \text{result} = a \times b + (1 - a) \times c
-  \]
+- If `a` is a boolean, returns `b` or `c`.
 
 ### Example Code:
 ```rust
