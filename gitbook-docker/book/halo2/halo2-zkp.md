@@ -1,3 +1,7 @@
+# `halo2` ZKP Documentation
+
+In this section, we introduce the relevant APIs of halo2’s proof system, including the generation and verification of zero-knowledge proofs,including create_proof and verify_proof.
+
 ## 1. halo2_proofs::plonk::create_proof
 
 **Inputs:**

@@ -1,4 +1,7 @@
-# libsnark Circuit Documentation
+# `libsnark` Circuit Documentation
+
+libsnark provides a powerful and flexible framework for building and managing constraint systems in zero-knowledge proofs. It allows developers to define circuit variables, add constraints, and verify their correctness through its core component, the Protoboard. In addition to the Protoboard, libsnark offers a variety of Gadgets, which package commonly used R1CS constraints into reusable modules. These Gadgets simplify circuit development by abstracting internal logic, enabling developers to focus on inputs and outputs. With its comprehensive toolset, libsnark supports the efficient creation of cryptographic proofs for a wide range of applications.
+
 In this section, we will introduce the circuit building APIs of libsnark, including Protoboard, Gadget for circuit, and ConstraintSystem.
 
 ## 1. Protoboard (from libsnark/gadgetlib1/protoboard.hpp)

@@ -1,4 +1,4 @@
-# libsnark Gadget Documentation
+# `libsnark` Gadget Documentation
 libsnark not only provides gadgets for building circuits, which makes it easier for developers to construct circuit structures, but also offers some commonly used gadgets that developers can directly use to build circuits for specific applications. These include hash functions, cryptographic primitives, elliptic curve operations, Merkle trees, and more.
 
 For example, in the `gadgetlib1/gadgets` directory:

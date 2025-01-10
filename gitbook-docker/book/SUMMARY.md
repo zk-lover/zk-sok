@@ -1,40 +1,36 @@
 # Summary
 
 * [Introduction](README.md)
-* [Original program](chapter1.md)
-* [Constraint system](chapter2.md)
-    <!-- * [gnark](gnark/gnark-1.md) -->
-    * [gnark](gnark/gnark-1-en.md)
-    <!-- * [snarkjs](snarkjs/snarkjs-1.md) -->
-    * [snarkjs](snarkjs/snarkjs-1-en.md)
-    <!-- * [libsnark](libsnark/libsnark-1.md) -->
-    * [libsnark](libsnark/libsnark-1-en.md)
-    <!-- * [arkworks](arkworks/arkworks-1.md) -->
-    * [arkworks](arkworks/arkworks-1-en.md)
-    <!-- * [dalek](dalek/dalek-1.md) -->
-    * [dalek](dalek/dalek-1-en.md)
-    <!-- * [plonky2](plonky2/plonky2-1.md) -->
-    * [plonky2](plonky2/plonky2-1-en.md)
-    <!-- * [Spartan](Spartan/Spartan-1.md) -->
-    * [Spartan](Spartan/Spartan-1-en.md)
+* [Original program](original.md)
+* [Constraint system](constraint.md)
+    * [gnark](gnark/gnark-circuit.md)
+    * [snarkjs](snarkjs/snarkjs-circuit.md)
+    * [libsnark](libsnark/libsnark-circuit.md)
+    * [arkworks](arkworks/arkworks-circuit.md)
+    * [dalek](dalek/dalek-circuit.md)
+    * [plonky2](plonky2/plonky2-circuit.md)
+    * [Spartan](Spartan/Spartan-circuit.md)
     * [libiop](libiop/libiop-1.md)
-    * [halo2](halo2/halo2-1-en.md)
-* [Proving system](chapter2.md)
-    <!-- * [gnark](gnark/gnark-2.md) -->
-    * [gnark](gnark/gnark-2-en.md)
-    <!-- * [snarkjs](snarkjs/snarkjs-2.md) -->
-    * [snarkjs](snarkjs/snarkjs-2-en.md)
-    <!-- * [libsnark](libsnark/libsnark-2.md) -->
-    * [libsnark](libsnark/libsnark-2-en.md)
-    <!-- * [arkworks](arkworks/arkworks-2.md) -->
-    * [arkworks](arkworks/arkworks-2-en.md)
-    <!-- * [dalek](dalek/dalek-2.md) -->
-    * [dalek](dalek/dalek-2-en.md)
-    <!-- * [plonky2](plonky2/plonky2-2.md) -->
-    * [plonky2](plonky2/plonky2-2-en.md)
-    <!-- * [Spartan](Spartan/Spartan-2.md) -->
-    * [Spartan](Spartan/Spartan-2-en.md)
-    * [libiop](libiop/libiop-2-en.md)
-    * [halo2](halo2/halo2-2-en.md)
-* [Optimizers](chapter2.md)
+    * [halo2](halo2/halo2-circuit.md)
+* [Gadgets](gadgets.md)
+    * [gnark](gnark/gnark-gadgets.md)
+    * [snarkjs](snarkjs/snarkjs-gadgets.md)
+    * [libsnark](libsnark/libsnark-gadgets.md)
+    * [arkworks](arkworks/arkworks-gadgets.md)
+    * [dalek](dalek/dalek-gadgets.md)
+    * [plonky2](plonky2/plonky2-gadgets.md)
+    * [Spartan](Spartan/Spartan-gadgets.md)
+    * [libiop](libiop/libiop-1.md)
+    * [halo2](halo2/halo2-gadgets.md)
+* [Proving system](zkp.md)
+    * [gnark](gnark/gnark-zkp.md)
+    * [snarkjs](snarkjs/snarkjs-zkp.md)
+    * [libsnark](libsnark/libsnark-zkp.md)
+    * [arkworks](arkworks/arkworks-zkp.md)
+    * [dalek](dalek/dalek-zkp.md)
+    * [plonky2](plonky2/plonky2-zkp.md)
+    * [Spartan](Spartan/Spartan-zkp.md)
+    * [libiop](libiop/libiop-zkp.md)
+    * [halo2](halo2/halo2-zkp.md)
+* [Optimizers](optimizers.md)
 * [Conclusion](conclusion.md)

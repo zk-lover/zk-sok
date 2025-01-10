@@ -1,3 +1,8 @@
+# `dalek` Circuit Documentation
+dalek is a high-performance cryptographic library designed for efficient and secure zero-knowledge proof construction. It is best known for its implementation of Bulletproofs, offering range proofs and general ZK proof systems without requiring a trusted setup. The bulletproofs-dalek module provides a streamlined interface for generating and verifying proofs, with features like compact proof sizes and high verification efficiency. Its compatibility with Curve25519 and focus on lightweight, trustless designs make dalek an ideal library for privacy-preserving applications such as blockchain and confidential transactions.
+
+The following sections describe the key structures and functions used in the `dalek` library for constructing circuits during range proofs. These components are essential for defining the constraints required for efficient and secure zero-knowledge proofs.
+
 ## 1.PedersenGens
 
 **Purpose:** Generates base generators for Pedersen commitments.
@@ -8,6 +13,16 @@
 
 **Related Functions:**
 1. **default()**
+   ```
+   fn default() -> Self {
+      PedersenGens {
+         B: RISTRETTO_BASEPOINT_POINT,
+         B_blinding: RistrettoPoint::hash_from_bytes::<Sha3_512>(
+               RISTRETTO_BASEPOINT_COMPRESSED.as_bytes(),
+         ),
+      }
+   }
+   ```
    - **Input:** None.
    - **Output:** A PedersenGens instance.
    - **Purpose:** Returns the default Pedersen commitment base generators.
