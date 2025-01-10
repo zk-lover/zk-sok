@@ -27,15 +27,15 @@ This repository has three main contributions:
 
 ## Paper
 
-The paper  _"SoK: Understanding zk-SNARKs: The Gap Between Research and Practice"_ attached to this repository systematically explores zkSNARK in theory and tests it experimentally.
+The paper "SoK: Understanding zk-SNARKs: The Gap Between Research and Practice," included in this repository, provides a systematic exploration of zk-SNARKs, combining theoretical analysis with experimental evaluation.
 
 ## Sample Programs
 
 We constructed three sample programs for each library, including:
 
-- **cubic_expression** (single-digit circuit constraint)；
-- **range_proof** (two-digit circuit constraint)；
-- **sha256** (ten thousand-level circuit constraint)
+- **cubic_expression** (Order of the circuit constraints: single digit)
+- **range_proof** (Order of the circuit constraints: two or three digits)
+- **sha256** (Order of the circuit constraints: five or six digits)
 
 These are classic scenarios using zero-knowledge proofs. We tested these three sample programs to understand the architecture, usage, and related functions of these zkSNARK libraries.
 
