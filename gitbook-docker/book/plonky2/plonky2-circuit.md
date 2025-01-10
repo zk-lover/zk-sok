@@ -13,6 +13,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
 - **Methods:** Used to add virtual targets, perform arithmetic operations, register public inputs, etc.
 
 **Related Functions:**  
+
 1.1. **new(config: CircuitConfig)**
    - **Input:** `CircuitConfig` (circuit configuration).
    - **Output:** A new `CircuitBuilder` instance.
@@ -29,6 +30,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       ```rust
       let target = builder.add_virtual_target();
       ```
+
 1.3. **mul(a: Target, b: Target)**
    - **Input:** Two targets `a` and `b`.
    - **Output:** Returns the target of the multiplication result.
@@ -37,6 +39,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       ```rust
       let result = builder.mul(target_a, target_b);
       ```
+
 1.4. **add(a: Target, b: Target)**
    - **Input:** Two targets `a` and `b`.
    - **Output:** Returns the target of the addition result.
@@ -45,6 +48,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       ```rust
       let result = builder.add(target_a, target_b);
       ```
+
 1.5. **add_const(target: Target, constant: F)**
    ```
    pub fn add_const(&mut self, x: Target, c: F) -> Target
@@ -56,6 +60,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       ```rust
       let result = builder.add_const(target, constant);
       ```
+
 1.6. **register_public_input(target: Target)**
    ```
    pub fn register_public_input(&mut self, target: Target);
@@ -67,6 +72,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       ```rust
       builder.register_public_input(target);
       ```
+
 ## 2.PartialWitness
 
 **Purpose:** Used to store specific values of virtual targets during circuit execution.
@@ -75,6 +81,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
 - Virtual targets and their corresponding values.
 
 **Related Functions:**
+
 1. **new()**
    - **Input:** None.
    - **Output:** An empty `PartialWitness` instance.
@@ -91,6 +98,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
       ```rust
       witness.set_target(target, value);
       ```
+
 ## 3.CircuitConfig
 
 **Purpose:** Configures specific parameters of the circuit, such as circuit type and zero-knowledge settings.
@@ -99,6 +107,7 @@ In this section, we will introduce the circuit building APIs of plonky2, includi
 - Circuit type (e.g., standard zero-knowledge recursive configuration).
 
 **Related Functions:**
+
 1. **standard_recursion_zk_config()**
    ```
    pub fn standard_recursion_zk_config() -> Self;

@@ -19,12 +19,12 @@ In this section, we will introduce the circuit building APIs of Spartan, includi
 1. **new**
    ```
    pub fn new(
-    num_cons: usize,
-    num_vars: usize,
-    num_inputs: usize,
-    A: &[(usize, usize, [u8; 32])],
-    B: &[(usize, usize, [u8; 32])],
-    C: &[(usize, usize, [u8; 32])],
+      num_cons: usize,
+      num_vars: usize,
+      num_inputs: usize,
+      A: &[(usize, usize, [u8; 32])],
+      B: &[(usize, usize, [u8; 32])],
+      C: &[(usize, usize, [u8; 32])],
     ) -> Result<Instance, R1CSError>
    ```
    - **Input:**

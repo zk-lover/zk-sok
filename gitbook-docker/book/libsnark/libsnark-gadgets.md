@@ -26,9 +26,13 @@ The following introduces some specific gadgets and provides examples:
 
 ### 2. merkle_tree_check_update_gadget
 - `merkle_tree_check_update_gadget` is used to verify the update relationship between two Merkle tree roots (R1 and R2):
+
   1. Check if the verification path P is a valid path for the leaf node corresponding to value V1 at address A in the Merkle tree with root R1.
+
   2. Check if the verification path P is a valid path for the leaf node corresponding to value V2 at address A in the Merkle tree with root R2.
+
 - Constructor:
+
   1. `protoboard<FieldT> &pb`: The protoboard used to construct the R1CS.
   2. `const size_t tree_depth`: The depth of the Merkle tree.
   3. `const pb_variable_array<FieldT> &address_bits`: The binary address of the leaf node.
@@ -40,7 +44,9 @@ The following introduces some specific gadgets and provides examples:
 
 ### 3. G1_add_gadget
 - `G1_add_gadget` is used to verify whether the point addition operation on the elliptic curve G1 is correct (verify if the result point C is the sum of points A and B: C = A + B).
+
 - Constructor:
+
   1. `protoboard &pb`: The protoboard used to construct the R1CS.
   2. `const G1_variable &A`: The first input point A on the elliptic curve.
   3. `const G1_variable &B`: The second input point B on the elliptic curve.

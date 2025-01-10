@@ -1,3 +1,11 @@
-# Welcome to My GitBook
+# Introduction
 
-This is the README file for my GitBook project.
+This documentation provides a comprehensive overview of various components and systems used in zero-knowledge proof (ZKP) libraries. It is divided into several chapters, each focusing on a specific aspect of ZKP technology:
+
+1. **Constraint Systems**: This chapter explores the implementation of circuit constraint systems across different ZKP libraries. It examines how these systems define, optimize, and handle constraints, translating high-level computations into algebraic structures for efficient proof generation and verification. The chapter also discusses the impact of these implementations on the accessibility of ZKP technologies, especially for developers without a deep mathematical background.
+
+2. **Gadgets**: This chapter delves into the prepackaged components, known as gadgets, provided by various ZKP libraries. Gadgets are reusable, high-level building blocks that abstract complex cryptographic and arithmetic operations, simplifying the development process. The chapter reviews the design, functionality, and usability of these gadgets, highlighting their role in accelerating ZKP-based application development. It also analyzes the APIs for interacting with these gadgets, demonstrating how they can be seamlessly integrated into custom circuit designs.
+
+3. **Proving Systems**: This chapter introduces the APIs of backend proving systems in various ZKP libraries. It explores how these APIs are structured to facilitate the integration and utilization of backend proving systems, focusing on key functionalities such as proof generation, proof verification, and cryptographic parameter configuration. By examining the design and usability of these APIs, the chapter highlights the level of abstraction they offer to developers, making complex cryptographic operations more accessible.
+
+Through these chapters, readers will gain a thorough understanding of the essential components and systems that underpin zero-knowledge proof technologies, enabling them to effectively utilize and implement ZKP in their applications.

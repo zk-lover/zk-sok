@@ -12,6 +12,7 @@ The following sections describe the key structures and functions used in the `da
 - **B_blinding:** Base point for the commitment blinding factor.
 
 **Related Functions:**
+
 1. **default()**
    ```
    fn default() -> Self {
@@ -36,6 +37,7 @@ The following sections describe the key structures and functions used in the `da
 - **party_capacity:** Number of concurrent proving parties supported.
 
 **Related Functions:**
+
 1. **new(gens_capacity: usize, party_capacity: usize)**
    - **Input:**
      - **gens_capacity:** Number of bits for the maximum range proof (e.g., 32 means 2^32).
@@ -51,6 +53,7 @@ The following sections describe the key structures and functions used in the `da
 - **Scalar value:** Belongs to a finite field.
 
 **Related Functions:**
+
 1. **random(rng: &mut OsRng)**
    - **Input:** Random number generator `rng`.
    - **Output:** A randomly generated Scalar value.
@@ -64,6 +67,7 @@ The following sections describe the key structures and functions used in the `da
 - **Data flow and context records** in zero-knowledge proofs.
 
 **Related Functions:**
+
 1. **new(label: &[u8])**
    - **Input:** Label `label`, representing the name or identifier of the proof.
    - **Output:** A new Transcript instance.

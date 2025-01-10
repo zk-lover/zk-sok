@@ -9,9 +9,8 @@ In this section, we will introduce the circuit building APIs of libsnark, includ
 **Purpose:** The core tool in libsnark for building and managing constraint systems. It allows defining circuit variables, adding constraints, and provides the necessary interfaces to verify whether the constraints are satisfied. Usually, we declare circuit variables in protoboard, add constraints to these variables, and finally use it to generate and verify zero-knowledge proofs.  
 **Main variables:** val(const pb_variable`<FieldT>` &var);
 
-**Functions:**
 
-### 1.1. pb_variable::allocate
+### 1.1 pb_variable::allocate
 
 ```
 void allocate(protoboard<FieldT> &pb, const std::string &annotation="");
@@ -31,7 +30,7 @@ pb_variable<FieldT> x;
 x.allocate(pb, "x");
 ```
 
-### 1.2. Protoboard::set_input_sizes
+### 1.2 Protoboard::set_input_sizes
 
 ```
 void set_input_sizes(const size_t primary_input_size);
@@ -49,7 +48,7 @@ No return value, directly modify the input size in the protoboard object.
 pb.set_input_sizes(1);
 ```
 
-### 1.3. Protoboard::add_r1cs_constraint
+### 1.3 Protoboard::add_r1cs_constraint
 
 ```
 void add_r1cs_constraint(const r1cs_constraint<FieldT> &constr, const std::string &annotation="");
@@ -66,7 +65,7 @@ No return value, directly modify the constraint system of the protoboard object.
 pb.add_r1cs_constraint(r1cs_constraint<FieldT>(x, x, x_squared));
 ```
 
-### 1.4. Protoboard::primary_input()
+### 1.4 Protoboard::primary_input()
 
 ```
 r1cs_primary_input<FieldT> primary_input() const;
@@ -84,7 +83,7 @@ Returns an object of type r1cs_primary_input`<FieldT>`, representing all primary
 r1cs_primary_input<FieldT> primary_inputs = pb.primary_input();
 ```
 
-### 1.5. Protoboard::auxiliary_input()
+### 1.5 Protoboard::auxiliary_input()
 
 ```
 r1cs_auxiliary_input<FieldT> auxiliary_input() const;
@@ -102,7 +101,7 @@ Returns an object of type r1cs_auxiliary_input`<FieldT>` representing all auxili
 r1cs_auxiliary_input<FieldT> auxiliary_inputs = pb.auxiliary_input();
 ```
 
-### 1.6. Protoboard::get_constraint_system()
+### 1.6 Protoboard::get_constraint_system()
 
 ```
 r1cs_constraint_system<FieldT> get_constraint_system() const;

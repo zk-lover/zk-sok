@@ -12,21 +12,21 @@ Circuit is the circuit structure of gnark, responsible for the high-level defini
 **Example:**
 ```
 type MyCircuit struct {
-X frontend.Variable `gnark:"-,public"`
-Y frontend.Variable `gnark:"-,secret"`
+    X frontend.Variable `gnark:"-,public"`
+    Y frontend.Variable `gnark:"-,secret"`
 }
 ```
 Public input, use the `public` tag; private input, use the `secret` tag
 ```
 func (c *MyCircuit) Define(api frontend.API) error {
-api.AssertIsEqual(c.X, c.Y)
-return nil
+    api.AssertIsEqual(c.X, c.Y)
+    return nil
 }
 ```
 Define method, used to define the constraints of the circuit.
 ```
 type Circuit interface {
-Define(api API) error
+    Define(api API) error
 }
 ```
 
