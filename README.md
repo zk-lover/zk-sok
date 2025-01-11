@@ -23,7 +23,8 @@ This repository has three main contributions:
 
 2.**Tutorial**: A detailed tutorial explaining the logical construction in the sample programs.
 
-3.**Extended Documentation (Wiki Book)**: This document explains how to construct the circuit for each library's frontend, how to use the ZKP scheme to prove in the backend, and the related APIs involved in the gadgets provided by the library. Additionally, it explains the curves supported by each library.
+3.**Extended Documentation (Wiki Book)**: This document outlines the circuit construction for each library's frontend, the zk-SNARK proving process in the backend, relevant APIs for library gadgets, and supported elliptic curves.
+
 
 ## Paper
 
