@@ -26,21 +26,21 @@ Navigate to the directory of the program you would like to run.
 Our examples are at the directories under `/root`.
 Run the following code to execute the examples.
 ```
-$ cd testCubitequation
-$ go build -o testCubitequation
-$ ./testCubitequation
+$ cd testCubicequation_groth16  
+$ go build -o testCubicequation_groth16
+$ ./testCubicequation_groth16
 ```
 
 ```
-$ cd testCubquation_plonk
-$ go build -o testCubquation_plonk
-$ ./testCubquation_plonk5
+$ cd testCubicequation_plonk
+$ go build -o testCubicequation_plonk
+$ ./testCubicequation_plonk
 ```
 
 ```
-$ cd testrangeproofs
-$ go build -o testrangeproofs
-$ ./testrangeproofs
+$ cd testrangeproofs_groth16
+$ go build -o testrangeproofs_groth16
+$ ./testrangeproofs_groth16
 ```
 
 ```
@@ -50,9 +50,15 @@ $ ./testrangeproofs_plonk
 ```
 
 ```
-$ cd testsha256
-$ go build -o testsha256
-$ ./testsha256
+$ cd testrangeproofs_plonk
+$ go build -o testrangeproofs_plonk
+$ ./testrangeproofs_plonk
+```
+
+```
+$ cd testsha256_groth16
+$ go build -o testsha256_groth16    
+$ ./testsha256_groth16
 ```
 
 ```

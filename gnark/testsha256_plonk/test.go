@@ -45,7 +45,7 @@ func (c *Circuit) Define(api frontend.API) error {
 func main() {
 
 	// Step 1: Compile the circuit
-	input := "hudaqi"
+	input := "I love zk-sok"
 	inbyte := []byte(input)
 	hash := sha256.Sum256(inbyte)
 	circuit := Circuit{

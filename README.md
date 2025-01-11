@@ -76,12 +76,12 @@ These are classic scenarios using zero-knowledge proofs. We tested these three s
   
 5.**Ristretto255 and Curve25519**
 
-- *Basic information*: Curve25519 is an efficient elliptic curve designed for high security and low computational overhead. Ristretto255 is an acceleration protocol on Curve25519, providing a more secure and efficient way to operate elliptic curves.  
+- *Basic information*: Curve25519 is an efficient elliptic curve designed for high security and low computational overhead, providing 128-bit security. Ristretto255 is an acceleration protocol on Curve25519, providing a more secure and efficient way to operate elliptic curves.  
 - *Application*: In efficient and fast cryptographic protocols (such as Spartan), Ristretto255 is widely used for fast encryption and signing operations.
   
 6.**Pasta curve**
 
-- *Basic information*: Pasta curves are a series of efficient and pairing-friendly curves proposed by Arkworks. Pallas and Vesta form a pair of friendly curves in the Pasta curve series, supporting efficient zero-knowledge proofs and cryptographic protocols.  
+- *Basic information*: Pasta curves are a series of efficient and pairing-friendly curves proposed by Arkworks, providing close to 128 bits of security. Pallas and Vesta form a pair of friendly curves in the Pasta curve series, supporting efficient zero-knowledge proofs and cryptographic protocols.  
 - *Application*: Pasta curve is suitable for application scenarios that require low latency and high throughput, especially in blockchain applications involving large-scale data verification.
 
 ### Curves supported in libraries
