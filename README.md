@@ -116,6 +116,7 @@ This will choose to use the BN128 curve to build the libsnark library.
 - Usage: When using arkworks, you can select the corresponding curve in the code, such as:
 ```
 use ark_bls12_381::Bls12_381;
+test_prove_and_verify::<ark_bls12_381::Bls12_381>();
 ```
 3.**gnark**
 - Supported curves:
@@ -125,15 +126,16 @@ use ark_bls12_381::Bls12_381;
   twisted Edwards subpackage: used to efficiently perform elliptic curve cryptographic operations in ZK-SNARK circuits.
 - Usage: In gnark, you can select the corresponding curve type, for example:
 ```
-curve := gnark.NewBls12_381()
+curve := ecc.BN254
+r1cs, err := frontend.Compile(curve, r1cs.NewBuilder, &circuit)
 ```
 4.**snarkjs**
 - Supported curves:
 
   bn128 and bls12-381.
-- Usage: When using snarkjs, you can specify the curve type during initialization, such as:
+- Usage: When using the snarkjs command line tool, you can specify curve in the command, such as:
 ```
-const curve = new snarkjs.bls12_381();
+snarkjs powersoftau new `bn128` 14 pot14_0000.ptau -v
 ```
 5.**libiop**
 - Supported curves:
