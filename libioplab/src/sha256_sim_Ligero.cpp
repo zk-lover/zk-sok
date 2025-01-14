@@ -10,22 +10,22 @@ using namespace libiop;
 using namespace std;
 
 int main() {
-    // 禁用所有输出
+
     libff::inhibit_profiling_info = true;
     libff::inhibit_profiling_counters = true;
 
-    // 初始化 alt_bn128 曲线参数（静默模式）
+
     libff::alt_bn128_pp::init_public_params();
     typedef libff::alt_bn128_Fr FieldT;
 
-    // 设置参数
-    const size_t num_constraints = 27280;  // 使用精确的约束数量
-    const size_t constraint_dim = 256;    // 从测试文件中采用
+   
+    const size_t num_constraints = 27280;  
+    const size_t constraint_dim = 256;   
     const size_t num_inputs = (1 << 5) - 1;
     const size_t num_variables = 27280 - 1;
 
     try {
-        // 生成 R1CS 实例（静默模式）
+     
         r1cs_example<FieldT> r1cs_params = generate_r1cs_example<FieldT>(
             num_constraints, num_inputs, num_variables);
 
@@ -34,7 +34,7 @@ int main() {
             return 1;
         }
 
-        // 设置 Ligero SNARK 参数
+     
         ligero_snark_parameters<FieldT, binary_hash_digest> parameters;
         parameters.security_level_ = 128;
         parameters.height_width_ratio_ = 0.001;
@@ -45,7 +45,7 @@ int main() {
         parameters.bcs_params_ = default_bcs_params<FieldT, binary_hash_digest>(
             blake2b_type, parameters.security_level_, constraint_dim);
 
-        // 生成证明
+     
         auto proving_start = chrono::high_resolution_clock::now();
         
         const ligero_snark_argument<FieldT, binary_hash_digest> argument = 
@@ -58,7 +58,7 @@ int main() {
         auto proving_end = chrono::high_resolution_clock::now();
         auto proving_time = chrono::duration_cast<chrono::milliseconds>(proving_end - proving_start).count();
 
-        // 验证证明
+    
         auto verify_start = chrono::high_resolution_clock::now();
         
         const bool verification_result = ligero_snark_verifier<FieldT, binary_hash_digest>(
@@ -70,7 +70,6 @@ int main() {
         auto verify_end = chrono::high_resolution_clock::now();
         auto verify_time = chrono::duration_cast<chrono::milliseconds>(verify_end - verify_start).count();
 
-        // 只输出关键信息
         cout << "Constraints: " << num_constraints << endl;
         cout << "Proof size: " << argument.size_in_bytes() << " bytes" << endl;
         cout << "Proving time: " << proving_time << " ms" << endl;

@@ -9,7 +9,7 @@ using namespace libsnark;
 using namespace std;
 
 int main() {
-    // 禁用详细输出
+  
     libff::inhibit_profiling_info = true;
     
     typedef libff::Fr<default_r1cs_se_ppzksnark_pp> FieldT;

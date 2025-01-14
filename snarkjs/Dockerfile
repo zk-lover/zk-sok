@@ -1,10 +1,7 @@
-# 使用 Node.js 官方镜像作为基础镜像
 FROM node:16-buster
 
-# 设置工作目录
 WORKDIR /app
 
-# 安装 Rust 和 Cargo（用于构建 Circom）
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -13,7 +10,6 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     cmake
 
-# 安装 Rust 并设置环境变量
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
