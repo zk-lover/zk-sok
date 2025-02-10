@@ -15,7 +15,7 @@ $ docker build -t gnark .
 
 Spin up a Docker container from the image.
 ```
-$ docker run -it --rm gnark .
+$ docker run -it --rm gnark
 ```
 
 Please note that any changes you make in the container are not persistent. 
