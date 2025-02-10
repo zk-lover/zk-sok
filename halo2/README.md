@@ -18,7 +18,7 @@ $ docker build -t halo2 .
 
 Spin up a Docker container from the image.
 ```
-$ docker run -it --rm halo2 .
+$ docker run -it --rm halo2
 ```
 
 Please note that any changes you make in the container are not persistent. 
