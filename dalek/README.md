@@ -18,7 +18,7 @@ $ docker build -t delak .
 
 Spin up a Docker container from the image.
 ```
-$ docker run -it --rm dalek
+$ docker run -it --rm dalek .
 ```
 
 Please note that any changes you make in the container are not persistent. 
