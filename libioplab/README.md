@@ -12,8 +12,9 @@ Next we show how to build Docker to run our sample program based on the libiop l
 ## load and update libiop submodules
 Before building docker, execute:
 ```
-$ git submodule update --init --recursive libioplab/deps/libiop
+$ ./setup.sh
 ```
+This script loads the libiop library as a submodule and fixes the version
 
 ## Docker setup
 

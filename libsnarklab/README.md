@@ -7,8 +7,9 @@ Next we show how to build Docker to run our sample program based on the libsnark
 ## load and update libsnark submodules
 Before building docker, execute:
 ```
-$ git submodule update --init --recursive libsnarklab/deps/libsnark
+$ ./setup.sh
 ```
+This script loads the libsnark library as a submodule and fixes the version
 
 ## Docker setup
 
