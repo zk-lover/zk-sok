@@ -34,6 +34,11 @@ Run the following code to execute the examples.
 $ cargo run --bin rangeproof
 ```
 
+You can use the following command to enable compiler optimizations to improve program execution performance:
+```
+$ cargo run --release --bin <name>
+```
+
 ## Modifying examples
 Modifying examples is straightforward. Write your own rust file xxx.rs and add the following code to the Cargo.toml file.
 ```

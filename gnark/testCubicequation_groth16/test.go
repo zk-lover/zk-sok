@@ -4,15 +4,11 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"log"
 
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark/backend/groth16"
 	"github.com/consensys/gnark/frontend"
 	"github.com/consensys/gnark/frontend/cs/r1cs"
-
-	"net/http"
-	_ "net/http/pprof"
 )
 
 // CubicCircuit defines a simple circuit
@@ -33,9 +29,6 @@ func (circuit *CubicCircuit) Define(api frontend.API) error {
 }
 
 func main() {
-	go func() {
-		log.Println(http.ListenAndServe("0.0.0.0:6060", nil)) // 确保监听在所有接口上
-	}()
 
 	// compiles our circuit into a R1CS
 	var circuit CubicCircuit

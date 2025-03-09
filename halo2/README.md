@@ -36,6 +36,11 @@ $ cargo run --bin range_proof
 $ cargo run --bin sha256
 ```
 
+You can use the following command to enable compiler optimizations to improve program execution performance:
+```
+$ cargo run --release --bin <name>
+```
+
 ## Modifying examples
 Modifying examples is straightforward. Write your own rust file xxx.rs and add the following code to the Cargo.toml file.
 ```

@@ -7,6 +7,6 @@ services:
     ports:
       - "4000:4000"  
     volumes:
-      - ./book:/srv/gitbook  # 将本地的 ./book 目录映射到容器中的 /gitbook
+      - ./book:/srv/gitbook  
     command: "gitbook serve"  
     restart: unless-stopped

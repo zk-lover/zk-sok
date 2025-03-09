@@ -25,3 +25,14 @@ Run the following code to execute the examples.
 ```
 $ cargo run 
 ```
+
+You can use the following command to enable compiler optimizations to improve program execution performance:
+```
+$ cargo run --release 
+```
+
+You will get an error: unknown feature `stdsimd`, this is because the `stdsimd` feature was removed in February 2024. You can use the following command to delete the stdsimd feature without affecting the program.
+```
+$ sed -i '/#!\[feature(stdsimd)\]/d' /usr/local/cargo/git/checkouts/plonky2-3439dbeef93f6ccc/4cb0b48/field/src/lib.rs
+$ cargo run 
+```

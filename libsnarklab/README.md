@@ -9,7 +9,8 @@ Before building docker, execute:
 ```
 $ ./setup.sh
 ```
-This script loads the libsnark library as a submodule and fixes the version
+This script loads the libsnark library as a submodule and fixes the version, you can view this script to see the commit hash
+
 
 ## Docker setup
 

@@ -1,3 +1,7 @@
 target/
 gitbook-docker/book/_book/
 **/build/
+
+*.exe
+*.out
+*.o
