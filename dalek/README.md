@@ -13,7 +13,7 @@ Next we show how to build Docker to run our sample program based on the dalek li
 Create a Docker image. This will take a few minutes. You only have to do 
 this once.
 ```
-$ docker build -t delak .
+$ docker build -t dalek .
 ```
 
 Spin up a Docker container from the image.
