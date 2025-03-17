@@ -45,9 +45,15 @@ Then you can run the following code to execute the sample program.
 
 ```
 $ cd app/build/src
-$ ./cubic_expression
-$ ./range_proof
-$ ./sha256
+$ ./cubic_expression_groth16
+$ ./cubic_expression_bctv14
+$ ./cubic_expression_gm17
+$ ./range_proof_groth16
+$ ./range_proof_bctv14
+$ ./range_proof_gm17
+$ ./sha256_groth16
+$ ./sha256_bctv14
+$ ./sha256_gm17
 ```
 
 ## Modifying examples

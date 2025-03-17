@@ -1,6 +1,6 @@
 pragma circom 2.0.0;
 
-include "/app/node_modules/circomlib/circuits/bitify.circom";
+include "/app/circomlib/circuits/bitify.circom";
 
 template range_proof(n) {
     assert(n <= 32);

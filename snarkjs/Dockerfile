@@ -18,6 +18,8 @@ RUN cargo install --git https://github.com/iden3/circom.git --tag v2.1.6
 
 RUN npm install -g snarkjs
 
+RUN git clone --branch v2.0.5 https://github.com/iden3/circomlib.git /app/circomlib
+
 COPY . /app
 
 RUN find /app -type f -name "*.sh" -exec chmod +x {} \;

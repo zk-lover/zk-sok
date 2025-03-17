@@ -36,7 +36,7 @@ $ cargo run --bin rangeproof
 
 You can use the following command to enable compiler optimizations to improve program execution performance:
 ```
-$ cargo run --release --bin <name>
+$ cargo run --release --bin rangeproof
 ```
 
 ## Modifying examples

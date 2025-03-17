@@ -1,6 +1,6 @@
 pragma circom 2.0.0;
 
-include "/app/node_modules/circomlib/circuits/sha256.circom";  // Include sha256.circom template
+include "/app/circomlib/circuits/sha256/sha256.circom";  // Include sha256.circom template
 
 // Define main circuit
 template Main() {
