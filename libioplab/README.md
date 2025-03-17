@@ -35,11 +35,11 @@ Please note that any changes you make in the container are not persistent.
 
 Navigate to the directory of the program you would like to run.
 Our examples are at `/app/src`.
-Before you execute the sample program, you need run the following code to compile it.
+Before you execute the sample program, you need run the following code to compile it. Note that:The `benchmark` library that `libiop` depends on does not support versions above `c++03`. Our sample programs don't involve `benchmark`, so we need to disable it.
 ```
 $ mkdir build
 $ cd build
-$ cmake ..
+$ cmake .. -DBENCHMARK_ENABLE_TESTING=OFF
 $ make
 ```
 
