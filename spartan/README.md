@@ -27,7 +27,7 @@ Navigate to the directory of the program you would like to run.
 Our examples are at `/root/src`.
 Run the following code to execute the examples.
 ```
-$ cargo run --bin cubic_expression
+$ cargo run --bin cubic
 $ cargo run --bin rangeproof
 $ cargo run --bin sha256
 ```
