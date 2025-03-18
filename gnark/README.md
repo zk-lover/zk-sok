@@ -50,12 +50,6 @@ $ ./testrangeproofs_plonk
 ```
 
 ```
-$ cd testrangeproofs_plonk
-$ go build -o testrangeproofs_plonk
-$ ./testrangeproofs_plonk
-```
-
-```
 $ cd testsha256_groth16
 $ go build -o testsha256_groth16    
 $ ./testsha256_groth16
