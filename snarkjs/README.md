@@ -38,7 +38,7 @@ Enter a directory, you'll find 4 files:
 - a start.sh file, which contains the full steps to run the program. 
 - a quick_start.sh file, which can be used when you have a final.ptau file. The final.ptau file contains the public parameters required by the circuit and is used to ensure the credibility of the circuit. It is a necessary file in the proof process. snarkjs provides a command to generate this file. As the maximum constraints of the circuit increase, the file generation time is slower. snarkjs officially provides final.ptau files ranging from 256 constraints to 256 mega constraints. You can choose to generate it yourself or download it.
 
-tips：To test `sha256` requires a big ptau file, if you generate it yourself, it will take a long time(over 10 hours).   
+tips：To test `sha256` requires a big ptau file, if you generate it yourself, it will take a long time(over 10 hours), therefore, we strongly recommend that you download the corresponding ptau file from the `snarkjs` official website and use our `quick_start.sh` script for testing. The snarkjs official website link is https://github.com/iden3/snarkjs , you can find the ptau file in the note of step 7.   
 
 You can simply run the 'start.sh' to execute the examples.
 ```
@@ -47,6 +47,17 @@ $ ./start.sh
 Or when you have a final.ptau file, you can run the 'quick_start.sh' to execute the examples.
 ```
 $ ./quick_start.sh
+```
+
+Because snarkjs provides a Cli tool for zero-knowledge proof generation, our original program does not include the output of proof time, verification time, and proof size. The log is very long, we added the following command to the script to measure the time:
+```
+$ time snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json
+
+$ time snarkjs groth16 verify verification_key.json public.json proof.json
+```
+In addition, you can also search for the number of constraints in the output log, and use the following command to view the size of the proof:
+```
+$ ls -lh proof.json
 ```
 
 ## Modifying examples
