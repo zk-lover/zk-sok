@@ -7,6 +7,7 @@ use plonky2::plonk::config::{GenericConfig, PoseidonGoldilocksConfig};
 use plonky2::util::timing::TimingTree;
 use plonky2_sha256::circuit::{array_to_bits, make_circuits};
 use sha2::{Digest, Sha256};
+use std::time::Instant;
 
 pub fn prove_sha256(msg: &[u8]) -> Result<()> {
     let mut hasher = Sha256::new();
@@ -41,12 +42,21 @@ pub fn prove_sha256(msg: &[u8]) -> Result<()> {
     println!("- Number of public inputs: {}", builder.num_public_inputs());
 
     let data = builder.build::<C>();
+    let prove_start = Instant::now();
     let proof = data.prove(pw).unwrap();
+    let prove_duration = prove_start.elapsed();
+    println!("Proof time: {:.3?}", prove_duration);
+
     let proof_bytes = proof.to_bytes();
     let size = proof_bytes.len();
     println!("Size of proof_bytes: {}", size);
 
-    data.verify(proof)
+    let verify_start = Instant::now();
+    let verify_result = data.verify(proof);
+    let verify_duration = verify_start.elapsed();
+    println!("Proof verification time: {:.3?}", verify_duration);
+
+    verify_result
 }
 
 fn main() -> Result<()> {

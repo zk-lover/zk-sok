@@ -19,6 +19,7 @@ use ark_crypto_primitives::{
     crh::CRHSchemeGadget,
     snark::{SNARK, CircuitSpecificSetupSNARK},
 };
+use ark_serialize::CanonicalSerialize;
 
 // SHA256 Circuit Definition
 struct Sha256Circuit<ConstraintF: Field> {
@@ -54,6 +55,7 @@ impl<ConstraintF: PrimeField> ConstraintSynthesizer<ConstraintF> for Sha256Circu
             computed_byte.enforce_equal(expected_byte)?;
         }
 
+        println!("Number of constraints: {}", cs.num_constraints());
         Ok(())
     }
 }
@@ -88,12 +90,19 @@ where
     let (pk, vk) = Groth16::<E>::setup(setup_circuit, &mut prover_rng)
         .expect("Setup failed");
 
+
     println!("Setting up proving circuit...");
     let proving_circuit = Sha256Circuit {
         preimage: Some(preimage.clone()),
         hash: Some(hash.clone()),
         _phantom: PhantomData,
     };
+
+    let pk_size = pk.uncompressed_size();
+    let vk_size = vk.uncompressed_size();
+    println!("Uncompressed pk size: {} bytes", pk_size);
+    println!("Uncompressed vk size: {} bytes", vk_size);
+    println!("Total uncompressed size (pk + vk): {} bytes", pk_size + vk_size);
 
     println!("Generating proof...");
     let start1 = Instant::now();
